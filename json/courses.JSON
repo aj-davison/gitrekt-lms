@@ -1,26 +1,70 @@
 [
     {
-        "id": 25f58098-d764-4dec-b42f-ad19ad57d00f,
+        "id": "25f58098-d764-4dec-b42f-ad19ad57d00f",
         "title": "Java",
         "description": "A beginner friendly course in Java",
-        "authorID": ca8fdfc4-f92e-40b4-9508-75680fdae460,
+        "authorID": "ca8fdfc4-f92e-40b4-9508-75680fdae460",
         "students":[
             {
-                "id":1,
-                "grades":[],
-                "completed":0
+                "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
+                "grades":[
+
+                ],
+                "completedTopics": 0,
+                "progress": 0
+            }
+        ],
+        "difficulty": "Easy",
+        "topics":[
+            {
+                "subtopics":[
+                    {
+                        "title": "If-Statements",
+                        "info": "A subtopic about if statements"
+                    }
+                ],
+                "quiz":[
+                    {
+                        "questions":[
+                            {
+                                "question": "What is an if-statement",
+                                "answers": [
+                                    {
+                                        "a": "A loop",
+                                        "b": "A variable",
+                                        "c": "A variable",
+                                        "d": "A branching statement"
+                                    }
+                                ],
+                                "correct": "d"
+                            }
+                        ]
+                    }
+                ],
+                "comments":[
+                    {
+                        "comments":[
+                            {
+                                "comments":[
+
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         ]
+
         
     },
     {
-        "id": d6f16e7d-7112-4843-ab36-10394663235f,
+        "id": "d6f16e7d-7112-4843-ab36-10394663235f",
         "title": "Python",
         "description": "A beginner friendly course in Python",
-        "authorID": 5,
-        "studnets": [
+        "authorID": "6a9661bd-305d-4c5e-a525-66ce1ad4aa5a",
+        "students": [
             {
-                "id": 3cbffdeb-9704-4415-bdc0-d561dce0733f,
+                "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
                 "grades":[],
                 "completed":0
             }
