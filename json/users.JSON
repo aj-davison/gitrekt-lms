@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": 3cbffdeb-9704-4415-bdc0-d561dce0733f,
         "type": "Student",
         "firstName": "Andy",
         "lastName": "Davison",
@@ -9,12 +9,21 @@
         "email": "andyd.soccer@gmail.com"
     },
     {
-        "id": 2,
+        "id": ca8fdfc4-f92e-40b4-9508-75680fdae460,
         "type": "Author",
         "firstName": "Mickey",
         "lastName": "Mouse",
         "username": "mmouse123",
         "password": "555533",
         "email": "mickey.mouse123@outlook.com"
+    },
+    {
+        "id": de483e99-4080-4986-be50-c51f950bb833,
+        "type": "Student",
+        "firstName": "Buggs",
+        "lastName": "Bunny",
+        "username": "BBUNNY",
+        "password": "ILOVE^",
+        "email": "bbunny17@hotmail.com"
     }
 ]

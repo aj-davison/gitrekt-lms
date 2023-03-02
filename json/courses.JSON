@@ -1,14 +1,29 @@
 [
     {
-        "id": 1,
+        "id": 25f58098-d764-4dec-b42f-ad19ad57d00f,
         "title": "Java",
         "description": "A beginner friendly course in Java",
-        "topics": [],
+        "authorID": ca8fdfc4-f92e-40b4-9508-75680fdae460,
+        "students":[
+            {
+                "id":1,
+                "grades":[],
+                "completed":0
+            }
+        ]
         
     },
     {
-        "id": 2,
+        "id": d6f16e7d-7112-4843-ab36-10394663235f,
         "title": "Python",
-        "description": "A beginner friendly course in Python"
+        "description": "A beginner friendly course in Python",
+        "authorID": 5,
+        "studnets": [
+            {
+                "id": 3cbffdeb-9704-4415-bdc0-d561dce0733f,
+                "grades":[],
+                "completed":0
+            }
+        ]
     }
 ]
