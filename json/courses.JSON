@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "Java",
+        "description": "A beginner friendly course in Java",
+        "topics": [],
+        
+    },
+    {
+        "id": 2,
+        "title": "Python",
+        "description": "A beginner friendly course in Python"
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "type": "Student",
+        "firstName": "Andy",
+        "lastName": "Davison",
+        "username": "aj-davison",
+        "password": "123456",
+        "email": "andyd.soccer@gmail.com"
+    },
+    {
+        "id": 2,
+        "type": "Author",
+        "firstName": "Mickey",
+        "lastName": "Mouse",
+        "username": "mmouse123",
+        "password": "555533",
+        "email": "mickey.mouse123@outlook.com"
+    }
+]
