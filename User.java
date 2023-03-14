@@ -1,7 +1,8 @@
 import java.util.UUID;
-
+import java.util.ArrayList;
 public abstract class User {
     
+    private ArrayList<CourseProgress> courseProgresses;
     private String firstName;
     private String lastName;
     private String username;
@@ -9,11 +10,11 @@ public abstract class User {
     private String email;
     private UUID id;
 
-    public User(String firstName, String lastName, String username, String password, String email) {
+    public User(ArrayList<CourseProgress> courseProgresses,String firstName, String lastName, String username, String password, String email) {
 
     }
 
-    public User(UUID id, String firstName, String lastName, String username, String password, String email) {
+    public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email) {
 
     }
 
