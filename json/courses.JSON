@@ -17,6 +17,7 @@
         "difficulty": "Easy",
         "topics":[
             {
+                "title": "Java Basics",
                 "subtopics":[
                     {
                         "title": "If-Statements",
@@ -25,49 +26,33 @@
                 ],
                 "quiz":[
                     {
-                        "questions":[
-                            {
-                                "question": "What is an if-statement",
-                                "answers": [
-                                    {
-                                        "a": "A loop",
-                                        "b": "A variable",
-                                        "c": "A variable",
-                                        "d": "A branching statement"
-                                    }
-                                ],
-                                "correct": "d"
-                            }
-                        ]
+                        "question": "What is an if-statement",
+                        "answers": [
+                            "a loop", "branch statement"
+                        ],
+                        "correct": 1
                     }
                 ],
                 "comments":[
-                    {
-                        "comments":[
-                            {
-                                "comments":[
-
-                                ]
-                            }
+                    {   
+                        "comment": "Awesome topic!",
+                        "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2",
+                        "replies":[
+                            
                         ]
                     }
                 ]
             }
-        ]
-
-        
-    },
-    {
-        "id": "d6f16e7d-7112-4843-ab36-10394663235f",
-        "title": "Python",
-        "description": "A beginner friendly course in Python",
-        "authorID": "6a9661bd-305d-4c5e-a525-66ce1ad4aa5a",
-        "students": [
+        ],
+        "comments":[
             {
-                "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
-                "grades":[],
-                "completed":0
+                "comment": "Awesome course!",
+                "userId": "30ad7434-7a97-4c5f-8a9b-9ceebc2867b5",
+                "replies":[
+                    
+                ]
             }
         ]
+        
     }
 ]
