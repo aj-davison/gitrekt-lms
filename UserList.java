@@ -5,9 +5,15 @@ public class UserList {
     private  ArrayList<User> users;
 
     private UserList(){
-        //userlist = DataLoader.getUsers();
+        users = DataLoader.getUsers();
     }
 
+
+    public User getUserByUUID(UUID id){
+        return null;
+    }
+
+    
     public static UserList getInstanceUserList(){
         if(userList == null){
             //creating new users list
