@@ -23,6 +23,44 @@ public abstract class User {
     }
 
     public String getUsername() {
-        return "";
+        if(username == null)
+            return null;
+        else
+            return this.username;
+    }
+
+    public String getID() {
+        if(id == null)
+            return null;
+        else
+            return this.id.toString();
+    }
+
+    public String getFirstName() {
+        if(firstName == null)
+            return null;
+        else
+            return this.firstName;
+    }
+
+    public String getLastName() {
+        if(lastName == null)
+            return null;
+        else
+            return this.lastName;
+    }
+
+    public String getPassword() {
+        if(password == null)
+            return null;
+        else
+            return this.password;
+    }
+
+    public String getEmail() {
+        if(email == null)
+            return null;
+        else
+        return this.email;
     }
 }
