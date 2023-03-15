@@ -4,7 +4,9 @@ public class UserList {
     private static UserList userlist;
     private  ArrayList<User> users;
 
-    private UserList(){}
+    private UserList(){
+        //userlist = DataLoader.getUsers();
+    }
 
     public static UserList getInstanceUserList(){
         if(userlist == null){
@@ -20,6 +22,11 @@ public class UserList {
         Student user = new Student(null, null, null, null, null, null);
         return user;
     }
+
+    public ArrayList<User> getUsers(){
+        return users;
+    }
+
     public void editUser(/*TODO*/){
 
     }
