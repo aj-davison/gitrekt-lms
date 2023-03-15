@@ -11,7 +11,7 @@ public abstract class User {
     private UUID id;
 
     public User(ArrayList<CourseProgress> courseProgresses,String firstName, String lastName, String username, String password, String email) {
-
+        this.username = username;
     }
 
     public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email) {
@@ -23,6 +23,6 @@ public abstract class User {
     }
 
     public String getUsername() {
-        return "";
+        return this.username;
     }
 }

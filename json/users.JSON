@@ -1,7 +1,7 @@
 [
     {
         "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
-        "type": "Student",
+        "type": "student",
         "firstName": "Andy",
         "lastName": "Davison",
         "username": "aj-davison",
@@ -10,7 +10,7 @@
     },
     {
         "id": "ca8fdfc4-f92e-40b4-9508-75680fdae460",
-        "type": "Author",
+        "type": "author",
         "firstName": "Mickey",
         "lastName": "Mouse",
         "username": "mmouse123",
@@ -19,7 +19,7 @@
     },
     {
         "id": "de483e99-4080-4986-be50-c51f950bb833",
-        "type": "Student",
+        "type": "student",
         "firstName": "Buggs",
         "lastName": "Bunny",
         "username": "BBUNNY",
@@ -28,7 +28,7 @@
     },
     {
         "id": "6a9661bd-305d-4c5e-a525-66ce1ad4aa5a",
-        "type": "Author",
+        "type": "author",
         "firstName": "Doctor",
         "lastName": "Suess",
         "username": "Cat-In-The-Hat",
