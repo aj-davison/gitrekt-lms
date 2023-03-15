@@ -1,13 +1,17 @@
 import java.util.ArrayList;
 
 public class UserList {
-    private ArrayList<User> users;
+    private static UserList userlist;
+    private  ArrayList<User> users;
 
-    private UserList(){
+    private UserList(){}
 
-    }
-    public UserList getInstanceUserList(){
-        return this;
+    public static UserList getInstanceUserList(){
+        if(userlist == null){
+            //creating new users list
+            userlist = new UserList();
+        }
+        return userlist;
     }
     public void addUser(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
 
