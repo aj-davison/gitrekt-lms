@@ -16,13 +16,14 @@ public class UserList {
     public void addUser(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
 
     }
-    public User getUser(){
+    public User getUser(String username){
         Student user = new Student(null, null, null, null, null, null);
         return user;
     }
     public void editUser(/*TODO*/){
 
     }
+
     public void saveUsers(){
         
     }
