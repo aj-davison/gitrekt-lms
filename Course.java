@@ -22,4 +22,26 @@ public class Course {
     public void addTopic(Topic topic) {
         
     }
+
+    public String getID() {
+        if(id == null)
+            return null;
+        else
+            return this.id.toString();
+    }
+
+    public String getTitle() {
+        if(title == null)
+            return null;
+        else
+            return this.title;
+    }
+
+    public String getDescription() {
+        if(description == null)
+            return null;
+        else
+            return this.description;
+    }
+
 }
