@@ -41,10 +41,17 @@ public class DataLoader extends DataConstants {
         return null;
     }
     public static void main(String[] args) {
-        ArrayList<User> test = getUsers();
+        /*ArrayList<User> test = getUsers();
         for(int i=0;i<test.size();i++) {
             System.out.print(test.get(i).getUsername());
             System.out.println();
+        }*/
+
+        UserList list = UserList.getInstanceUserList();
+        ArrayList<User> users = list.getUsers();
+
+        for(User user : users){
+            System.out.println(user.getUsername());
         }
     }
 }
