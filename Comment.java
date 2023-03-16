@@ -5,18 +5,18 @@ public class Comment {
     private ArrayList<Comment> subComments;
     private String mainComment;
     private String username;
-    private UUID id;
+    private UUID UserID;
 
     public Comment(String mainComment, String username){
         this.mainComment = mainComment;
         this.username = username;
         subComments = new ArrayList<>();
     }
-    public Comment(UUID id, String mainComment, String username, ArrayList<Comment> subComments){
+    public Comment(UUID UserID, String mainComment, String username, ArrayList<Comment> subComments){
         this.mainComment = mainComment;
         this.username = username;
         this.subComments = subComments;
-        this.id = id;
+        this.UserID = UserID;
     }
     //TODO
     public String toString(){
@@ -32,7 +32,7 @@ public class Comment {
         return this.username;
     }
     public UUID getID() {
-        return this.id;
+        return this.UserID;
     }
     public ArrayList<Comment> getReplies() {
         if(subComments == null)

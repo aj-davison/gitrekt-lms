@@ -14,7 +14,7 @@ public class Course {
    
 
     public Course(ArrayList<Topic> topics, String title, String description, UUID authorID) {
-
+    
     }
 
     public Course(UUID id, ArrayList<Topic> topics, String title, String description, UUID authorID) {
