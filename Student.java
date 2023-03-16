@@ -11,11 +11,11 @@ public class Student extends User{
     public Student(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(courseProgresses, firstName, lastName, email, username, password);
         this.topicsCompleted = 0;
-        ArrayList<Double> grades = new ArrayList<>();
+        grades = new ArrayList<>();
         
     }
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password, int topicsCompleted, ArrayList<Double> grades){
-        super(courseProgresses, firstName, lastName, email, username, password);
+        super(id, courseProgresses, firstName, lastName, email, username, password);
         this.topicsCompleted = topicsCompleted;
         this.grades = grades;
     }
@@ -25,7 +25,7 @@ public class Student extends User{
         this.addCourseProgress(courseProgress);
     }
     public void continueCourse(Course course){
-        
+
     }
     public void unregisterCourse(Course course){
         
