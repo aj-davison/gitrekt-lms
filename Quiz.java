@@ -1,16 +1,13 @@
 import java.util.ArrayList;
 
 public class Quiz {
-    private ArrayList<Question> questions;
+    private ArrayList<Question> questions = new ArrayList<Question>();
 
     public Quiz(ArrayList<Question> questions){
-
+        this.questions = questions;
     }
     public void addQuestion(Question question){
-
-    }
-    public String toString(){
-        return "";
+        questions.add(question);
     }
     public ArrayList<Question> getQuestions() {
         if(questions == null){
@@ -19,5 +16,8 @@ public class Quiz {
         }
         else
             return this.questions;
+    }
+    public String toString(){
+        return "";
     }
 }
