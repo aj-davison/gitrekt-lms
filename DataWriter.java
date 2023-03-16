@@ -166,6 +166,10 @@ public class DataWriter extends DataConstants {
 
 	
 
+
+
+
+
     
 
     public static void saveUsers() {
@@ -210,7 +214,8 @@ public class DataWriter extends DataConstants {
         UserList userList = UserList.getInstanceUserList();
         //ArrayList<User> users =userList.getUsers();
         //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
-        saveUsers();
+        //saveUsers();
+        saveCourses();
     }
 
 }

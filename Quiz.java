@@ -13,8 +13,10 @@ public class Quiz {
         return "";
     }
     public ArrayList<Question> getQuestions() {
-        if(questions == null)
-            return null;
+        if(questions == null){
+            questions = new ArrayList<Question>();
+            return questions;
+        }
         else
             return this.questions;
     }

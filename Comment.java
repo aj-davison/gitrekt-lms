@@ -23,7 +23,10 @@ public class Comment {
     }
     public ArrayList getReplies() {
         if(subComments == null)
-            return null;
+        {
+            subComments = new ArrayList<Comment>();
+            return subComments;
+        }  
         else
             return this.subComments;
     }

@@ -33,8 +33,10 @@ public class Student extends User{
     }
 
     public ArrayList getGrades(){
-        if(this.grades == null)
-            return null;
+        if(this.grades == null){
+            grades = new ArrayList<Double>();
+            return grades;
+        }
         else
             return this.grades;
     }

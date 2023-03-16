@@ -66,15 +66,19 @@ public class Course {
     }
 
     public ArrayList getStudents(){
-        if(students != null)
-            return this.students;
+        if(students != null){
+            students = new ArrayList<Student>();
+            return students;
+        }
         else
             return null;
     }
 
     public ArrayList getTopics(){
-        if(topics != null)
-            return this.topics;
+        if(topics != null){
+            topics = new ArrayList<Topic>();
+            return topics;
+        }
         else    
             return null;
     }

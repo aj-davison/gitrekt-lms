@@ -29,8 +29,10 @@ public class Topic {
         
     }
     public ArrayList<Subtopic> getSubTop() {
-        if(subtopics == null)
-            return null;
+        if(subtopics == null){
+            subtopics = new ArrayList<Subtopic>();
+            return subtopics;
+        }
         else
             return this.subtopics;
     }
@@ -41,8 +43,10 @@ public class Topic {
         return this.name;
     }
     public ArrayList<Comment> getComments() {
-        if(comments == null)
-            return null;
+        if(comments == null) {
+            comments = new ArrayList<Comment>();
+            return comments;
+        } 
         else
             return this.comments;
     }

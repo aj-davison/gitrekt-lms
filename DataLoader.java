@@ -38,7 +38,7 @@ public class DataLoader extends DataConstants {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return users;
     }
     public static void main(String[] args) {
         /*ArrayList<User> test = getUsers();
