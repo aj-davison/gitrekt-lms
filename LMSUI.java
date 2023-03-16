@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 public class LMSUI {
 
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
-    private String[] loginMenu = {"Login In", "Create Account"};
+    private String[] loginMenu = {"Login with Username", " Login with Email", "Create Account"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "View Profile", "Billing Page", "Log Out"};
     private String[] createAccountMenu = {"Student", "Author"};
     private String[] courseMenu = {"Enter Course", "Exit to Home"};
@@ -26,7 +28,33 @@ public class LMSUI {
             
             displayMenu(loginMenu, "LOG IN");
 
+            int userCommand = getUserCommand(loginMenu.length);
+			
+			if(userCommand == -1) {
+				System.out.println("Not a valid command");
+				continue;
+			}
+
+            if(userCommand == loginMenu.length) break;
+
+            //have switch return an user
+            //if it does, continue to next while loop
+            //if it doesn't keep them in login while loop
+
+            switch(userCommand) {
+                case(0):
+                    loginU();
+                    break;
+                case(1):
+                    loginE();
+                    break;
+                case(2):
+                    createAccount();
+                    break;
+            }
+
         }
+        System.out.println("Goodbye, have a good day.");
     }
 
     private void displayMenu(String[] menu, String pageName) {
@@ -37,6 +65,87 @@ public class LMSUI {
         System.out.println("\n");
     }
 
+    private int getUserCommand(int numCommands) {
+		System.out.print("What would you like to do?: ");
+		
+		String input = scanner.nextLine();
+		int command = Integer.parseInt(input) - 1;
+		
+		if(command >= 0 && command <= numCommands -1)
+            return command;
+		
+		return -1;
 
+	}
+
+    private void loginU() {
+
+        System.out.println("\n-----Loging in-----");        
+
+        String username = getUserString("Username");
+        String password = getUserString("Password");
+        
+        System.out.println(username + " " + password);
+
+        lms.loginU(username, password);
+
+    }
+
+    private void loginE() {
+
+        System.out.println("\n-----Loging in-----");        
+
+        String email = getUserString("Email");
+        String password = getUserString("Password");
+        
+        System.out.println(email + " " + password);
+
+        lms.loginE(email, password);
+
+    }
+
+    private void createAccount() {
+        System.out.println("\n-----Signing Up-----");        
+
+        String firstName = getUserString("First Name");
+        String lastName = getUserString("Last Name");
+        String email = getUserString("Email");
+        String username = getUserString("Username");
+        String password = getUserString("Password");
+
+
+        lms.signUp(firstName, lastName, username, password, email);
+
+
+
+        
+
+
+    }
+
+    private String getUserString(String category) {
+        
+        while(true) {
+            System.out.print("Enter " + category + ": ");
+			String info = scanner.nextLine().trim();
+		
+			if(!info.contentEquals("")) return info;
+			
+			System.out.println("You need to actually enter content");
+			System.out.print("Would you like to enter item again (y) or return to main menu (n): ");
+			String command = scanner.nextLine().trim().toLowerCase();
+			if(command == "n"){ 
+                return null;
+            }
+		}
+
+    }
+
+    public static void main(String[] args) {
+        LMSUI lmsInterface = new LMSUI();
+        lmsInterface.run();
+    
+    }
 
 }
+

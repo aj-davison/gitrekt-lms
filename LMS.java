@@ -12,7 +12,7 @@ public class LMS {
     public void logout(){
 
     }
-    public User signUp(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email){
+    public User signUp(String firstName, String lastName, String username, String password, String email){
         Student user = new Student(null, firstName, lastName, email, username, password);
         return user;
     }
