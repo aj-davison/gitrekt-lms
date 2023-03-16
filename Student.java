@@ -20,10 +20,12 @@ public class Student extends User{
         this.grades = grades;
     }
     public void enrollCourse(Course course){
-
+        //TODO       
+        CourseProgress courseProgress = new CourseProgress(course, null, topicsCompleted);
+        this.addCourseProgress(courseProgress);
     }
     public void continueCourse(Course course){
-
+        
     }
     public void unregisterCourse(Course course){
         
