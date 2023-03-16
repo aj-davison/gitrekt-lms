@@ -12,14 +12,25 @@ public abstract class User {
 
     public User(ArrayList<CourseProgress> courseProgresses,String firstName, String lastName, String username, String password, String email) {
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.courseProgresses = courseProgresses;
     }
 
     public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email) {
-
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.courseProgresses = courseProgresses;
     }
 
     public void addCourseProgress(CourseProgress courseProgress) {
-
+        courseProgresses.add(courseProgress);
     }
 
     public String getUsername() {
@@ -62,5 +73,17 @@ public abstract class User {
             return null;
         else
         return this.email;
+    }
+    public String toString(){
+        String result = "";
+        result += "Name: "+this.firstName+" "+this.lastName+"\n";
+        result += "Username: "+this.username+"\n";       
+        result += "Email: "+this.email+"\n";
+        result += "Courses: ";
+        for (CourseProgress i : courseProgresses){
+            result += i+", ";
+        }
+        result += "\n";
+        return result;
     }
 }
