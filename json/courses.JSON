@@ -13,7 +13,7 @@
                 "completedTopics": 0
             }
         ],
-        "difficulty": "Easy",
+        "difficulty": "BEGINNER",
         "topics":[
             {
                 "title": "Java Basics",
@@ -40,15 +40,6 @@
                             
                         ]
                     }
-                ]
-            }
-        ],
-        "comments":[
-            {
-                "comment": "Awesome course!",
-                "userId": "30ad7434-7a97-4c5f-8a9b-9ceebc2867b5",
-                "replies":[
-                    
                 ]
             }
         ]

@@ -12,4 +12,10 @@ public class Quiz {
     public String toString(){
         return "";
     }
+    public ArrayList<Question> getQuestions() {
+        if(questions == null)
+            return null;
+        else
+            return this.questions;
+    }
 }

@@ -4,7 +4,6 @@ public class Topic {
     private ArrayList<Subtopic> subtopics;
     private ArrayList<Comment> comments;
     private String name;
-    private Difficulty difficulty;
     private Quiz quiz;
     private boolean complete;
 
@@ -28,5 +27,23 @@ public class Topic {
     }
     public void addSubtopic(Subtopic subtopic){
         
+    }
+    public ArrayList<Subtopic> getSubTop() {
+        if(subtopics == null)
+            return null;
+        else
+            return this.subtopics;
+    }
+    public Quiz getQuiz() {
+        return this.quiz;
+    }
+    public Object getName() {
+        return this.name;
+    }
+    public ArrayList<Comment> getComments() {
+        if(comments == null)
+            return null;
+        else
+            return this.comments;
     }
 }

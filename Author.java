@@ -11,7 +11,8 @@ public class Author extends Student{
         super(courseProgresses, firstName, lastName, email, username, password);
     }
     public Course createCourse(){
-        Course course = new Course(null, getUsername(), getUsername());
+        Course course = new Course(null, getEmail(), getEmail());
         return course;
     }
+    
 }
