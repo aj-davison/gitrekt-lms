@@ -30,7 +30,7 @@ public class DataLoader extends DataConstants {
                 if(type.equals("student")) {
                     users.add(new Student(null, firstName, lastName, username, password, email));
                 } else {
-                    users.add(new Author(null, null, firstName, lastName, username, password, email));
+                    users.add(new Author(id, null, usersJSON, firstName, lastName, username, password, email, i, usersJSON));
                 }
             }
             return users;

@@ -21,7 +21,7 @@ public class Comment {
     public UUID getUserID() {
         return this.userID;
     }
-    public ArrayList getReplies() {
+    public ArrayList<Comment> getReplies() {
         if(subComments == null)
         {
             subComments = new ArrayList<Comment>();

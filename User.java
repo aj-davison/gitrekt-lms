@@ -76,6 +76,11 @@ public abstract class User {
     }
     public String toString(){
         String result = "";
+        if(this.courseProgresses == null){
+            return result;
+            //courseProgresses = new ArrayList<CourseProgress>();
+        }
+        
         result += "Name: "+this.firstName+" "+this.lastName+"\n";
         result += "Username: "+this.username+"\n";       
         result += "Email: "+this.email+"\n";

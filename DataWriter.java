@@ -84,7 +84,8 @@ public class DataWriter extends DataConstants {
         commentDetail.put(COURSE_TOPIC_COMMENTS_CREATOR_ID, comment.getUserID().toString());
         JSONArray jsonReplies = new JSONArray();
         for(int i=0; 0<comment.getReplies().size(); i++){
-            jsonReplies.add(comment.getReplies().get(i));
+            //jsonReplies.add(comment.getReplies().get(i));
+            jsonReplies.add(commentJSON(comment.getReplies().get(i)));
         }
         commentDetail.put(COURSE_TOPIC_COMMENTS_REPLIES, jsonReplies);
 
