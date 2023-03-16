@@ -15,7 +15,7 @@ public class Comment {
     public void addSubComment(Comment subComment){
         
     }
-    public Object getContent() {
+    public String getContent() {
         return mainComment;
     }
     public UUID getUserID() {
