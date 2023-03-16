@@ -2,7 +2,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 public abstract class User {
     
-    private ArrayList<CourseProgress> courseProgresses;
+    private ArrayList<CourseProgress> courseProgresses = new ArrayList<CourseProgress>();
     private String firstName;
     private String lastName;
     private String username;
