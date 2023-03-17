@@ -14,7 +14,8 @@ public class Course {
    
 
     public Course(ArrayList<Topic> topics, String title, String description, UUID authorID) {
-    
+        this.title = title;
+        this. description =  description;
     }
 
     public Course(UUID id, ArrayList<Topic> topics, String title, String description, UUID authorID) {
