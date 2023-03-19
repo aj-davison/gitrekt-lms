@@ -5,19 +5,15 @@ public class Topic {
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private String name;
     private Quiz quiz;
-    private Difficulty difficulty;
-    private boolean complete;
     private int position = 0;
 
-    public Topic(ArrayList<Subtopic> subtopics, String name, Difficulty difficulty, Quiz quiz){
+    public Topic(ArrayList<Subtopic> subtopics, String name, Quiz quiz){
         this.subtopics = subtopics;
         this.name = name;
-        this.difficulty = difficulty;
         this.quiz = quiz;
-        this.complete = false;
 
     }
-    public boolean completionStatus(){
+    public boolean isComplete(){
         boolean result;
         if(!hasNext()){
             result = true;
@@ -37,12 +33,12 @@ public class Topic {
         return subtopics.get(position) != null && position < subtopics.size();
     }
     //TODO
-    public int score(int ans){
-        return this.quiz.score(ans);
+    public int score(){
+        return this.quiz.score();
     }
     //TODO
     public String toString(){
-        return "";
+        return "Topic";
     }
     public void addComment(Comment comment){
         comments.add(comment);

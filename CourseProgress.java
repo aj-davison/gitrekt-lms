@@ -13,14 +13,11 @@ public class CourseProgress {
     }
     //TODO
     public String toString() {
-        return "";
+        return "CourseProgress";
     }
 
     public double calcGrade() {
-        return 0.0;
-    }
-
-    public void updateScore() {
-        
+        int questions = this.course.numCompletedTopics()*3;
+        return this.course.score()/questions;
     }
 }
