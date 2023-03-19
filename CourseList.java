@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseList {
     private static CourseList courseList;
@@ -15,19 +16,23 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(ArrayList<Topic> topics, String title, String description, double numTopics){
-
+    public void addCourse(ArrayList<Topic> topics, String title, String description){
+        courses.add(new Course(title, description, null, null));
     }
 
-    public Course getCourse(String keyword){
-        Course course = new Course(null, null, keyword, keyword, null, null);
-        return course;
+    public Course getCourseByUUID(UUID uuid){
+        for(int i=0; i<courses.size(); i++){
+            if(courses.get(i).getID().equalsIgnoreCase(uuid.toString())){
+                return courses.get(i);
+            }
+        }
+        return null;
     }
 
     public ArrayList<Course> getCourses(){
         return courses;
     }
-
+    //TODO
     public void editCourse(/*TODO*/){
 
     }

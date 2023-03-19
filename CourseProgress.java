@@ -1,15 +1,17 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class CourseProgress {
     
-    private Course course;
-    private HashMap<Quiz, Double> quizzes;
+    private UUID id;
+    private HashMap<String, Double> grades;
     private int numCompletedTopics;
     private double grade;
 
-    public CourseProgress(Course course, HashMap<Quiz, Double> quizzes, int numCompletedTopics, double grade) {
-        this.course = course;
-        this.quizzes = quizzes;
+    public CourseProgress(UUID id, HashMap<String, Double> grades, int numCompletedTopics, double grade) {
+        this.id = id;
+        this.grades = grades;
         this.grade = grade;
         this.numCompletedTopics = numCompletedTopics;
     }

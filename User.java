@@ -2,13 +2,13 @@ import java.util.UUID;
 import java.util.ArrayList;
 public abstract class User {
     
-    private ArrayList<CourseProgress> courseProgresses;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String email;
-    private UUID id;
+    protected ArrayList<CourseProgress> courseProgresses;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected UUID id;
 
     public User(String firstName, String lastName, String email, String username, String password) {
         this.username = username;
@@ -86,8 +86,8 @@ public abstract class User {
         result += "Username: "+this.username+"\n";       
         result += "Email: "+this.email+"\n";
         result += "Courses: ";
-        for (CourseProgress i : courseProgresses){
-            result += i.toString()+", ";
+        for (CourseProgress courseProgress : courseProgresses){
+            result += courseProgress.toString()+", ";
         }
         result += "\n";
         return result;
