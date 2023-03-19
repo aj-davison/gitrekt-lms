@@ -21,8 +21,7 @@ public class Student extends User{
         this.topicsCompleted = topicsCompleted;
         this.grades = grades;
     }
-    public void enrollCourse(Course course){
-        //TODO       
+    public void enrollCourse(Course course){  
         CourseProgress courseProgress = new CourseProgress(course, null, 0, 0.0);
         this.addCourseProgress(courseProgress);
     }

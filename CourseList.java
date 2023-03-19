@@ -16,8 +16,8 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(ArrayList<Topic> topics, String title, String description, double numTopics){
-
+    public void addCourse(ArrayList<Topic> topics, String title, String description){
+        courses.add(new Course(title, description, null, null))
     }
 
     public Course getCourseByUUID(UUID uuid){
@@ -32,7 +32,7 @@ public class CourseList {
     public ArrayList<Course> getCourses(){
         return courses;
     }
-
+    //TODO
     public void editCourse(/*TODO*/){
 
     }
