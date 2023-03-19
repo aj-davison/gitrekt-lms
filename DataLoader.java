@@ -29,9 +29,9 @@ public class DataLoader extends DataConstants {
                 String email = (String)userJSON.get(USER_EMAIL);
 
                 if(type.equalsIgnoreCase("student")) {
-                    users.add(new Student(id, null, firstName, lastName, email, username, password, 0, null));
+                    users.add(new Student(id, null,firstName, lastName,email,username,password));
                 } else {
-                    users.add(new Author(id, null, null, firstName, lastName, email, username, password, 0, null));
+                    users.add(new Author(id, null, null, firstName,lastName,email,username,password));
                 }
             }
             reader.close();
@@ -127,12 +127,12 @@ public class DataLoader extends DataConstants {
                             JSONObject repliesJSON = (JSONObject)repliesArray.get(y);
                             String replyContent = (String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
                             UUID replyID = UUID.fromString((String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
-                            replies.add(new Comment(replyContent, ""));
+                            replies.add(new Comment(replyContent, "", replyID));
                         }
                         comments.add(new Comment(creatorID, commentContent, "", replies));
                     }
                     topics.add(new Topic(subtopics, topicTitle, new Quiz(questions)));
-                    courseProgresses.add(new CourseProgress(null, topicJSON, i, j));
+                    courseProgresses.add(new CourseProgress(null, topicJSON, i));
                 }
                 courses.add(new Course(id, topics, title, description, Difficulty.ADVANCED, authorID));
             }

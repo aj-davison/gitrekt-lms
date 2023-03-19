@@ -6,7 +6,7 @@ public class CourseList {
     private ArrayList<Course> courses;
 
     private CourseList(){
-        //courseList = DataLoader.getCourses();
+        courses = DataLoader.getCourses();
     }
     public static CourseList getInstanceCourseList(){
         if(courseList == null){
@@ -16,8 +16,8 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(ArrayList<Topic> topics, String title, String description){
-        courses.add(new Course(title, description, null, null));
+    public void addCourse(ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID){
+        courses.add(new Course(title, description, difficulty, authorID));
     }
 
     public Course getCourseByUUID(UUID uuid){
