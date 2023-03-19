@@ -33,6 +33,7 @@ public abstract class DataConstants {
     protected static final String COURSE_TOPIC_COMMENTS_CONTENT = "comment";
     protected static final String COURSE_TOPIC_COMMENTS_CREATOR_ID = "userId";
     protected static final String COURSE_TOPIC_COMMENTS_REPLIES = "replies";
+    protected static final String COURSE_TOPIC_COMMENTS_REPLIES_ID = "replyID";
 
 
 
