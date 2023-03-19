@@ -3,10 +3,8 @@ public class LMS {
     private User currentUser;
     private Course currentCourse;
 
-    public User loginE(String email, String password, String type){
-
+    public void loginE(String email, String password, String type){
         
-
     }
     public void loginU(String usernam, String password){
 
