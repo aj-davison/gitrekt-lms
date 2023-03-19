@@ -17,7 +17,7 @@ public class CourseList {
     }
 
     public void addCourse(ArrayList<Topic> topics, String title, String description){
-        courses.add(new Course(title, description, null, null))
+        courses.add(new Course(title, description, null, null));
     }
 
     public Course getCourseByUUID(UUID uuid){
