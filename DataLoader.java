@@ -120,7 +120,10 @@ public class DataLoader extends DataConstants {
                         JSONArray repliesArray = (JSONArray)commentJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
                         ArrayList<Comment> replies = new ArrayList<>();
                         for(int y=0;y<repliesArray.size();y++) {
-                            //replies.add(getReplies((Comment)commentJSON.get(y)));
+                            JSONObject repliesJSON = (JSONObject)repliesArray.get(y);
+                            String replyContent = (String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
+                            UUID replyID = UUID.fromString((String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
+                            replies.add(new Comment(replyContent, ""));
                         }
                         comments.add(new Comment(creatorID, commentContent, "", replies));
                     }
@@ -135,14 +138,6 @@ public class DataLoader extends DataConstants {
         return courses;
     }
 
-    public static ArrayList<Comment> getReplies(Comment comment) {
-        ArrayList<Comment> replies = new ArrayList<>();
-        for(int i=0;i<replies.size();i++) {
-            //replies.add(getReplies(replies.get(i)));
-        }
-        return replies;
-    }
-
     public static void main(String[] args) {
         /*ArrayList<User> test = getUsers();
         for(int i=0;i<test.size();i++) {
@@ -153,12 +148,11 @@ public class DataLoader extends DataConstants {
         UserList list = UserList.getInstanceUserList();
         ArrayList<User> users = list.getUsers();
 
-        CourseList list2 = CourseList.getInstanceCourseList();
-        ArrayList<Course> courses = list2.getCourses();
+        
         
 
-        for(Course course : courses){
-            System.out.println(course.toString());
+        for(User user : users){
+            System.out.println(user.getUsername());
         }
     }
 }

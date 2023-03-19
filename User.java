@@ -10,7 +10,7 @@ public abstract class User {
     private String email;
     private UUID id;
 
-    public User(String firstName, String lastName, String username, String password, String email) {
+    public User(String firstName, String lastName, String email, String username, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

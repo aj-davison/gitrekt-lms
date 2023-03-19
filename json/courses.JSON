@@ -27,7 +27,7 @@
                     {
                         "question": "What is an if-statement",
                         "answers": [
-                            "a loop", "branch statement"
+                            "a loop", "branch statement", "an integer"
                         ],
                         "correct": 1
                     }
@@ -37,7 +37,10 @@
                         "comment": "Awesome topic!",
                         "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2",
                         "replies":[
-                            
+                            {
+                                "reply": "Thought so too!",
+                                "replyID": "7349e4b3-4d78-44bf-a421-0a81e53c7c31"
+                            }
                         ]
                     }
                 ]
