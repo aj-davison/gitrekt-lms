@@ -150,18 +150,16 @@ public class DataLoader extends DataConstants {
     }
 
     public static void main(String[] args) {
-        /*ArrayList<User> test = getUsers();
-        for(int i=0;i<test.size();i++) {
-            System.out.print(test.get(i).getUsername());
-            System.out.println();
-        }*/
-
         
         CourseList list2 = CourseList.getInstanceCourseList();
         ArrayList<Course> courses = list2.getCourses();
 
         for(Course course : courses) {
-            System.out.println(course.getDifficulty());
+            ArrayList<Topic> topics = course.getTopics();
+            for(Topic topic : topics) {
+                System.out.println(topic.score());
+            }
+            System.out.println(course.getID());
         }
     }
 }
