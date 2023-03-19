@@ -78,8 +78,8 @@ public abstract class User {
     public String toString(){
         String result = "";
         if(this.courseProgresses == null){
+            courseProgresses = new ArrayList<CourseProgress>();
             return result;
-            //courseProgresses = new ArrayList<CourseProgress>();
         }
         
         result += "Name: "+this.firstName+" "+this.lastName+"\n";
@@ -87,7 +87,7 @@ public abstract class User {
         result += "Email: "+this.email+"\n";
         result += "Courses: ";
         for (CourseProgress i : courseProgresses){
-            result += i+", ";
+            result += i.toString()+", ";
         }
         result += "\n";
         return result;
