@@ -5,6 +5,7 @@ import javax.lang.model.util.ElementScanner14;
 import java.util.ArrayList;
 
 public class Student extends User{
+    
     public Student(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
     }
