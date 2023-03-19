@@ -8,7 +8,7 @@ public abstract class User {
     private String username;
     private String password;
     private String email;
-    private UUID id;
+    protected UUID id;
 
     public User(String firstName, String lastName, String email, String username, String password) {
         this.username = username;
