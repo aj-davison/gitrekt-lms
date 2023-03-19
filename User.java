@@ -2,12 +2,12 @@ import java.util.UUID;
 import java.util.ArrayList;
 public abstract class User {
     
-    private ArrayList<CourseProgress> courseProgresses;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String email;
+    protected ArrayList<CourseProgress> courseProgresses;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String password;
+    protected String email;
     protected UUID id;
 
     public User(String firstName, String lastName, String email, String username, String password) {

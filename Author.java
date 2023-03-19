@@ -8,8 +8,8 @@ public class Author extends Student{
         super(firstName, lastName, email, username, password);
         this.createdCourses = new ArrayList<>();
     }
-    public Author(UUID id, ArrayList<Course> createdCourses, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password, int topicsCompleted, ArrayList<Double> grades){
-        super(id, courseProgresses,firstName, lastName, email, username, password, topicsCompleted, grades);
+    public Author(UUID id, ArrayList<Course> createdCourses, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
+        super(id, courseProgresses,firstName, lastName, email, username, password);
         this.createdCourses = createdCourses;
     }
    // public Course createCourse(){
