@@ -27,7 +27,7 @@ public class DataLoader extends DataConstants {
                 String password = (String)userJSON.get(USER_PASSWORD);
                 String email = (String)userJSON.get(USER_EMAIL);
 
-                if(type.equals("student")) {
+                if(type.equalsIgnoreCase("student")) {
                     users.add(new Student(id, null, firstName, lastName, email, username, password, 0, null));
                 } else {
                     users.add(new Author(id, null, null, firstName, lastName, email, username, password, 0, null));
