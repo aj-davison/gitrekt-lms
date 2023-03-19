@@ -14,20 +14,24 @@ public class Course {
    
 
     public Course(String title, String description, Difficulty difficulty, UUID authorID) {
+        this.topics = new ArrayList<Topic>();
+        this.students = new ArrayList<Student>();
         this.title = title;
         this. description =  description;
-        ArrayList<Topic> topics = new ArrayList<>();
+        this.id = UUID.randomUUID();
+        this.authorID = authorID;
         this.difficulty = difficulty;
 
     }
 
-    public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
-        this.id = id;
+    public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
+        this.students = students;
         this.title = title;
         this.description = description;
-        this.authorID = authorID;
         this.difficulty = difficulty;
+        this.id = id;
+        this.authorID = authorID;
     }
     public int score(){
         int score = 0;
@@ -36,25 +40,9 @@ public class Course {
         }
         return score;
     }
-    /*public int numQuestions(){
-        int total = 0;
-        for(int i=0; i<topics.size(); i++){
-            total += 3;
-        }
-        return total;
-    }*/
-    public int numCompletedTopics(){
-        int numTopic = 0;
-        for(Topic topic : topics){
-            if(topic.isComplete()){
-                numTopic++;
-            }
-        }
-        return numTopic;
-    }
     //TODO
     public String toString() {
-        return "Course";
+        return "";
     }
 
     public void addTopic(Topic topic) {

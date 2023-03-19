@@ -2,18 +2,33 @@ import java.util.ArrayList;
 
 public class Topic {
     private ArrayList<Subtopic> subtopics;
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
+    private ArrayList<Comment> comments; 
     private String name;
+    private Difficulty difficulty;
     private Quiz quiz;
+    private boolean complete;
     private int position = 0;
 
-    public Topic(ArrayList<Subtopic> subtopics, String name, Quiz quiz){
+    public Topic(ArrayList<Subtopic> subtopics, String name, Difficulty difficulty, Quiz quiz){
         this.subtopics = subtopics;
         this.name = name;
+        this.difficulty = difficulty;
         this.quiz = quiz;
-
+        comments = new ArrayList<Comment>();
+        this.complete = false;
     }
-    public boolean isComplete(){
+
+    public Topic(ArrayList<Subtopic> subtopics, ArrayList<Comment> comments, String name, Difficulty difficulty, Quiz quiz, boolean isCompleted){
+        this.subtopics = subtopics;
+        this.comments = comments;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.quiz = quiz;
+        this.complete = isCompleted;
+    }
+
+
+    public boolean completionStatus(){
         boolean result;
         if(!hasNext()){
             result = true;
@@ -38,7 +53,7 @@ public class Topic {
     }
     //TODO
     public String toString(){
-        return "Topic";
+        return "";
     }
     public void addComment(Comment comment){
         comments.add(comment);

@@ -6,6 +6,8 @@ public class Subtopic {
         this.name = name;
         this.info = info;
     }
+
+    
     //We will have to do some serious formatting to get this to print out a paragraph instead of a line.
     //will fix later when we think about what format the info is in.   
     public String toString(){

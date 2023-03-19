@@ -81,7 +81,7 @@ public class DataWriter extends DataConstants {
     private static JSONObject commentJSON(Comment comment) {
         JSONObject commentDetail = new JSONObject();
         commentDetail.put(COURSE_TOPIC_COMMENTS_CONTENT, comment.getContent());
-        commentDetail.put(COURSE_TOPIC_COMMENTS_CREATOR_ID, comment.getUserID().toString());
+        commentDetail.put(COURSE_TOPIC_COMMENTS_CREATOR_ID, comment.getID().toString());
         JSONArray jsonReplies = new JSONArray();
         for(int i=0; 0<comment.getReplies().size(); i++){
             //jsonReplies.add(comment.getReplies().get(i));
@@ -199,9 +199,9 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_ID, user.getID());
         //here we check if they are student of aouther type
         if(user instanceof Student)
-            userDetails.put(user, "student");
+            userDetails.put(USER_TYPE, "student");
         else // they are an author
-            userDetails.put(user, "author");
+            userDetails.put(USER_TYPE, "author");
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_USER_NAME, user.getUsername());
@@ -215,8 +215,8 @@ public class DataWriter extends DataConstants {
         UserList userList = UserList.getInstanceUserList();
         //ArrayList<User> users =userList.getUsers();
         //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
-        //saveUsers();
-        saveCourses();
+        saveUsers();
+        //saveCourses();
     }
 
 }
