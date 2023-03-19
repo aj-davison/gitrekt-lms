@@ -31,12 +31,14 @@ public class Course {
         this.authorID = authorID;
     }
 
-    public int score(){
-        int score = 0;
+    public double grades(){
+        double score = 0;
+        double denom = 0;
         for(Topic topic : topics){
-            score += topic.score();
+            score += topic.grade();
+            denom+=1;
         }
-        return score;
+        return score/denom;
     }
 
     //TODO

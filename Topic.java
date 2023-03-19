@@ -46,8 +46,8 @@ public class Topic {
         return subtopics.get(position) != null && position < subtopics.size();
     }
 
-    public int score(){
-        return this.quiz.score();
+    public double grade(){
+        return this.quiz.score()/3;
     }
 
     public String toString(){
