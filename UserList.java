@@ -26,7 +26,7 @@ public class UserList {
 
     }
     public User getUser(String username){
-        Student user = new Student(null, null, null, null, null, null);
+        Student user = new Student(null, null, null, null, null, null, username, 0, null);
         return user;
     }
 
