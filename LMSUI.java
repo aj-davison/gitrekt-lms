@@ -37,19 +37,23 @@ public class LMSUI {
 
             if(userCommand == loginMenu.length) break;
 
+            User user;
             //have switch return an user
             //if it does, continue to next while loop
             //if it doesn't keep them in login while loop
 
             switch(userCommand) {
                 case(0):
-                    loginU();
-                    break;
+                    user = loginU();
+                    if (user != null)
+                        break;
                 case(1):
-                    loginE();
-                    break;
+                    user = loginE();
+                    if (user != null)
+                        break;
                 case(2):
-                    createAccount();
+                    user = createAccount();;
+                    if (user != null) 
                     break;
             }
 
@@ -78,7 +82,7 @@ public class LMSUI {
 
 	}
 
-    private void loginU() {
+    private User loginU() {
 
         System.out.println("\n-----Loging in-----");        
 
@@ -87,11 +91,12 @@ public class LMSUI {
         
         System.out.println(username + " " + password);
 
-        lms.loginU(username, password);
+        User user = lms.loginU(username, password);
+        return user;
 
     }
 
-    private void loginE() {
+    private User loginE() {
 
         System.out.println("\n-----Loging in-----");        
 
@@ -100,7 +105,8 @@ public class LMSUI {
         
         System.out.println(email + " " + password);
 
-        lms.loginE(email, password);
+        User user = lms.loginE(email, password);
+        return user;
 
     }
 
@@ -114,7 +120,7 @@ public class LMSUI {
         String password = getUserString("Password");
 
 
-        lms.signUp(firstName, lastName, username, password, email);
+        User user = lms.signUp(firstName, lastName, username, password, email);
 
 
 

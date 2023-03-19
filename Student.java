@@ -8,8 +8,8 @@ public class Student extends User{
     private int topicsCompleted;
     private ArrayList<Double> grades;
 
-    public Student(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
-        super(courseProgresses, firstName, lastName, email, username, password);
+    public Student(String firstName, String lastName, String email, String username, String password){
+        super(firstName, lastName, email, username, password);
         this.topicsCompleted = 0;
         grades = new ArrayList<>();
         

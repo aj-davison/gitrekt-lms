@@ -10,7 +10,7 @@ public abstract class User {
     private String email;
     private UUID id;
 
-    public User(ArrayList<CourseProgress> courseProgresses,String firstName, String lastName, String username, String password, String email) {
+    public User(String firstName, String lastName, String username, String password, String email) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,7 +19,7 @@ public abstract class User {
         this.courseProgresses = courseProgresses;
     }
 
-    public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email) {
+    public User(UUID id, String firstName, String lastName, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;

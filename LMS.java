@@ -13,7 +13,7 @@ public class LMS {
 
     }
     public User signUp(String firstName, String lastName, String username, String password, String email){
-        Student user = new Student(null, firstName, lastName, email, username, password);
+        Student user = new Student(firstName, lastName, email, username, password);
         return user;
     }
     public void enrollCourse(Course course){
