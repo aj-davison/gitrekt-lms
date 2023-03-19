@@ -8,12 +8,8 @@
             {
                 "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
                 "grades":[
-                    {
-                        "topicName": "Java Basics",
-                        "score": 90.0
-                    }
-                ],
-                "completedTopics": 1
+                    90.0
+                ]
             }
         ],
         "difficulty": "BEGINNER",
@@ -30,9 +26,9 @@
                     {
                         "question": "What is an if-statement",
                         "answers": [
-                            "a loop", "branch statement", "an integer"
+                            "a loop", "branch statement", "an integer", "a String"
                         ],
-                        "correct": 1
+                        "correct":1
                     }
                 ],
                 "comments":[

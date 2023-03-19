@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Question {
     private String question;
-    private String[] answers;
+    private String[] answers = new String[4];
     private static final int NUM_ANS = 4;
     private int correctAns;
     private boolean correct;
