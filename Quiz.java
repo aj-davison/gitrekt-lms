@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Quiz {
-    private ArrayList<Question> questions = new ArrayList<Question>();
+    private ArrayList<Question> questions; 
 
     public Quiz(ArrayList<Question> questions){
         this.questions = questions;
@@ -19,11 +19,12 @@ public class Quiz {
         else
             return this.questions;
     }
-    
+
     //TODO
     public String toString(){
         return "Quiz";
     }
+    
     public int score(){
         int score = 0;
         for(Question question : questions){
