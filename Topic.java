@@ -15,7 +15,7 @@ public class Topic {
         this.position = 0;
     }
 
-    public Topic(ArrayList<Subtopic> subtopics, ArrayList<Comment> comments, String name, Difficulty difficulty, Quiz quiz, boolean isCompleted){
+    public Topic(ArrayList<Subtopic> subtopics, ArrayList<Comment> comments, String name,Quiz quiz){
         this.subtopics = subtopics;
         this.comments = comments;
         this.name = name;
