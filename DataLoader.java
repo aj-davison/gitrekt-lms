@@ -1,5 +1,6 @@
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
@@ -40,13 +41,16 @@ public class DataLoader extends DataConstants {
         return users;
     }
 
-    public static ArrayList<Course> getCourse() {
+    public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<Topic> topics = new ArrayList<>();
         ArrayList<Subtopic> subtopics = new ArrayList<>();
         ArrayList<Question> questions = new ArrayList<>();
         ArrayList<Comment> comments = new ArrayList<>();
+        ArrayList<Double> scores = new ArrayList<>();
+        HashMap<String, ArrayList<Double>> grades = new HashMap<>();
+        ArrayList<CourseProgress> courseProgresses = new ArrayList<>();
         
         try {
             FileReader reader = new FileReader(COURSE_FILE_NAME);
@@ -66,22 +70,22 @@ public class DataLoader extends DataConstants {
                 for(int j=0;j<studentsArray.size();j++) {
                     JSONObject studentJSON = (JSONObject)studentsArray.get(j);
                     UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENTS_ID));
-                    int completedTopics = (Integer)studentJSON.get(COURSE_STUDENT_GRADES);
 
                     // Loop thru grades
                     JSONArray gradesArray = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
                     for(int k=0;k<gradesArray.size();k++) {
-                        //TODO grades
+                        double score = (Double)gradesArray.get(k);
+                        scores.add(score);
                     }
-                    // set students grades
                 }
-                Difficulty difficulty = (Difficulty)courseJSON.get(COURSE_DIFFICULTY);
+                String difficulty = (String)courseJSON.get(COURSE_DIFFICULTY);
 
                 // Loop thru topics
                 JSONArray topicsArray = (JSONArray)courseJSON.get(COURSE_TOPICS);
                 for(int j=0;j<topicsArray.size();j++) {
                     JSONObject topicJSON = (JSONObject)topicsArray.get(j);
                     String topicTitle = (String)topicJSON.get(COURSE_TOPIC_TITLE);
+                    grades.put(topicTitle, scores);
 
                     // Loop thru subtopics
                     JSONArray subtopicsArray = (JSONArray)topicJSON.get(COURSE_TOPIC_SUBTOPICS);
@@ -100,13 +104,13 @@ public class DataLoader extends DataConstants {
 
                         // Loop thru answers
                         JSONArray answersArray = (JSONArray)quizJSON.get(COURSE_TOPIC_QUIZ_ANSWERS);
-                        String[] answers = new String[3];
-                        for(int y=0;y<answersArray.size();y++) {
+                        String[] answers = new String[4];
+                        for(int y=0;y<answers.length;y++) {
                             String answer = (String)answersArray.get(y);
                             answers[y] = answer;
                         }
-                        int correct = (Integer)quizJSON.get(COURSE_TOPIC_QUIZ_CORRECT);
-                        questions.add(new Question(question, answers, correct));
+                        //int correct = (Integer)quizJSON.get(COURSE_TOPIC_QUIZ_CORRECT);
+                        questions.add(new Question(question, answers, 0));
                     }
 
                     // Loop thru comments
@@ -128,8 +132,9 @@ public class DataLoader extends DataConstants {
                         comments.add(new Comment(creatorID, commentContent, "", replies));
                     }
                     topics.add(new Topic(subtopics, topicTitle, new Quiz(questions)));
+                    courseProgresses.add(new CourseProgress(null, topicJSON, i, j));
                 }
-                courses.add(new Course(id, topics, title, description, difficulty, authorID));
+                courses.add(new Course(id, topics, title, description, Difficulty.ADVANCED, authorID));
             }
             reader.close();
         } catch(Exception e) {
@@ -145,14 +150,12 @@ public class DataLoader extends DataConstants {
             System.out.println();
         }*/
 
-        UserList list = UserList.getInstanceUserList();
-        ArrayList<User> users = list.getUsers();
-
         
-        
+        CourseList list2 = CourseList.getInstanceCourseList();
+        ArrayList<Course> courses = list2.getCourses();
 
-        for(User user : users){
-            System.out.println(user.getUsername());
+        for(Course course : courses) {
+            System.out.println(course.getDescription());
         }
     }
 }
