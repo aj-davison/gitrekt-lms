@@ -86,8 +86,8 @@ public abstract class User {
         result += "Username: "+this.username+"\n";       
         result += "Email: "+this.email+"\n";
         result += "Courses: ";
-        for (CourseProgress i : courseProgresses){
-            result += i.toString()+", ";
+        for (CourseProgress courseProgress : courseProgresses){
+            result += courseProgress.toString()+", ";
         }
         result += "\n";
         return result;
