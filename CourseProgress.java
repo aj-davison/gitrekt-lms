@@ -5,22 +5,24 @@ public class CourseProgress {
     private Course course;
     private HashMap<Quiz, Double> quizzes;
     private int numCompletedTopics;
+    private double grade;
 
-    public CourseProgress(Course course, HashMap<Quiz, Double> quizzes, int numCompletedTopics) {
+    public CourseProgress(Course course, HashMap<Quiz, Double> quizzes, int numCompletedTopics, double grade) {
         this.course = course;
         this.quizzes = quizzes;
+        this.grade = grade;
         this.numCompletedTopics = numCompletedTopics;
     }
     //TODO
     public String toString() {
-        return "";
+        return "CourseProgress";
     }
 
-    public double calcGrade() {
-        return 0.0;
+    public void calcGrade() {
+        int questions = this.course.numCompletedTopics()*3;
+        this.grade = this.course.score()/questions;
     }
-
-    public void updateScore() {
-        
+    public void setNumCompletedTopics(){
+        numCompletedTopics = this.course.numCompletedTopics();
     }
 }

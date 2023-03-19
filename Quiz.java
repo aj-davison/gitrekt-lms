@@ -19,14 +19,12 @@ public class Quiz {
     }
     //TODO
     public String toString(){
-        return "";
+        return "Quiz";
     }
     public int score(){
         int score = 0;
         for(Question question : questions){
-            if(question.){
-                score++;
-            }
+            score += question.score();
         }
         return score;
     }
