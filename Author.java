@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Author extends Student{
     private ArrayList<Course> createdCourses;
 
-    public Author(int topicsCompleted, ArrayList<Double> grades, ArrayList<Course> createdCourses, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
+    public Author(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
         this.createdCourses = new ArrayList<>();
     }
