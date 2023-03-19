@@ -22,7 +22,7 @@ public class Student extends User{
     }
     public void enrollCourse(Course course){
         //TODO       
-        CourseProgress courseProgress = new CourseProgress(course, null, topicsCompleted);
+        CourseProgress courseProgress = new CourseProgress(course, null, 0, 0.0);
         this.addCourseProgress(courseProgress);
     }
     public void continueCourse(Course course){
