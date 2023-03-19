@@ -5,13 +5,14 @@ public class Topic {
     private ArrayList<Comment> comments; 
     private String name;
     private Quiz quiz;
-    private int position = 0;
+    private int position;
 
     public Topic(ArrayList<Subtopic> subtopics, String name, Quiz quiz){
         this.subtopics = subtopics;
         this.name = name;
         this.quiz = quiz;
         comments = new ArrayList<Comment>();
+        this.position = 0;
     }
 
     public Topic(ArrayList<Subtopic> subtopics, ArrayList<Comment> comments, String name, Difficulty difficulty, Quiz quiz, boolean isCompleted){
@@ -19,6 +20,7 @@ public class Topic {
         this.comments = comments;
         this.name = name;
         this.quiz = quiz;
+        this.position =0;
     }
 
 
