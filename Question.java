@@ -5,25 +5,33 @@ public class Question {
     private String[] answers;
     private static final int NUM_ANS = 4;
     private int correct_ans;
+    private boolean correct;
 
     public Question(String question, String[] answers, int correct_ans){
         this.question = question;
         for (int i=0; i<NUM_ANS; i++){
             this.answers[i] = answers[i];
         }
-        this.correct_ans = correct_ans; 
+        this.correct_ans = correct_ans;
+        this.correct = false; 
     }
     public String getQuestion(){
         return this.question;
     }
-    public boolean isCorrect(int ans){
-        boolean result;
+    public void isCorrect(int ans){
         if (ans == this.correct_ans){
-            result = true;
+            this.correct = true;
         } else {
-            result = false;
+            this.correct = false;
         }
-        return result;
+    }
+    public int updateScore(){
+        int score = 0;
+        if(this.correct){
+            score++;
+        }
+        this.correct = false;
+        return score;
     }
     public String displayAnswers(){
         String result = "";
@@ -32,7 +40,6 @@ public class Question {
         result += "3. "+this.answers[2]+"\n";
         result += "4. "+this.answers[3]+"\n";
         return result;
-
     }
     public String displayCorrect(){
         return "Correct!";

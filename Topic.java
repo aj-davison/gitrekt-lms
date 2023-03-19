@@ -37,8 +37,8 @@ public class Topic {
         return subtopics.get(position) != null && position < subtopics.size();
     }
     //TODO
-    public String displayGrade(){
-        return "";
+    public int score(int ans){
+        return this.quiz.score(ans);
     }
     //TODO
     public String toString(){

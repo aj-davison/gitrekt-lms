@@ -14,6 +14,7 @@ public class Student extends User{
         grades = new ArrayList<>();
         
     }
+    //TODO fix
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password, int topicsCompleted, ArrayList<Double> grades){
         super(id, courseProgresses, firstName, lastName, email, username, password);
         this.topicsCompleted = topicsCompleted;

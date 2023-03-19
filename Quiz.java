@@ -17,7 +17,17 @@ public class Quiz {
         else
             return this.questions;
     }
+    //TODO
     public String toString(){
         return "";
+    }
+    public int score(){
+        int score = 0;
+        for(Question question : questions){
+            if(question.){
+                score++;
+            }
+        }
+        return score;
     }
 }

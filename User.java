@@ -2,7 +2,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 public abstract class User {
     
-    private ArrayList<CourseProgress> courseProgresses = new ArrayList<CourseProgress>();
+    private ArrayList<CourseProgress> courseProgresses;
     private String firstName;
     private String lastName;
     private String username;
@@ -16,10 +16,11 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = courseProgresses;
+        this.courseProgresses = new ArrayList<CourseProgress>();
+        this.id = UUID.randomUUID();
     }
 
-    public User(UUID id, String firstName, String lastName, String username, String password, String email) {
+    public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;

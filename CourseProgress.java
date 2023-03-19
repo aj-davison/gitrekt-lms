@@ -7,9 +7,11 @@ public class CourseProgress {
     private int numCompletedTopics;
 
     public CourseProgress(Course course, HashMap<Quiz, Double> quizzes, int numCompletedTopics) {
-
+        this.course = course;
+        this.quizzes = quizzes;
+        this.numCompletedTopics = numCompletedTopics;
     }
-
+    //TODO
     public String toString() {
         return "";
     }
