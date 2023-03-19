@@ -5,7 +5,6 @@ import javax.lang.model.util.ElementScanner14;
 public class Course {
     
     private ArrayList<Topic> topics;
-    private ArrayList<Student> students;
     private String title;
     private String description;
     private Difficulty difficulty;
@@ -15,7 +14,6 @@ public class Course {
 
     public Course(String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = new ArrayList<Topic>();
-        this.students = new ArrayList<Student>();
         this.title = title;
         this. description =  description;
         this.id = UUID.randomUUID();
@@ -24,15 +22,15 @@ public class Course {
 
     }
 
-    public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
+    public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
-        this.students = students;
         this.title = title;
         this.description = description;
         this.difficulty = difficulty;
         this.id = id;
         this.authorID = authorID;
     }
+
     public int score(){
         int score = 0;
         for(Topic topic : topics){
@@ -40,9 +38,10 @@ public class Course {
         }
         return score;
     }
+
     //TODO
     public String toString() {
-        return "";
+        return "COURSE";
     }
 
     public void addTopic(Topic topic) {
@@ -83,15 +82,6 @@ public class Course {
     else
         return this.authorID;
 
-    }
-
-    public ArrayList<Student> getStudents(){
-        if(students != null){
-            students = new ArrayList<Student>();
-            return students;
-        }
-        else
-            return null;
     }
 
     public ArrayList<Topic> getTopics(){
