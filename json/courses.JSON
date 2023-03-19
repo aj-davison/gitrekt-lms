@@ -8,9 +8,12 @@
             {
                 "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
                 "grades":[
-
+                    {
+                        "topicName": "Java Basics",
+                        "score": 90.0
+                    }
                 ],
-                "completedTopics": 0
+                "completedTopics": 1
             }
         ],
         "difficulty": "BEGINNER",
