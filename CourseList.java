@@ -20,7 +20,7 @@ public class CourseList {
     }
 
     public Course getCourse(String keyword){
-        Course course = new Course(null, keyword, keyword);
+        Course course = new Course(null, null, keyword, keyword, null, null);
         return course;
     }
 
