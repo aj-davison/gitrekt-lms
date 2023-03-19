@@ -25,7 +25,7 @@ public class Question {
             this.correct = false;
         }
     }
-    public int updateScore(){
+    public int score(){
         int score = 0;
         if(this.correct){
             score++;
