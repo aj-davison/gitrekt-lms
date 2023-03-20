@@ -5,41 +5,25 @@ import javax.lang.model.util.ElementScanner14;
 import java.util.ArrayList;
 
 public class Student extends User{
-    private int topicsCompleted;
-    private ArrayList<Double> grades;
-
+    
     public Student(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
-        this.topicsCompleted = 0;
-        grades = new ArrayList<>();
-        
     }
-    public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password, int topicsCompleted, ArrayList<Double> grades){
+    public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(id, courseProgresses, firstName, lastName, email, username, password);
-        this.topicsCompleted = topicsCompleted;
-        this.grades = grades;
     }
-    public void enrollCourse(Course course){
-        //TODO       
-        CourseProgress courseProgress = new CourseProgress(course, null, topicsCompleted);
+    public void enrollCourse(Course course){  
+        CourseProgress courseProgress = new CourseProgress(id, null, 0);
         this.addCourseProgress(courseProgress);
     }
-    public void continueCourse(Course course){
-
-    }
     public void unregisterCourse(Course course){
-        
+        courseProgresses.remove(course);
     }
-    public int getTopicsCompleted() {
-        return this.topicsCompleted;  
-    }
-
-    public ArrayList getGrades(){
-        if(this.grades == null){
-            grades = new ArrayList<Double>();
-            return grades;
+    public ArrayList<Double> getGrades() {
+        ArrayList<Double> grades  = new ArrayList<Double>();
+        for(int i=0; i<courseProgresses.size(); i++){
+            grades.add(courseProgresses.get(i).getGrades());
         }
-        else
-            return this.grades;
+        return grades;
     }
 }

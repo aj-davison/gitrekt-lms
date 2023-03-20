@@ -2,29 +2,41 @@ import java.util.ArrayList;
 
 public class Question {
     private String question;
-    private String[] answers;
+    private String[] answers = new String[4];
     private static final int NUM_ANS = 4;
-    private int correct_ans;
+    private int correctAns;
+    private boolean correct;
 
-    public Question(String question, String[] answers, int correct_ans){
+    public Question(String question, String[] answers, int correctAns){
         this.question = question;
         for (int i=0; i<NUM_ANS; i++){
             this.answers[i] = answers[i];
         }
-        this.correct_ans = correct_ans; 
+        this.correctAns = correctAns;
+        this.correct = false; 
     }
+
     public String getQuestion(){
         return this.question;
     }
-    public boolean isCorrect(int ans){
-        boolean result;
-        if (ans == this.correct_ans){
-            result = true;
+
+    public void isCorrect(int ans){
+        if (ans == this.correctAns){
+            this.correct = true;
         } else {
-            result = false;
+            this.correct = false;
         }
-        return result;
     }
+
+    public int score(){
+        int score = 0;
+        if(this.correct){
+            score++;
+        }
+        this.correct = false;
+        return score;
+    }
+
     public String displayAnswers(){
         String result = "";
         result += "1. "+this.answers[0]+"\n";
@@ -32,14 +44,16 @@ public class Question {
         result += "3. "+this.answers[2]+"\n";
         result += "4. "+this.answers[3]+"\n";
         return result;
-
     }
+
     public String displayCorrect(){
         return "Correct!";
     }
+
     public int getCorrect() {
-        return correct_ans;
+        return correctAns;
     }
+    
     public String[] getAns() {
         if(answers == null)
             return null;

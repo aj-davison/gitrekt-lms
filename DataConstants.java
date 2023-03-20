@@ -17,7 +17,8 @@ public abstract class DataConstants {
 
     protected static final String COURSE_STUDENTS_ARRAY = "students";
     protected static final String COURSE_STUDENTS_ID = "id";
-    protected static final String COURSE_STUDENT_COMP_TOPICS = "completedTopics";
+    protected static final String COURSE_STUDENT_COMP_TOPICS = "topicName";
+    protected static final String COURSE_STUDENT_SCORE = "score";
     protected static final String COURSE_STUDENT_GRADES = "grades";
 
     protected static final String COURSE_TOPICS = "topics";
@@ -33,6 +34,8 @@ public abstract class DataConstants {
     protected static final String COURSE_TOPIC_COMMENTS_CONTENT = "comment";
     protected static final String COURSE_TOPIC_COMMENTS_CREATOR_ID = "userId";
     protected static final String COURSE_TOPIC_COMMENTS_REPLIES = "replies";
+    protected static final String COURSE_TOPIC_COMMENTS_REPLIES_CONTENT = "reply";
+    protected static final String COURSE_TOPIC_COMMENTS_REPLIES_ID = "replyID";
 
 
 

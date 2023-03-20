@@ -1,24 +1,36 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class CourseProgress {
     
-    private Course course;
-    private HashMap<Quiz, Double> quizzes;
+    private UUID id;
+    private HashMap<String, Double> grades;
     private int numCompletedTopics;
 
-    public CourseProgress(Course course, HashMap<Quiz, Double> quizzes, int numCompletedTopics) {
-
+    public CourseProgress(UUID id, HashMap<String, Double> grades, int numCompletedTopics) {
+        this.id = id;
+        this.grades = grades;
+        this.numCompletedTopics = numCompletedTopics;
     }
-
+    
+    //TODO
     public String toString() {
-        return "";
+        return "CourseProgress";
     }
 
-    public double calcGrade() {
-        return 0.0;
+    public void calcGrade() {
+        int questions = this.course.numCompletedTopics()*3;
+        this.grade = this.course.score()/questions;
     }
 
-    public void updateScore() {
-        
+    public Double getGrades(){
+        ArrayList<Double> grades= new ArrayList<Double>();
+        //TODO
+        return grades;        
+    }
+
+    public void setNumCompletedTopics(){
+        numCompletedTopics = this.course.numCompletedTopics();
     }
 }

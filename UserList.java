@@ -11,6 +11,11 @@ public class UserList {
 
 
     public User getUserByUUID(UUID id){
+        for (int i=0; i<users.size(); i++){
+            if(users.get(i).getID().equalsIgnoreCase(id.toString())){
+                return users.get(i);
+            }
+        }
         return null;
     }
 
@@ -22,23 +27,15 @@ public class UserList {
         }
         return userList;
     }
-    public void addUser(ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
-
+    public void addStudent(String firstName, String lastName, String email, String username, String password){
+        users.add(new Student(firstName, lastName, email, username, password));
     }
-    public User getUser(String username){
-        Student user = new Student(null, null, null, null, null, null);
-        return user;
+    public void addAuthor(String firstName, String lastName, String email, String username, String password){
+        users.add(new Author(firstName, lastName, email, username, password));
     }
-
     public ArrayList<User> getUsers(){
-        
         return users;
     }
-
-    public void editUser(/*TODO*/){
-
-    }
-
     public void saveUsers(){
         
     }

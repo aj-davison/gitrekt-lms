@@ -2,24 +2,25 @@ import java.util.UUID;
 import java.util.ArrayList;
 public abstract class User {
     
-    private ArrayList<CourseProgress> courseProgresses = new ArrayList<CourseProgress>();
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String email;
-    private UUID id;
+    protected ArrayList<CourseProgress> courseProgresses;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected UUID id;
 
-    public User(String firstName, String lastName, String username, String password, String email) {
+    public User(String firstName, String lastName, String email, String username, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = courseProgresses;
+        this.courseProgresses = new ArrayList<CourseProgress>();
+        this.id = UUID.randomUUID();
     }
 
-    public User(UUID id, String firstName, String lastName, String username, String password, String email) {
+    public User(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -77,16 +78,16 @@ public abstract class User {
     public String toString(){
         String result = "";
         if(this.courseProgresses == null){
+            courseProgresses = new ArrayList<CourseProgress>();
             return result;
-            //courseProgresses = new ArrayList<CourseProgress>();
         }
         
         result += "Name: "+this.firstName+" "+this.lastName+"\n";
         result += "Username: "+this.username+"\n";       
         result += "Email: "+this.email+"\n";
         result += "Courses: ";
-        for (CourseProgress i : courseProgresses){
-            result += i+", ";
+        for (CourseProgress courseProgress : courseProgresses){
+            result += courseProgress.toString()+", ";
         }
         result += "\n";
         return result;

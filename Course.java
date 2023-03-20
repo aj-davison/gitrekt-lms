@@ -13,21 +13,61 @@ public class Course {
     private UUID authorID;
    
 
-    public Course(ArrayList<Topic> topics, String title, String description, UUID authorID) {
+    public Course(String title, String description,  Difficulty difficulty, UUID authorID) {
+        this.topics = new ArrayList<Topic>();
+        this.students = new ArrayList<Student>();
         this.title = title;
         this. description =  description;
+        this.id = UUID.randomUUID();
+        this.authorID = authorID;
+        this.difficulty = difficulty;
+
     }
 
-    public Course(UUID id, ArrayList<Topic> topics, String title, String description, UUID authorID) {
-
+    public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
+        this.topics = topics;
+        this.students = new ArrayList<Student>();
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.id = id;
+        this.authorID = authorID;
     }
 
+    public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
+        this.topics = topics;
+        this.students = students;
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.id = id;
+        this.authorID = authorID;
+    }
+
+    public int score(){
+        int score = 0;
+        for(Topic topic : topics){
+            score += topic.score();
+        }
+        return score;
+    }
+
+    //TODO
     public String toString() {
-        return "";
+        return "COURSE";
     }
 
     public void addTopic(Topic topic) {
-        
+        topics.add(topic);
+    }
+
+    public ArrayList<Student> getStudents(){
+        if(students != null){
+            //students = new ArrayList<Student>();
+            return this.students;
+        }
+        else
+            return null;
     }
 
     public String getID() {
@@ -66,19 +106,10 @@ public class Course {
 
     }
 
-    public ArrayList getStudents(){
-        if(students != null){
-            students = new ArrayList<Student>();
-            return students;
-        }
-        else
-            return null;
-    }
-
-    public ArrayList getTopics(){
+    public ArrayList<Topic> getTopics(){
         if(topics != null){
-            topics = new ArrayList<Topic>();
-            return topics;
+            //topics = new ArrayList<Topic>();
+            return this.topics;
         }
         else    
             return null;
