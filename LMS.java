@@ -3,12 +3,14 @@ public class LMS {
     private User currentUser;
     private Course currentCourse;
 
-    public User loginE(String email, String password, String type){
+    public User loginE(String email, String password){
 
-        
+        return null;
 
     }
-    public void loginU(String usernam, String password){
+    public User loginU(String usernam, String password){
+
+        return null;
 
     }
     public void logout(){
@@ -16,7 +18,7 @@ public class LMS {
     }
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
         
-        if (type == 0) {
+        if (type == 1) {
         Student user = new Student(firstName, lastName, email, username, password);
         return user;
         }

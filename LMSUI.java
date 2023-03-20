@@ -6,6 +6,7 @@ public class LMSUI {
 
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
     private String[] loginMenu = {"Login with Username", " Login with Email", "Create Account"};
+    private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "View Profile", "Billing Page", "Log Out"};
     private String[] createAccountMenu = {"Student", "Author"};
     private String[] courseMenu = {"Enter Course", "Exit to Home"};
@@ -45,16 +46,16 @@ public class LMSUI {
             switch(userCommand) {
                 case(0):
                     user = loginU();
-                    if (user != null)
+                    if (user == null)
                         break;
                 case(1):
                     user = loginE();
-                    if (user != null)
+                    if (user == null)
                         break;
                 case(2):
-                    user = createAccount();;
-                    if (user != null) 
-                    break;
+                    user = createAccount();
+                    if (user == null) 
+                        break;
             }
 
         }
@@ -110,7 +111,7 @@ public class LMSUI {
 
     }
 
-    private void createAccount() {
+    private User createAccount() {
         System.out.println("\n-----Signing Up-----");        
 
         String firstName = getUserString("First Name");
@@ -118,12 +119,16 @@ public class LMSUI {
         String email = getUserString("Email");
         String username = getUserString("Username");
         String password = getUserString("Password");
+       
+        displayMenu(userTypeMenu, "Account Type");
+
+        int type = getUserCommand(2);
 
 
-        User user = lms.signUp(firstName, lastName, username, password, email);
+        User user = lms.signUp(firstName, lastName, username, password, email, type);
 
 
-
+        return user;
         
 
 
