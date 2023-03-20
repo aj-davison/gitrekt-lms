@@ -58,6 +58,34 @@ public class LMSUI {
                         break;
             }
 
+            displayMenu(homeMenu, "HOME PAGE");
+
+            int userCommand1 = getUserCommand(homeMenu.length);
+			
+			if(userCommand == -1) {
+				System.out.println("Not a valid command");
+				continue;
+			}
+
+            if(userCommand == homeMenu.length) break;
+
+            while (true) {
+                switch (userCommand1) {
+                    case(0):
+                        displayCurrentCourses();
+                        break;
+                    case(1):
+                        searchCourses();
+                        break;
+                    case(2):
+                        displayAllCourses();
+                        break;
+                }
+
+
+            }
+                
+
         }
         System.out.println("Goodbye, have a good day.");
     }
