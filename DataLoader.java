@@ -109,7 +109,7 @@ public class DataLoader extends DataConstants {
                         // Loop thru answers
                         JSONArray answersArray = (JSONArray)quizJSON.get(COURSE_TOPIC_QUIZ_ANSWERS);
                         String[] answers = new String[4];
-                        for(int y=0; y<answers.length-1; y++) {
+                        for(int y = 0; y < answers.length; y++) {
                             String answer = (String)answersArray.get(y);
                             answers[y] = answer;
                         }
