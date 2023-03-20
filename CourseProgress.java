@@ -34,6 +34,9 @@ public class CourseProgress {
         return this.grade;        
     }
 
+    public String getID() {
+        return this.id.toString();
+    }
     public void setNumCompletedTopics(){
         //numCompletedTopics = this.course.numCompletedTopics();
     }
