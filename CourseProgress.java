@@ -5,13 +5,14 @@ import java.util.UUID;
 public class CourseProgress {
     
     private UUID id;
-    private HashMap<String, Double> grades;
-    private int numCompletedTopics;
+    private ArrayList<Double> grades;
+    private double grade;
+    //private int numCompletedTopics;
 
-    public CourseProgress(UUID id, HashMap<String, Double> grades, int numCompletedTopics) {
+    public CourseProgress(UUID id, ArrayList<Double> grades) {
         this.id = id;
         this.grades = grades;
-        this.numCompletedTopics = numCompletedTopics;
+        //this.numCompletedTopics = numCompletedTopics;
     }
     
     //TODO
@@ -20,17 +21,20 @@ public class CourseProgress {
     }
 
     public void calcGrade() {
-        int questions = this.course.numCompletedTopics()*3;
-        this.grade = this.course.score()/questions;
+        int questions = this.grades.size();
+        for(double score : grades) {
+            this.grade += score;
+        }
+        this.grade /= questions;
     }
 
     public Double getGrades(){
-        ArrayList<Double> grades= new ArrayList<Double>();
+        //ArrayList<Double> grades = new ArrayList<Double>();
         //TODO
-        return grades;        
+        return this.grade;        
     }
 
     public void setNumCompletedTopics(){
-        numCompletedTopics = this.course.numCompletedTopics();
+        //numCompletedTopics = this.course.numCompletedTopics();
     }
 }
