@@ -8,12 +8,8 @@
             {
                 "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
                 "grades":[
-                    {
-                        "topicName": "Java Basics",
-                        "score": 90.0
-                    }
-                ],
-                "completedTopics": 1
+                    90.0
+                ]
             }
         ],
         "difficulty": "BEGINNER",
@@ -30,7 +26,7 @@
                     {
                         "question": "What is an if-statement",
                         "answers": [
-                            "a loop", "branch statement", "an integer"
+                            "a loop", "branch statement", "an else", "not somthing in code"
                         ],
                         "correct": 1
                     }
@@ -40,12 +36,18 @@
                         "comment": "Awesome topic!",
                         "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2",
                         "replies":[
-                            {
-                                "reply": "Thought so too!",
-                                "replyID": "7349e4b3-4d78-44bf-a421-0a81e53c7c31"
-                            }
+                            
                         ]
                     }
+                ]
+            }
+        ],
+        "comments":[
+            {
+                "comment": "Awesome course!",
+                "userId": "30ad7434-7a97-4c5f-8a9b-9ceebc2867b5",
+                "replies":[
+                    
                 ]
             }
         ]

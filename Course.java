@@ -65,8 +65,8 @@ public class Course {
 
     public ArrayList<Student> getStudents(){
         if(students != null){
-            students = new ArrayList<Student>();
-            return students;
+            //students = new ArrayList<Student>();
+            return this.students;
         }
         else
             return null;
@@ -110,8 +110,8 @@ public class Course {
 
     public ArrayList<Topic> getTopics(){
         if(topics != null){
-            topics = new ArrayList<Topic>();
-            return topics;
+            //topics = new ArrayList<Topic>();
+            return this.topics;
         }
         else    
             return null;

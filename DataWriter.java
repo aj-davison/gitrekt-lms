@@ -106,7 +106,7 @@ public class DataWriter extends DataConstants {
         questionDetail.put(COURSE_TOPIC_QUIZ_QUESTION, question.getQuestion());
         questionDetail.put(COURSE_TOPIC_QUIZ_CORRECT, question.getCorrect());
         JSONArray jsonAns = new JSONArray();
-        for(int i=0; 0<question.getAns().length; i++){
+        for(int i = 0; i < question.getAns().length; i++){
             jsonAns.add(question.getAns()[i]);
         }
         questionDetail.put(COURSE_TOPIC_QUIZ_ANSWERS, jsonAns);
@@ -216,7 +216,7 @@ public class DataWriter extends DataConstants {
         CourseList courseList = CourseList.getInstanceCourseList();
         //ArrayList<User> users =userList.getUsers();
         //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
-        //saveUsers();
+        saveUsers();
         saveCourses();
     }
 
