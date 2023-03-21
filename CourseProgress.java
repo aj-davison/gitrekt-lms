@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class CourseProgress {
@@ -21,28 +20,28 @@ public class CourseProgress {
     }
 
     public void calcGrade() {
-<<<<<<< HEAD
-        Course course = courseList.getCourseByUUID(id);
-        this.grade = course.grades();
-=======
         int questions = this.grades.size();
         for(double score : grades) {
             this.grade += score;
         }
         this.grade /= questions;
->>>>>>> ff277227ddb382bec05543feaf3b9a279485292e
     }
-
-    public Double getGrades(){
+    public void addGrade(double grade){
+        this.grades.add(grade);
+    }
+    public Double getGrade(){
+        return this.grade;
+    }
+    public ArrayList<Double> getQuizGrades(){
         //ArrayList<Double> grades = new ArrayList<Double>();
-        //TODO
-        return this.grade;        
+        return this.grades;        
     }
 
     public String getID() {
         return this.id.toString();
     }
+    /*
     public void setNumCompletedTopics(){
         //numCompletedTopics = this.course.numCompletedTopics();
-    }
+    } */
 }
