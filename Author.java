@@ -16,5 +16,8 @@ public class Author extends Student{
        // Course course = new Course(null, getEmail(), getEmail());
        // return course;
    // }
+   public void setCreatedCourses(ArrayList<Course> createdCourses){
+        this.createdCourses = createdCourses;
+   }
     
 }
