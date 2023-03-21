@@ -5,7 +5,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 public class LMSUI {
 
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
-    private String[] loginMenu = {"Login with Username", " Login with Email", "Create Account"};
+    private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "View Profile", "Billing Page", "Log Out"};
     private String[] createAccountMenu = {"Student", "Author"};
@@ -25,52 +25,64 @@ public class LMSUI {
     public void run() {
         System.out.println(WELCOME_MESSAGE);
 
-        while(true) {
+        boolean loginFlag = true;
+
+        while(loginFlag == true) {
             
             displayMenu(loginMenu, "LOG IN");
 
-            int userCommand = getUserCommand(loginMenu.length);
+            int userCommandLogin = getUserCommand(loginMenu.length);
 			
-			if(userCommand == -1) {
+			if(userCommandLogin == -1) {
 				System.out.println("Not a valid command");
 				continue;
 			}
 
-            if(userCommand == loginMenu.length) break;
+            if(userCommandLogin == loginMenu.length) break;
 
             User user;
             //have switch return an user
             //if it does, continue to next while loop
             //if it doesn't keep them in login while loop
-
-            switch(userCommand) {
+            boolean quit = false;
+            switch(userCommandLogin) {
                 case(0):
                     user = loginU();
-                    if (user == null)
+                    if (user == null) {
+                        System.out.println("Invalid Information");
                         break;
+                    }
                 case(1):
                     user = loginE();
-                    if (user == null)
+                    if (user == null) {
+                        System.out.println("Invalid Information");
                         break;
+                    }
                 case(2):
                     user = createAccount();
-                    if (user == null) 
+                    if (user == null) {
+                        System.out.println("Invalid Information");
                         break;
+                    }
+                case(3):
+                    quit = true;
+                    break;
             }
+            if (quit == true) break;
 
             displayMenu(homeMenu, "HOME PAGE");
 
-            int userCommand1 = getUserCommand(homeMenu.length);
+            int userCommandHome = getUserCommand(homeMenu.length);
 			
-			if(userCommand == -1) {
+			if(userCommandHome == -1) {
 				System.out.println("Not a valid command");
 				continue;
 			}
 
-            if(userCommand == homeMenu.length) break;
+            if(userCommandHome == homeMenu.length) break;
 
             while (true) {
-                switch (userCommand1) {
+                switch (userCommandHome) {
                     case(0):
                         displayCurrentCourses();
                         break;
@@ -120,8 +132,8 @@ public class LMSUI {
         
         System.out.println(username + " " + password);
 
-        User user = lms.loginU(username, password);
-        return user;
+        
+        return lms.loginU(username, password);
 
     }
 
@@ -134,8 +146,7 @@ public class LMSUI {
         
         System.out.println(email + " " + password);
 
-        User user = lms.loginE(email, password);
-        return user;
+        return lms.loginE(email, password);
 
     }
 
@@ -151,12 +162,8 @@ public class LMSUI {
         displayMenu(userTypeMenu, "Account Type");
 
         int type = getUserCommand(2);
-
-
-        User user = lms.signUp(firstName, lastName, username, password, email, type);
-
-
-        return user;
+        
+        return lms.signUp(firstName, lastName, username, password, email, type);
         
 
 
@@ -178,6 +185,30 @@ public class LMSUI {
             }
 		}
 
+    }
+
+    private void displayCurrentCourses() {
+        
+    }
+
+    private void searchCourses() {
+        
+    }
+
+    private void displayAllCourses() {
+        
+    }
+
+    private void viewProfile() {
+        
+    }
+
+    private void viewBilling() {
+        
+    }
+
+    private void logOut() {
+        
     }
 
     public static void main(String[] args) {
