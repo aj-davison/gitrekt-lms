@@ -37,7 +37,9 @@ public class LMSUI {
             //have switch return an user
             //if it does, continue to next while loop
             //if it doesn't keep them in login while loop
+            
             boolean quit = false;
+
             switch(userCommand) {
                 case(0):
                     user = loginU();
@@ -46,12 +48,13 @@ public class LMSUI {
                     user = loginE();
                     break;
                 case(2):
-                    user = createAccount();
+                    System.out.println((user = createAccount()).toString());
                     break;
                 case(3):
                     quit = true;
                     break;
             }
+            
             if (quit == true) break;
             
             if (user == null) {
@@ -87,11 +90,7 @@ public class LMSUI {
                         logOut();
                         break;
                 }
-
-
             }
-                
-
         }
         System.out.println("Goodbye, have a good day.");
     }
@@ -143,7 +142,6 @@ public class LMSUI {
         
         System.out.println(username + " " + password);
 
-        
         return lms.loginU(username, password);
 
     }
@@ -175,8 +173,6 @@ public class LMSUI {
         int type = getUserCommand(2);
         
         return lms.signUp(firstName, lastName, username, password, email, type);
-        
-
 
     }
 

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Author extends Student{
     private ArrayList<Course> createdCourses;
+    private String type = "Author";
 
     public Author(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
@@ -19,5 +20,24 @@ public class Author extends Student{
    public void setCreatedCourses(ArrayList<Course> createdCourses){
         this.createdCourses = createdCourses;
    }
+
+   public String toString(){
+    String result = "";
+    if(this.courseProgresses == null){
+        courseProgresses = new ArrayList<CourseProgress>();
+        return result;
+    }
+    
+    result += "Name: "+this.firstName+" "+this.lastName+"\n";
+    result += "Username: "+this.username+"\n";       
+    result += "Email: "+this.email+"\n";
+    result += "Type: "+this.type+"\n";
+    result += "Courses: ";
+    for (CourseProgress courseProgress : courseProgresses){
+        result += courseProgress.toString()+", ";
+    }
+    result += "\n";
+    return result;
+}
     
 }
