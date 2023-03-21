@@ -23,7 +23,7 @@ public class Course {
         this.difficulty = difficulty;
 
     }
-
+    /*
     public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
         this.students = new ArrayList<Student>();
@@ -32,7 +32,7 @@ public class Course {
         this.difficulty = difficulty;
         this.id = id;
         this.authorID = authorID;
-    }
+    } */
 
     public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
@@ -65,10 +65,10 @@ public class Course {
 
     public ArrayList<Student> getStudents(){
         if(students != null){
-            //students = new ArrayList<Student>();
             return this.students;
         }
         else
+            students = new ArrayList<Student>();
             return null;
     }
 
