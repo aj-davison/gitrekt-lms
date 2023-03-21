@@ -3,15 +3,13 @@ public class LMS {
     private User currentUser;
     private Course currentCourse;
 
-<<<<<<< HEAD
     public User loginE(String email, String password){
 
         return null;
+    }
 
-=======
     public void loginE(String email, String password, String type){
         
->>>>>>> ed2380524e137dffc2a4d739dd8b56d2e23a0eae
     }
     public User loginU(String usernam, String password){
 
