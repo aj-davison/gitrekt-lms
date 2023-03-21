@@ -25,11 +25,13 @@ public class Quiz {
         return "Quiz";
     }
     
-    public int score(){
+    public double grade(){
         int score = 0;
         for(Question question : questions){
             score += question.score();
         }
-        return score;
+        double grade;
+        grade = score/3;
+        return grade;
     }
 }
