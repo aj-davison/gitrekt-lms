@@ -40,7 +40,7 @@ public class LMSUI {
 
             //if(userCommandLogin == loginMenu.length) break;
 
-            User user;
+            User user = null;
             //have switch return an user
             //if it does, continue to next while loop
             //if it doesn't keep them in login while loop
@@ -48,27 +48,22 @@ public class LMSUI {
             switch(userCommandLogin) {
                 case(0):
                     user = loginU();
-                    if (user == null) {
-                        System.out.println("Invalid Information");
-                        continue;
-                    }
+                    break;
                 case(1):
                     user = loginE();
-                    if (user == null) {
-                        System.out.println("Invalid Information");
-                        continue;
-                    }
+                    break;
                 case(2):
                     user = createAccount();
-                    if (user == null) {
-                        System.out.println("Invalid Information");
-                        continue;
-                    }
+                    break;
                 case(3):
                     quit = true;
                     break;
             }
             if (quit == true) break;
+            if (user == null) {
+                System.out.println("Invalid Information");
+                continue;
+            }
 
             displayMenu(homeMenu, "HOME PAGE");
 
