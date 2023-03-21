@@ -18,6 +18,14 @@ public class UserList {
         }
         return null;
     }
+    public User getUserByEmail(String email){
+        for (int i=0; i<users.size(); i++){
+            if(users.get(i).getEmail().equalsIgnoreCase(email)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
 
     
     public static UserList getInstanceUserList(){
