@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class LMS {
-    //private static UserList userList;
+    private static UserList userList;
     private User currentUser;
     private Course currentCourse;
 
