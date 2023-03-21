@@ -12,9 +12,11 @@ public class LMS {
         return null;
     }
     public User loginU(String usernam, String password){
-
+        this.currentUser = userList.getUserByUsername(usernam);
+        if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
+            return currentUser;
+        }
         return null;
-
     }
     public void logout(){
 
