@@ -25,11 +25,12 @@ public class LMS {
     }
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
         
-        if (type == 1) {
+        UserList userList = UserList.getInstanceUserList();
+        if (type == 0) {
             Student user = new Student(firstName, lastName, email, username, password);
             userList.addStudent(firstName, lastName, email, username, password);
             return user;
-        } else if(type == 2){
+        } else if(type == 1){
             Author user = new Author(firstName, lastName, email, username, password);
             userList.addAuthor(firstName, lastName, email, username, password);
             return user;

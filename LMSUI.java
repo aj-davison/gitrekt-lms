@@ -8,7 +8,6 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "View Profile", "Billing Page", "Log Out"};
-    private String[] createAccountMenu = {"Student", "Author"};
     private String[] courseMenu = {"Enter Course", "Exit to Home"};
     private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
@@ -25,27 +24,21 @@ public class LMSUI {
     public void run() {
         System.out.println(WELCOME_MESSAGE);
 
-        boolean loginFlag = true;
-
-        while(loginFlag == true) {
+        while(true) {
             
             displayMenu(loginMenu, "LOG IN");
 
-            int userCommandLogin = getUserCommand(loginMenu.length);
+            int userCommand;
 			
-			if(userCommandLogin == -1) {
-				System.out.println("Not a valid command");
-				continue;
-			}
-
-            //if(userCommandLogin == loginMenu.length) break;
+			if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
 
             User user = null;
+            
             //have switch return an user
             //if it does, continue to next while loop
             //if it doesn't keep them in login while loop
             boolean quit = false;
-            switch(userCommandLogin) {
+            switch(userCommand) {
                 case(0):
                     user = loginU();
                     break;
@@ -60,24 +53,20 @@ public class LMSUI {
                     break;
             }
             if (quit == true) break;
+            
             if (user == null) {
                 System.out.println("Invalid Information");
                 continue;
             }
 
-            displayMenu(homeMenu, "HOME PAGE");
-
-            int userCommandHome = getUserCommand(homeMenu.length);
-			
-			if(userCommandHome == -1) {
-				System.out.println("Not a valid command");
-				continue;
-			}
-
-            //if(userCommandHome == homeMenu.length) break;
+            boolean logout = false;
 
             while (true) {
-                switch (userCommandHome) {
+                displayMenu(homeMenu, "HOME PAGE");
+
+                if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+
+                switch (userCommand) {
                     case(0):
                         displayCurrentCourses();
                         break;
@@ -94,6 +83,7 @@ public class LMSUI {
                         viewBilling();
                         break;
                     case(5):
+                        logout = true;
                         logOut();
                         break;
                 }
@@ -115,17 +105,34 @@ public class LMSUI {
     }
 
     private int getUserCommand(int numCommands) {
-		System.out.print("What would you like to do?: ");
 		
-		String input = scanner.nextLine();
-		int command = Integer.parseInt(input) - 1;
-		
-		if(command >= 0 && command <= numCommands -1)
-            return command;
-		
-		return -1;
+        while (true) {
+            System.out.print("What would you like to do?: ");
+            
+            String input = scanner.nextLine();
+            try {
+                int command = Integer.parseInt(input) - 1;
+                if(command >= 0 && command <= numCommands -1)
+                    return command;
+            }
+            catch (Exception e) {
+                System.out.println("Please enter an integer");
+                continue;
+            }
+            return -1;
+        }
 
 	}
+
+    private int menuCommandValidation (String[] menu) {
+        
+        int userCommand = getUserCommand(menu.length);
+        
+        if(userCommand == -1) {
+            System.out.println("Not a valid command");
+        }
+        return userCommand;
+    }
 
     private User loginU() {
 
