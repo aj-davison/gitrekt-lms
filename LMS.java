@@ -22,12 +22,15 @@ public class LMS {
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
         
         if (type == 1) {
-        Student user = new Student(firstName, lastName, email, username, password);
-        return user;
+            Student user = new Student(firstName, lastName, email, username, password);
+            return user;
+        } else if(type == 2){
+            Author user = new Author(firstName, lastName, email, username, password);
+            return user;
+        } else {
+            System.out.println("Error, invalid input");
+            return null;
         }
-        //Author user = new Author(null, firstName, lastName, email, username, password);
-       // return user;
-       return null;
     }
     public void enrollCourse(Course course){
 
