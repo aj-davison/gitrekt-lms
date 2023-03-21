@@ -43,7 +43,7 @@ public class Course {
         this.id = id;
         this.authorID = authorID;
     }
-
+    /*
     public double grades(){
         double score = 0;
         double denom = 0;
@@ -52,7 +52,7 @@ public class Course {
             denom+=1;
         }
         return score/denom;
-    }
+    } */
 
     //TODO
     public String toString() {
