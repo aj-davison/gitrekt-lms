@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 public class LMS {
+    private static UserList userList;
     private User currentUser;
     private Course currentCourse;
 
     public User loginE(String email, String password){
-
+        //this.currentUser = userList.
         return null;
     }
 
@@ -23,9 +24,11 @@ public class LMS {
         
         if (type == 1) {
             Student user = new Student(firstName, lastName, email, username, password);
+            userList.addStudent(firstName, lastName, email, username, password);
             return user;
         } else if(type == 2){
             Author user = new Author(firstName, lastName, email, username, password);
+            userList.addAuthor(firstName, lastName, email, username, password);
             return user;
         } else {
             System.out.println("Error, invalid input");
