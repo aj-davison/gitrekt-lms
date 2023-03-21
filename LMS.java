@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 public class LMS {
-    private static UserList userList;
+    //private static UserList userList;
     private User currentUser;
     private Course currentCourse;
 
     public User loginE(String email, String password){
+        UserList userList = UserList.getInstanceUserList();
         this.currentUser = userList.getUserByEmail(email);
         if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
             return currentUser;
         }
         return null;
     }
-    public User loginU(String usernam, String password){
-        this.currentUser = userList.getUserByUsername(usernam);
+    public User loginU(String username, String password){
+        UserList userList = UserList.getInstanceUserList();
+        this.currentUser = userList.getUserByUsername(username);
         if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
             return currentUser;
         }
