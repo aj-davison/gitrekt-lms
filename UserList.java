@@ -26,6 +26,14 @@ public class UserList {
         }
         return null;
     }
+    public User getUserByUsername(String username){
+        for (int i=0; i<users.size(); i++){
+            if(users.get(i).getUsername().equalsIgnoreCase(username)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
 
     
     public static UserList getInstanceUserList(){
