@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class CourseProgress {
-    
+    private static CourseList courseList;
     private UUID id;
     private ArrayList<Double> grades;
     private double grade;
@@ -21,11 +21,16 @@ public class CourseProgress {
     }
 
     public void calcGrade() {
+<<<<<<< HEAD
+        Course course = courseList.getCourseByUUID(id);
+        this.grade = course.grades();
+=======
         int questions = this.grades.size();
         for(double score : grades) {
             this.grade += score;
         }
         this.grade /= questions;
+>>>>>>> ff277227ddb382bec05543feaf3b9a279485292e
     }
 
     public Double getGrades(){
