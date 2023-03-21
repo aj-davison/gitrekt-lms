@@ -38,7 +38,7 @@ public class LMSUI {
 				continue;
 			}
 
-            if(userCommandLogin == loginMenu.length) break;
+            //if(userCommandLogin == loginMenu.length) break;
 
             User user;
             //have switch return an user
@@ -50,19 +50,19 @@ public class LMSUI {
                     user = loginU();
                     if (user == null) {
                         System.out.println("Invalid Information");
-                        break;
+                        continue;
                     }
                 case(1):
                     user = loginE();
                     if (user == null) {
                         System.out.println("Invalid Information");
-                        break;
+                        continue;
                     }
                 case(2):
                     user = createAccount();
                     if (user == null) {
                         System.out.println("Invalid Information");
-                        break;
+                        continue;
                     }
                 case(3):
                     quit = true;
@@ -79,7 +79,7 @@ public class LMSUI {
 				continue;
 			}
 
-            if(userCommandHome == homeMenu.length) break;
+            //if(userCommandHome == homeMenu.length) break;
 
             while (true) {
                 switch (userCommandHome) {
@@ -91,6 +91,15 @@ public class LMSUI {
                         break;
                     case(2):
                         displayAllCourses();
+                        break;
+                    case(3):
+                        viewProfile();
+                        break;
+                    case(4):
+                        viewBilling();
+                        break;
+                    case(5):
+                        logOut();
                         break;
                 }
 
