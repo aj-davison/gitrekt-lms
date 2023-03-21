@@ -147,7 +147,7 @@ public class DataWriter extends DataConstants {
     private static JSONObject getStudentJSON(Student student) {
         JSONObject studentDetails = new JSONObject();
         studentDetails.put(COURSE_STUDENTS_ID, student.getID());
-        studentDetails.put(COURSE_STUDENT_COMP_TOPICS, student.getTopicsCompleted());
+        //studentDetails.put(COURSE_STUDENT_COMP_TOPICS, student.getTopicsCompleted());
         studentDetails.put(COURSE_STUDENT_GRADES, getGradesJSON(student));
 
         return studentDetails;
@@ -212,11 +212,12 @@ public class DataWriter extends DataConstants {
 	}
 
     public static void main(String[] args){
-        UserList userList = UserList.getInstanceUserList();
+        //UserList userList = UserList.getInstanceUserList();
+        CourseList courseList = CourseList.getInstanceCourseList();
         //ArrayList<User> users =userList.getUsers();
         //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
-        saveUsers();
-        //saveCourses();
+        //saveUsers();
+        saveCourses();
     }
 
 }

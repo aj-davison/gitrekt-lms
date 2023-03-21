@@ -7,14 +7,13 @@ public class CourseProgress {
     private UUID id;
     private HashMap<String, Double> grades;
     private int numCompletedTopics;
-    private double grade;
 
-    public CourseProgress(UUID id, HashMap<String, Double> grades, int numCompletedTopics, double grade) {
+    public CourseProgress(UUID id, HashMap<String, Double> grades, int numCompletedTopics) {
         this.id = id;
         this.grades = grades;
-        this.grade = grade;
         this.numCompletedTopics = numCompletedTopics;
     }
+    
     //TODO
     public String toString() {
         return "CourseProgress";
@@ -23,5 +22,15 @@ public class CourseProgress {
     public void calcGrade() {
         Course course = courseList.getCourseByUUID(id);
         this.grade = course.grades();
+    }
+
+    public Double getGrades(){
+        ArrayList<Double> grades= new ArrayList<Double>();
+        //TODO
+        return grades;        
+    }
+
+    public void setNumCompletedTopics(){
+        numCompletedTopics = this.course.numCompletedTopics();
     }
 }

@@ -5,6 +5,7 @@ import javax.lang.model.util.ElementScanner14;
 public class Course {
     
     private ArrayList<Topic> topics;
+    private ArrayList<Student> students;
     private String title;
     private String description;
     private Difficulty difficulty;
@@ -12,8 +13,9 @@ public class Course {
     private UUID authorID;
    
 
-    public Course(String title, String description, Difficulty difficulty, UUID authorID) {
+    public Course(String title, String description,  Difficulty difficulty, UUID authorID) {
         this.topics = new ArrayList<Topic>();
+        this.students = new ArrayList<Student>();
         this.title = title;
         this. description =  description;
         this.id = UUID.randomUUID();
@@ -24,6 +26,17 @@ public class Course {
 
     public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
+        this.students = new ArrayList<Student>();
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.id = id;
+        this.authorID = authorID;
+    }
+
+    public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
+        this.topics = topics;
+        this.students = students;
         this.title = title;
         this.description = description;
         this.difficulty = difficulty;
@@ -48,6 +61,15 @@ public class Course {
 
     public void addTopic(Topic topic) {
         topics.add(topic);
+    }
+
+    public ArrayList<Student> getStudents(){
+        if(students != null){
+            students = new ArrayList<Student>();
+            return students;
+        }
+        else
+            return null;
     }
 
     public String getID() {
