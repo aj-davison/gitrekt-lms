@@ -4,11 +4,14 @@ public class LMS {
     private User currentUser;
     private Course currentCourse;
 
+<<<<<<< HEAD
     public User loginE(String email, String password){
         //this.currentUser = userList.
         return null;
     }
 
+=======
+>>>>>>> 05cce0ca0b03927b017671e4ee2efa93cad57ce1
     public void loginE(String email, String password, String type){
         
     }
