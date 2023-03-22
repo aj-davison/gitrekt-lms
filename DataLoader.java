@@ -1,6 +1,5 @@
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
@@ -27,8 +26,6 @@ public class DataLoader extends DataConstants {
                 String username = (String)userJSON.get(USER_USER_NAME);
                 String password = (String)userJSON.get(USER_PASSWORD);
                 String email = (String)userJSON.get(USER_EMAIL);
-
-                System.out.println(type);
 
                 if(type.equalsIgnoreCase("student")) {
                     users.add(new Student(id, new ArrayList<>(), firstName, lastName,email,username,password));
@@ -79,7 +76,6 @@ public class DataLoader extends DataConstants {
                     // Loop thru grades
                     JSONArray gradesArray = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
                     for(int k=0;k<gradesArray.size();k++) {
-                        //score += (double)gradesArray.get(k);
                         double score = (double)gradesArray.get(k);
                         scores.add(score);
                     }
@@ -133,18 +129,29 @@ public class DataLoader extends DataConstants {
                             String replyContent = (String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
                             UUID replyID = UUID.fromString((String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
                             // Get User by UUID
-                            replies.add(new Comment(replyContent, "", replyID));
+                            String username = "";
+                            for(User user : users) {
+                                if(user.getID().equals(replyID.toString())) {
+                                    username = user.getUsername();
+                                }
+                            }
+                            replies.add(new Comment(replyContent, username, replyID));
                         }
                         // Get User by UUID
-                        comments.add(new Comment(creatorID, commentContent, "", replies));
+                        String username = "";
+                        for(User user : users) {
+                            if(user.getID().equals(creatorID.toString())) {
+                                username = user.getUsername();
+                            }
+                        }
+                        comments.add(new Comment(creatorID, commentContent, username, replies));
                     }
                     topics.add(new Topic(subtopics, comments, topicTitle, new Quiz(questions)));
                     // Course progress needs ArrayList in constructor
-                    for(UUID studentID : studentIDs) {
-                        courseProgresses.add(new CourseProgress(studentID, scores));
-                    }
+                    courseProgresses.add(new CourseProgress(id, scores));
                 }
                 for(User user : users) {
+                    // Add students of the course
                     for(UUID stuID : studentIDs) {
                         if(user.getID().equals(stuID.toString())) {
                             students.add((Student)user);
@@ -159,7 +166,11 @@ public class DataLoader extends DataConstants {
                     // Add authors created courses
                     for(Course course : courses) {
                         if(user.getID().equals(course.getAuthorIDstring())) {
-                            //if(user.getClass().getName().equals("Author"))
+                            if(user.getClass().getName().equals("Author")) {
+                                Author author = (Author)user;
+                                createdCourses.add(course);
+                                author.setCreatedCourses(createdCourses);
+                            }
 
                         }
                     }
@@ -187,12 +198,18 @@ public class DataLoader extends DataConstants {
         for(Course course : courses) {
             ArrayList<Topic> topics = course.getTopics();
             ArrayList<Student> stus = course.getStudents();
-            // for(Topic topic : topics) {
-            //     System.out.println(topic.score());
-            // }
-            for(Student stu : stus) {
-                System.out.println(stu.firstName);
+            for(Topic topic : topics) {
+                ArrayList<Comment> comms = topic.getComments();
+                for(Comment comm : comms) {
+                    ArrayList<Comment> reps = comm.getReplies();
+                    for(Comment rep : reps) {
+                        System.out.println(rep.getUsername());
+                    }
+                }
             }
+            // for(Student stu : stus) {
+            //     System.out.println(stu.firstName);
+            // }
         }
     }
 }

@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class UserList {
     private static UserList userList;
-    private  ArrayList<User> users;
+    private ArrayList<User> users;
 
     private UserList(){
         users = DataLoader.getUsers();
@@ -13,6 +13,22 @@ public class UserList {
     public User getUserByUUID(UUID id){
         for (int i=0; i<users.size(); i++){
             if(users.get(i).getID().equalsIgnoreCase(id.toString())){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+    public User getUserByEmail(String email){
+        for (int i=0; i<users.size(); i++){
+            if(users.get(i).getEmail().equalsIgnoreCase(email)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+    public User getUserByUsername(String username){
+        for (int i=0; i<users.size(); i++){
+            if(users.get(i).getUsername().equalsIgnoreCase(username)){
                 return users.get(i);
             }
         }
