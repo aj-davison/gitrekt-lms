@@ -72,11 +72,24 @@ public class Course {
             return null;
     }
 
+    /**
+     * getter for uuid in string type
+     * @return the UUID in string type
+     */
     public String getID() {
         if(id == null)
             return null;
         else
             return this.id.toString();
+    }
+    
+    /**
+     * getter for uuid in uuid type
+     * @return the UUID in UUID type
+     */
+    public UUID getUuid(){
+        return this.id;
+
     }
 
     public String getTitle() {

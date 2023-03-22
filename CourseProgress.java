@@ -37,6 +37,10 @@ public class CourseProgress {
         return this.grades;        
     }
 
+    public ArrayList<Double> getGrades(){
+        return this.grades;
+    }
+
     public String getID() {
         return this.id.toString();
     }

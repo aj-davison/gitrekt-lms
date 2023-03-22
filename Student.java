@@ -13,17 +13,11 @@ public class Student extends User{
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
     public void enrollCourse(Course course){  
-        CourseProgress courseProgress = new CourseProgress(id, null, 0);
+        CourseProgress courseProgress = new CourseProgress(id, null);
         this.addCourseProgress(courseProgress);
     }
     public void unregisterCourse(Course course){
         courseProgresses.remove(course);
     }
-    public ArrayList<Double> getGrades() {
-        ArrayList<Double> grades  = new ArrayList<Double>();
-        for(int i=0; i<courseProgresses.size(); i++){
-            grades.add(courseProgresses.get(i).getGrades());
-        }
-        return grades;
-    }
+    
 }

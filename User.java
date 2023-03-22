@@ -34,6 +34,18 @@ public abstract class User {
         courseProgresses.add(courseProgress);
     }
 
+    public ArrayList<Double> getGrades(Course course) {
+        //find the course by uuid a]get return that course s grades 
+        String id = course.getID();
+        for(int i=0; i<courseProgresses.size(); i++){
+            String IDthis = courseProgresses.get(i).getID();
+            if(IDthis.equalsIgnoreCase(id)){
+                return courseProgresses.get(i).getGrades();
+            }
+        }
+        return null;
+    }
+
     public String getUsername() {
         if(username == null)
             return null;
