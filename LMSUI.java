@@ -12,7 +12,8 @@ public class LMSUI {
     private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
-    private String[] quizMenu = {"Next Toipic", "Exit to Home"};
+    private String[] quizMenu = {"Next Topic", "Exit to Home"};
+    private String[] profileMenu = {"Exit to Home"};
     private Scanner scanner;
     private LMS lms;
 
@@ -26,7 +27,7 @@ public class LMSUI {
 
         while(true) {
             
-            displayMenu(loginMenu, "LOG IN");
+            displayMenu(loginMenu, "LOG IN OPTIONS");
 
             int userCommand;
 			
@@ -42,10 +43,10 @@ public class LMSUI {
 
             switch(userCommand) {
                 case(0):
-                    user = loginU();
+                    System.out.println((user = loginU()).toString());
                     break;
                 case(1):
-                    user = loginE();
+                    System.out.println((user = loginE()).toString());
                     break;
                 case(2):
                     System.out.println((user = createAccount()).toString());
@@ -65,7 +66,7 @@ public class LMSUI {
             boolean logout = false;
 
             while (true) {
-                displayMenu(homeMenu, "HOME PAGE");
+                displayMenu(homeMenu, "HOME PAGE OPTIONS");
 
                 if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
 
@@ -80,7 +81,7 @@ public class LMSUI {
                         displayAllCourses();
                         break;
                     case(3):
-                        viewProfile();
+                        viewProfile(user);
                         break;
                     case(4):
                         viewBilling();
@@ -90,6 +91,7 @@ public class LMSUI {
                         logOut();
                         break;
                 }
+                if (logout = true) break;
             }
         }
         System.out.println("Goodbye, have a good day.");
@@ -139,8 +141,6 @@ public class LMSUI {
 
         String username = getUserString("Username");
         String password = getUserString("Password");
-        
-        System.out.println(username + " " + password);
 
         return lms.loginU(username, password);
 
@@ -152,8 +152,6 @@ public class LMSUI {
 
         String email = getUserString("Email");
         String password = getUserString("Password");
-        
-        System.out.println(email + " " + password);
 
         return lms.loginE(email, password);
 
@@ -168,7 +166,7 @@ public class LMSUI {
         String username = getUserString("Username");
         String password = getUserString("Password");
        
-        displayMenu(userTypeMenu, "Account Type");
+        displayMenu(userTypeMenu, "ACCOUNT OPTIONS");
 
         int type = getUserCommand(2);
         
@@ -206,8 +204,21 @@ public class LMSUI {
         
     }
 
-    private void viewProfile() {
+    private int viewProfile(User user) {
         
+        System.out.println("\n-----Profile-----");
+        System.out.println(user.toString());
+
+        while (true) {
+            
+            displayMenu(profileMenu, "PROFILE OPTIONS");
+            
+            int userCommand;
+
+            if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+
+            return userCommand;
+        }
     }
 
     private void viewBilling() {
@@ -215,7 +226,7 @@ public class LMSUI {
     }
 
     private void logOut() {
-        
+        System.out.println("See ya!");
     }
 
     public static void main(String[] args) {

@@ -83,7 +83,8 @@ public abstract class User {
         }
         
         result += "Name: "+this.firstName+" "+this.lastName+"\n";
-        result += "Username: "+this.username+"\n";       
+        result += "Username: "+this.username+"\n"; 
+        result += "Password: "+this.password+"\n";      
         result += "Email: "+this.email+"\n";
         result += "Courses: ";
         for (CourseProgress courseProgress : courseProgresses){

@@ -38,6 +38,7 @@ public class Student extends User{
         
         result += "Name: "+this.firstName+" "+this.lastName+"\n";
         result += "Username: "+this.username+"\n";       
+        result += "Password: "+this.password+"\n";
         result += "Email: "+this.email+"\n";
         result += "Type: "+this.type+"\n";
         result += "Courses: ";
