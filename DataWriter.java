@@ -214,6 +214,7 @@ public class DataWriter extends DataConstants {
         return userDetails;
 	}
 
+/* *
     public static void main(String[] args){
         //UserList userList = UserList.getInstanceUserList();
         CourseList courseList = CourseList.getInstanceCourseList();
@@ -222,5 +223,6 @@ public class DataWriter extends DataConstants {
         saveUsers();
         saveCourses();
     }
+    */
 
 }
