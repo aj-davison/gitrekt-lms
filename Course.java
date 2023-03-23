@@ -3,7 +3,6 @@ import java.util.*;
 import javax.lang.model.util.ElementScanner14;
 
 public class Course {
-    
     private ArrayList<Topic> topics;
     private ArrayList<Student> students;
     private String title;
@@ -11,8 +10,17 @@ public class Course {
     private Difficulty difficulty;
     private UUID id; 
     private UUID authorID;
-   
 
+    /**
+     * Constructs a new Course object with the specified title, description, difficulty,
+     * and author UUID. The topics and students lists are initially empty and will be populated
+     * as necessary using the corresponding add methods.
+     *
+     * @param title the title of the course
+     * @param description the description of the course
+     * @param difficulty the difficulty of the course
+     * @param authorID the UUID of the author who created the course
+     */
     public Course(String title, String description,  Difficulty difficulty, UUID authorID) {
         this.topics = new ArrayList<Topic>();
         this.students = new ArrayList<Student>();
@@ -21,19 +29,20 @@ public class Course {
         this.id = UUID.randomUUID();
         this.authorID = authorID;
         this.difficulty = difficulty;
-
     }
-    /*
-    public Course(UUID id, ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID) {
-        this.topics = topics;
-        this.students = new ArrayList<Student>();
-        this.title = title;
-        this.description = description;
-        this.difficulty = difficulty;
-        this.id = id;
-        this.authorID = authorID;
-    } */
 
+    /**
+     * Constructs a new Course object with the specified UUID, topics, students, title, description,
+     * difficulty, and author UUID.
+     *
+     * @param id the UUID of the course
+     * @param topics the list of topics associated with the course
+     * @param students the list of students enrolled in the course
+     * @param title the title of the course
+     * @param description the description of the course
+     * @param difficulty the difficulty of the course
+     * @param authorID the UUID of the author who created the course
+     */
     public Course(UUID id, ArrayList<Topic> topics, ArrayList<Student> students, String title, String description, Difficulty difficulty, UUID authorID) {
         this.topics = topics;
         this.students = students;
@@ -43,26 +52,25 @@ public class Course {
         this.id = id;
         this.authorID = authorID;
     }
-    /*
-    public double grades(){
-        double score = 0;
-        double denom = 0;
-        for(Topic topic : topics){
-            score += topic.grade();
-            denom+=1;
-        }
-        return score/denom;
-    } */
 
     //TODO
     public String toString() {
         return "COURSE";
     }
 
+    /**
+     * Adds the specified topic to the list of topics associated with this course.
+     * @param topic the topic to add to the list of topics
+     */
     public void addTopic(Topic topic) {
         topics.add(topic);
     }
 
+    /**
+     * Returns the list of students enrolled in this course. If there are no students
+     * currently enrolled, this method returns an empty ArrayList.
+     * @return the list of students enrolled in this course
+     */
     public ArrayList<Student> getStudents(){
         if(students != null){
             return this.students;
@@ -73,8 +81,8 @@ public class Course {
     }
 
     /**
-     * getter for uuid in string type
-     * @return the UUID in string type
+     * Returns the UUID of this course as a string. If the UUID is null, this method returns null.
+     * @return the UUID of this course as a string, or null if the UUID is null
      */
     public String getID() {
         if(id == null)
@@ -84,14 +92,17 @@ public class Course {
     }
     
     /**
-     * getter for uuid in uuid type
-     * @return the UUID in UUID type
+     * Returns the UUID of this course. If the UUID is null, this method returns null.
+     * @return the UUID of this course, or null if the UUID is null
      */
     public UUID getUuid(){
         return this.id;
-
     }
-
+    /**
+     * Returns the title of the course.
+     *
+     * @return the title of the course or null if it is not set.
+     */
     public String getTitle() {
         if(title == null)
             return null;
@@ -99,6 +110,11 @@ public class Course {
             return this.title;
     }
 
+    /**
+     * Returns the description of the course.
+     *
+     * @return the description of the course or null if it is not set.
+     */
     public String getDescription() {
         if(description == null)
             return null;
@@ -106,6 +122,11 @@ public class Course {
             return this.description;
     }
 
+    /**
+     * Returns the ID of the course author in string format
+     *
+     * @return the ID of the course author in string format or null if it is not set
+     */
     public String getAuthorIDstring() {
         if(authorID == null)
             return null;
@@ -113,30 +134,43 @@ public class Course {
             return this.authorID.toString();
     }
 
+    /**
+     * Returns the ID of the course author in UUID format.
+     *
+     * @return the ID of the course author in UUID format or null if it is not set
+     */
     public UUID getAuthorIDuui(){
         if(authorID == null)
-        return null;
-    else
-        return this.authorID;
-
+            return null;
+        else
+            return this.authorID;
     }
 
+    /**
+     * Returns the list of topics covered in the course.
+     *
+     * @return the list of topics covered in the course or null if it is not set.
+     */
     public ArrayList<Topic> getTopics(){
         if(topics != null){
-            //topics = new ArrayList<Topic>();
             return this.topics;
         }
         else    
             return null;
     }
 
-    public String getDifficulty() {
-        if(difficulty != null)
-            return this.difficulty.toString();
-        else
-            return null;
-    }
+    /**
+     * Returns the difficulty level of the course.
+     *
+     * @return the difficulty level of the course or null if it is not set.
+     */
+        public String getDifficulty() {
+            if(difficulty != null)
+                return this.difficulty.toString();
+            else
+                return null;
+        }
 
 
-   
+    
 }
