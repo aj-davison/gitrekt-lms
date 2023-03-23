@@ -1,46 +1,47 @@
 [
     {
-        "id": "25f58098-d764-4dec-b42f-ad19ad57d00f",
-        "title": "Java",
-        "description": "A beginner friendly course in Java",
-        "authorID": "ca8fdfc4-f92e-40b4-9508-75680fdae460",
-        "students":[
-            {
-                "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
-                "grades":[
-                    90.0
-                ]
-            }
-        ],
         "difficulty": "BEGINNER",
-        "topics":[
+        "topics": [
             {
-                "title": "Java Basics",
-                "subtopics":[
+                "quiz": [
+                    {
+                        "question": "What is an if-statement",
+                        "correct": 1,
+                        "answers": [
+                            "a loop",
+                            "branch statement",
+                            "an else",
+                            "not somthing in code"
+                        ]
+                    }
+                ],
+                "comments": [
+                    {
+                        "replies": [],
+                        "comment": "Awesome topic!",
+                        "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2"
+                    }
+                ],
+                "subtopics": [
                     {
                         "title": "If-Statements",
                         "info": "A subtopic about if statements"
                     }
                 ],
-                "quiz":[
-                    {
-                        "question": "What is an if-statement",
-                        "answers": [
-                            "a loop", "branch statement", "an else", "not somthing in code"
-                        ],
-                        "correct": 1
-                    }
-                ],
-                "comments":[
-                    {   
-                        "comment": "Awesome topic!",
-                        "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2",
-                        "replies":[
-                            
-                        ]
-                    }
+                "title": "Java Basics"
+            }
+        ],
+        "description": "A beginner friendly course in Java",
+        "students": [
+            {
+                "id": "3cbffdeb-9704-4415-bdc0-d561dce0733f",
+                "grades": [
+                    90
                 ]
             }
-        ]
+        ],
+        "id": "25f58098-d764-4dec-b42f-ad19ad57d00f",
+        "title": "Java",
+        "authorID": "ca8fdfc4-f92e-40b4-9508-75680fdae460"
     }
 ]
