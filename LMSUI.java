@@ -43,13 +43,13 @@ public class LMSUI {
 
             switch(userCommand) {
                 case(0):
-                    System.out.println((user = loginU()).toString());
+                    user = loginU();
                     break;
                 case(1):
-                    System.out.println((user = loginE()).toString());
+                    user = loginE();
                     break;
                 case(2):
-                    System.out.println((user = createAccount()).toString());
+                    user = createAccount();
                     break;
                 case(3):
                     quit = true;
