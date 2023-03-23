@@ -79,6 +79,7 @@ public class DataLoader extends DataConstants {
                         double score = (double)gradesArray.get(k);
                         scores.add(score);
                     }
+                    courseProgresses.add(new CourseProgress(id, scores));
                 }
                 String difficulty = (String)courseJSON.get(COURSE_DIFFICULTY);
 
@@ -147,20 +148,21 @@ public class DataLoader extends DataConstants {
                         comments.add(new Comment(creatorID, commentContent, username, replies));
                     }
                     topics.add(new Topic(subtopics, comments, topicTitle, new Quiz(questions)));
-                    // Course progress needs ArrayList in constructor
-                    courseProgresses.add(new CourseProgress(id, scores));
                 }
+                
                 for(User user : users) {
                     // Add students of the course
                     for(UUID stuID : studentIDs) {
                         if(user.getID().equals(stuID.toString())) {
                             students.add((Student)user);
                         }
-                    }
-                    // Add scores list to student
-                    for(CourseProgress cp : courseProgresses) {
-                        if(user.getID().equals(cp.getID())) {
-                            user.addCourseProgress(cp);
+                        for(UUID stuid : studentIDs) {
+                            if(stuid.toString().equals(user.getID())) {
+                                user.setCourseProgress(courseProgresses);
+                                for(CourseProgress cp : user.courseProgresses) {
+                                    System.out.println(cp.getGrades());
+                                }
+                            }
                         }
                     }
                     // Add authors created courses
@@ -186,30 +188,40 @@ public class DataLoader extends DataConstants {
 
     public static void main(String[] args) {
         
-        // UserList list = UserList.getInstanceUserList();
-        // ArrayList<User> users = list.getUsers();
+        UserList list = UserList.getInstanceUserList();
+        ArrayList<User> users = list.getUsers();
         CourseList list2 = CourseList.getInstanceCourseList();
         ArrayList<Course> courses = list2.getCourses();
 
-        // for(User user : users) {
-        //     System.out.println(user.getClass().toString());
-        // }
-
-        for(Course course : courses) {
-            ArrayList<Topic> topics = course.getTopics();
-            ArrayList<Student> stus = course.getStudents();
-            for(Topic topic : topics) {
-                ArrayList<Comment> comms = topic.getComments();
-                for(Comment comm : comms) {
-                    ArrayList<Comment> reps = comm.getReplies();
-                    for(Comment rep : reps) {
-                        System.out.println(rep.getUsername());
-                    }
+        for(User user : users) {
+            // if(user.getClass().getTypeName().equals("Author")) {
+            //     Author author = (Author)user;
+            // }
+            for(CourseProgress cp : user.courseProgresses) {
+                //System.out.println(cp.getGrades());
+                for(double grade : cp.getGrades()) {
+                    System.out.println(grade);
                 }
             }
-            // for(Student stu : stus) {
-            //     System.out.println(stu.firstName);
-            // }
+            //System.out.println();
+            //System.out.println(user.toString());
         }
+
+        // for(Course course : courses) {
+        //     ArrayList<Topic> topics = course.getTopics();
+        //     ArrayList<Student> stus = course.getStudents();
+        //     for(Topic topic : topics) {
+        //         ArrayList<Comment> comms = topic.getComments();
+        //         for(Comment comm : comms) {
+        //             ArrayList<Comment> reps = comm.getReplies();
+        //             for(Comment rep : reps) {
+        //                 System.out.println(rep.getUsername());
+        //             }
+        //         }
+        //     }
+        //     // for(Student stu : stus) {
+        //     //     System.out.println(stu.firstName);
+        //     // }
+        // }
     }
 }
