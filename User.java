@@ -27,11 +27,15 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.courseProgresses = new ArrayList<>();
+    }
+
+    public void setCourseProgress(ArrayList<CourseProgress> courseProgresses) {
         this.courseProgresses = courseProgresses;
     }
 
     public void addCourseProgress(CourseProgress courseProgress) {
-        courseProgresses.add(courseProgress);
+        this.courseProgresses.add(courseProgress);
     }
 
     public ArrayList<Double> getGrades(Course course) {
