@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class CourseProgress {
-    private static CourseList courseList;
+    //private static CourseList courseList;
     private UUID id;
     private ArrayList<Double> grades;
     private double grade;

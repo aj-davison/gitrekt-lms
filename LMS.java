@@ -44,8 +44,9 @@ public class LMS {
     public void continueCourse(Course course){
 
     }
-    public Course makeCourse(ArrayList<Topic> topics, String title, String description, double numTopics){
-        Course course = new Course(topics, title, description);
+    public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
+        
+        Course course = new Course(title, description, null, null);
         return course;
     }
     public void takeQuiz(){
