@@ -45,10 +45,11 @@ public class LMS {
         }
     }
     public void enrollCourse(Course course){
-
+        CourseProgress courseProgress = new CourseProgress(course.getUuid(), null);
+        currentUser.courseProgresses.add(courseProgress);
     }
     public void continueCourse(Course course){
-
+        
     }
     public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
         
