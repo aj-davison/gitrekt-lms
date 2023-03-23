@@ -47,8 +47,13 @@ public class Topic {
     }
 
     public String toString(){
-        return "Topic";
+        String result = "";
+        result += this.name+"\n";
+        result += this.nextSubtopic().toString();
+        position++;
+        return result;
     }
+
 
     public void addComment(Comment comment){
         comments.add(comment);
