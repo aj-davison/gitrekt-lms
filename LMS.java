@@ -21,7 +21,10 @@ public class LMS {
         return null;
     }
     public void logout(){
-
+        UserList userList = UserList.getInstanceUserList();
+        userList.saveUsers();
+        CourseList courseList = CourseList.getInstanceCourseList();
+        courseList.saveCourses();
     }
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
         
@@ -29,10 +32,12 @@ public class LMS {
         if (type == 0) {
             Student user = new Student(firstName, lastName, email, username, password);
             userList.addStudent(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
             return user;
         } else if(type == 1){
             Author user = new Author(firstName, lastName, email, username, password);
             userList.addAuthor(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
             return user;
         } else {
             System.out.println("Error, invalid input");
@@ -40,13 +45,15 @@ public class LMS {
         }
     }
     public void enrollCourse(Course course){
-
+        CourseProgress courseProgress = new CourseProgress(course.getUuid(), null);
+        currentUser.courseProgresses.add(courseProgress);
     }
     public void continueCourse(Course course){
-
+        
     }
-    public Course makeCourse(ArrayList<Topic> topics, String title, String description, double numTopics){
-        Course course = new Course(topics, title, description);
+    public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
+        
+        Course course = new Course(title, description, null, null);
         return course;
     }
     public void takeQuiz(){

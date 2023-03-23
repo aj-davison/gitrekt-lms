@@ -39,7 +39,7 @@ public class CourseList {
 
 
     public void saveCourses(){
-
+        DataWriter.saveCourses();
     }
     public ArrayList<String> getAllCourses(){
         ArrayList<String> allCourses = new ArrayList<String>();
