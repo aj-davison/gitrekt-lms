@@ -139,23 +139,26 @@ public class DataWriter extends DataConstants {
         JSONArray jsonStudents = new JSONArray();
         ArrayList<Student> students = course.getStudents();
         for(int i=0; i < students.size(); i++){
-            jsonStudents.add(getStudentJSON(students.get(i)));
+            jsonStudents.add(getStudentJSON(students.get(i), course));
         }
         return jsonStudents;
     }
 
-    private static JSONObject getStudentJSON(Student student) {
+    private static JSONObject getStudentJSON(Student student, Course course) {
         JSONObject studentDetails = new JSONObject();
         studentDetails.put(COURSE_STUDENTS_ID, student.getID());
         //studentDetails.put(COURSE_STUDENT_COMP_TOPICS, student.getTopicsCompleted());
-        studentDetails.put(COURSE_STUDENT_GRADES, getGradesJSON(student));
+        studentDetails.put(COURSE_STUDENT_GRADES, getGradesJSON(student, course));
 
         return studentDetails;
     }
 
-    private static JSONArray getGradesJSON(Student student) {
+    private static JSONArray getGradesJSON(Student student, Course course) {
         JSONArray jsonGradess = new JSONArray();
-        ArrayList<Double> grades = student.getGrades();
+        ArrayList<Double> grades = student.getGrades(course);
+        if(grades == null){
+            return jsonGradess;
+        }
         for(int i=0; i<grades.size(); i++){
             jsonGradess.add(grades.get(i));
         }
@@ -198,10 +201,10 @@ public class DataWriter extends DataConstants {
 		JSONObject userDetails = new JSONObject();
         userDetails.put(USER_ID, user.getID());
         //here we check if they are student of aouther type
-        if(user instanceof Student)
-            userDetails.put(USER_TYPE, "student");
-        else // they are an author
+        if(user instanceof Author)
             userDetails.put(USER_TYPE, "author");
+        else // they are an author
+            userDetails.put(USER_TYPE, "student");
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_USER_NAME, user.getUsername());
