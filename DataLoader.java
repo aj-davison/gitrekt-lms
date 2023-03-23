@@ -186,6 +186,7 @@ public class DataLoader extends DataConstants {
 
     public static void main(String[] args) {
         
+        
         // UserList list = UserList.getInstanceUserList();
         // ArrayList<User> users = list.getUsers();
         CourseList list2 = CourseList.getInstanceCourseList();
@@ -194,7 +195,7 @@ public class DataLoader extends DataConstants {
         // for(User user : users) {
         //     System.out.println(user.getClass().toString());
         // }
-
+/* *
         for(Course course : courses) {
             ArrayList<Topic> topics = course.getTopics();
             ArrayList<Student> stus = course.getStudents();
@@ -211,5 +212,6 @@ public class DataLoader extends DataConstants {
             //     System.out.println(stu.firstName);
             // }
         }
+        */
     }
 }
