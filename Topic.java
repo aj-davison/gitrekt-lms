@@ -46,9 +46,20 @@ public class Topic {
         return subtopics.get(position) != null && position < subtopics.size();
     }
 
-    public String toString(){
-        return "Topic";
+    public String toString(int input){
+        String result = "";
+        result += this.name+"\n";
+        result += this.nextSubtopic().toString();
+        incrementPosition(input);
+        return result;
     }
+    public void incrementPosition(int input){
+        if(input==1){
+            this.position++;
+            this.toString();
+        }
+    }
+
 
     public void addComment(Comment comment){
         comments.add(comment);
