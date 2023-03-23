@@ -18,25 +18,26 @@ public class CourseProgress {
     public String toString() {
         return "CourseProgress";
     }
-
+    /* 
     public void calcGrade() {
         int questions = this.grades.size();
         for(double score : grades) {
             this.grade += score;
         }
         this.grade /= questions;
-    }
+    } */
     public void addGrade(double grade){
         this.grades.add(grade);
     }
     public Double getGrade(){
-        return this.grade;
+        int questions = this.grades.size();
+        double grade = 0;
+        for(double score : grades) {
+            grade += score;
+        }
+        grade /= questions;
+        return grade;
     }
-    public ArrayList<Double> getQuizGrades(){
-        //ArrayList<Double> grades = new ArrayList<Double>();
-        return this.grades;        
-    }
-
     public ArrayList<Double> getGrades(){
         return this.grades;
     }
