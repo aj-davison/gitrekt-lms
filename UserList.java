@@ -53,6 +53,6 @@ public class UserList {
         return users;
     }
     public void saveUsers(){
-        
+        DataWriter.saveUsers();
     }
 }
