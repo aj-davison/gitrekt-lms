@@ -21,13 +21,16 @@ public class Student extends User{
     public void unregisterCourse(Course course){
         courseProgresses.remove(course);
     }
-    public ArrayList<Double> getGrades() {
+    /* 
+    public ArrayList<Double> getGrades(Course course) {
         ArrayList<Double> grades  = new ArrayList<Double>();
         for(int i=0; i<courseProgresses.size(); i++){
+            if()
             grades.add(courseProgresses.get(i).getGrades());
         }
         return grades;
     }
+    */
 
     public String toString(){
         String result = "";
