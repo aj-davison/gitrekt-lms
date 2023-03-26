@@ -61,6 +61,9 @@ public class LMS {
                 results.add(course);
             }
         }
+        if(results.size() == 0){
+            return null;
+        }
         return results;
     }
     public String displayCourseList(){
