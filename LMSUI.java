@@ -239,6 +239,20 @@ public class LMSUI {
 
     private void displayCourseDescription(Course course){
         System.out.println(course.toString());
+        if(lms.isEnrolled(course)){
+            while(true){
+                displayMenu(continueCourseMenu, "COURSE OPTIONS");
+                int userCommand;
+                if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                boolean quit = false;
+                switch(userCommand){
+                    case(0):
+                        
+                }
+
+            }
+    
+        }
         
     }
 
