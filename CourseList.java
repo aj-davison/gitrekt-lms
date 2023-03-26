@@ -50,6 +50,14 @@ public class CourseList {
         }
         return null;
     }
+    public Course getCourseByTitle(String title){
+        for(int i=0; i<courses.size(); i++){
+            if(courses.get(i).getTitle().equalsIgnoreCase(title)){
+                return courses.get(i);
+            }
+        }
+        return null;
+    }
 
     /**
     Returns the list of courses.
