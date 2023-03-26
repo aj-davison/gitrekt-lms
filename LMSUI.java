@@ -214,9 +214,9 @@ public class LMSUI {
 		}
 
     }
-
     private void displayCurrentCourses() {
-        
+        System.out.println("\n-----Displaying Current Courses-----");
+        System.out.println(lms.displayCourseList());
     }
 
     private void searchCourses() {
