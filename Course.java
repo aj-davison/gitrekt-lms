@@ -63,13 +63,13 @@ public class Course {
         this.authorID = authorID;
     }
 
-    
-
-    //TODO
-    public String toString() {
-        return "COURSE";
+    public String toString(){
+        String result = "";
+        result += this.title+"\n";
+        result += this.description+"\n";
+        result += "Difficulty: "+this.difficulty.toString();
+        return result;
     }
-
     /**
      * Adds the specified topic to the list of topics associated with this course.
      * @param topic the topic to add to the list of topics
