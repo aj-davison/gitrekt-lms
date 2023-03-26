@@ -66,6 +66,11 @@ public class LMS {
         }
         return results;
     }
+    public Course getCourseByTitle(String title){
+        CourseList courseList = CourseList.getInstanceCourseList();
+        Course course = courseList.getCourseByTitle(title);
+        return course;
+    }
     public boolean isEnrolled(Course course){
         boolean result = false;
         for(CourseProgress progress : currentUser.courseProgresses){
