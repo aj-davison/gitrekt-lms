@@ -225,6 +225,9 @@ public class LMSUI {
 
     private void displayAllCourses() {
         
+        System.out.println("\n-----Displaying All Courses-----");
+        
+
     }
 
     private Course createCourse() {
