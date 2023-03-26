@@ -31,6 +31,16 @@ public class Course {
         this.difficulty = difficulty;
     }
 
+    public Course(String title, String description,  Difficulty difficulty, ArrayList<Topic> topics, UUID authorID) {
+        this.topics = topics;
+        this.students = new ArrayList<Student>();
+        this.title = title;
+        this. description =  description;
+        this.id = UUID.randomUUID();
+        this.authorID = authorID;
+        this.difficulty = difficulty;
+    }
+
     /**
      * Constructs a new Course object with the specified UUID, topics, students, title, description,
      * difficulty, and author UUID.
@@ -52,6 +62,8 @@ public class Course {
         this.id = id;
         this.authorID = authorID;
     }
+
+    
 
     //TODO
     public String toString() {

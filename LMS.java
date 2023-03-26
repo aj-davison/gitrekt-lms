@@ -53,7 +53,11 @@ public class LMS {
     }
     public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
         
-        Course course = new Course(title, description, null, null);
+        Course course = new Course(title, description, null, topics, null);
+
+        DataWriter.saveCourses();
+
+
         return course;
     }
     public void takeQuiz(){

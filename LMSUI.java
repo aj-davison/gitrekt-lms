@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
@@ -7,7 +8,7 @@ public class LMSUI {
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
-    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "View Profile", "Billing Page", "Log Out"};
+    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
     private String[] courseMenu = {"Enter Course", "Exit to Home"};
     private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
@@ -130,6 +131,8 @@ public class LMSUI {
     private int getUserInt(String prompt) {
 
         while (true) {
+            System.out.print(prompt);
+
             String input = scanner.nextLine();
             try {
                 int number = Integer.parseInt(input);
@@ -228,28 +231,72 @@ public class LMSUI {
         
         System.out.println("\n-----Creating Course-----");
 
-        String CourseName = getUserString("Course Name");
+        String courseName = getUserString("Course Name");
+
+        String courseDescription = getUserString("Course Description");
+
+        String courseDifficulty = getUserString("Course Difficulty");
 
         int topicNum = getUserInt("How many topics will this course have?");
+
+        ArrayList topics = new ArrayList<Topic>();
+        
 
         for (int i = 0; i < topicNum; i++) {
 
             String topicName = getUserString("Topic Name #" + (i + 1));
 
-            int subtopicNum = getUserInt("How many subtopics will this course have?");
+            int subtopicNum = getUserInt("How many subtopics will this topic have?");
+
+            ArrayList subtopics = new ArrayList<Subtopic>();
 
             for (int j = 0; j < subtopicNum; j++) {
 
                 String subtopicName = getUserString("Subtopic Name #" + (i + 1));
+                String subtopicInfo = getUserString("Subtopic Information: ");
 
+                Subtopic subtopic = new Subtopic(subtopicName, subtopicInfo);
 
+                subtopics.add(subtopic);
 
             }
 
+            int questionNum = getUserInt("How many questions will the quiz for this topic have?");
+
+            ArrayList questions = new ArrayList<Question>();
+
+            for (int k = 0; k < topicNum; k++) {
+
+                String questionContent = getUserString("Question # " + (k + 1));
+    
+                String answers[] = new String[4];
+    
+                for (int l = 0; l < 4; l++) {
+    
+                    String answerContent = getUserString("Answer #" + (l + 1));
+    
+                    answers[l] = answerContent;
+    
+                }
+
+                int correctAnswer = getUserInt("Which Answer Number is Correct: ") - 1;
+
+                Question question = new Question(questionContent, answers, correctAnswer);
+                questions.add(question);
+
+            }
+
+            Quiz quiz = new Quiz(questions);
+
+            Topic topic = new Topic(subtopics, topicName, quiz);
+            topics.add(topic);
+
         }
 
+        Course course = lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
 
-        return null;
+        return course;
+
     }
 
     private int viewProfile(User user) {
