@@ -66,6 +66,15 @@ public class LMS {
         }
         return results;
     }
+    public boolean isEnrolled(Course course){
+        boolean result = false;
+        for(CourseProgress progress : currentUser.courseProgresses){
+            if(progress.getID().equals(course.getUuid().toString())){
+                result = true;
+            }
+        }
+        return result;
+    }
     public String displayCourseList(){
         String result = "";
         CourseList courseList = CourseList.getInstanceCourseList();
