@@ -9,7 +9,8 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
-    private String[] courseMenu = {"Enter Course", "Exit to Home"};
+    private String[] continueCourseMenu = {"Continue Course", "Exit to Home"};
+    private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
     private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
@@ -220,8 +221,7 @@ public class LMSUI {
 
     private void searchCourses() {
         System.out.println("\n-----Search Courses-----");
-        System.out.println("Enter keyword to search for:");
-        String word = scanner.nextLine();
+        String word = getUserString("Keyword");
         ArrayList<Course> results = lms.searchCourses(word);
         if(results == null){
             ///TODO "NO RESULTS, Return home"
@@ -233,6 +233,13 @@ public class LMSUI {
             System.out.println(result);
             index++;
         }
+        int choice = getUserInt("Enter Course Number: \n");
+        displayCourseDescription(results.get(choice-1));
+    }
+
+    private void displayCourseDescription(Course course){
+        System.out.println(course.toString());
+        
     }
 
     private void displayAllCourses() {
