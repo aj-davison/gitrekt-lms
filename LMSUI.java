@@ -15,6 +15,7 @@ public class LMSUI {
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
+    private String[] billingMenu = {"Exit to Home"};
     private Scanner scanner;
     private LMS lms;
 
@@ -313,14 +314,23 @@ public class LMSUI {
             
             int userCommand;
 
-            if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+            if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
 
             return userCommand;
         }
     }
 
     private void viewBilling() {
+        System.out.println("\n-----Billing-----");
+        System.out.println("Free access to learning resources will be available until the end of 2025");
         
+        while (true) {
+            displayMenu(billingMenu, "BILLING OPTIONS");
+
+            int userCommand;
+
+            if ((userCommand = menuCommandValidation(profileMenu)) == -1);
+        }
     }
 
     private void logOut() {
