@@ -81,12 +81,14 @@ public class LMSUI {
                         displayAllCourses();
                         break;
                     case(3):
+                        createCourse();
+                    case(4):
                         viewProfile(user);
                         break;
-                    case(4):
+                    case(5):
                         viewBilling();
                         break;
-                    case(5):
+                    case(6):
                         logout = true;
                         logOut();
                         break;
@@ -124,6 +126,24 @@ public class LMSUI {
         }
 
 	}
+
+    private int getUserInt(String prompt) {
+
+        while (true) {
+            String input = scanner.nextLine();
+            try {
+                int number = Integer.parseInt(input);
+                if (number >= 0) 
+                    return number;
+            }
+            catch (Exception e) {
+                System.out.println("Please enter an integer");
+                continue;
+            }
+            return -1;
+        }
+
+    }
 
     private int menuCommandValidation (String[] menu) {
         
@@ -204,6 +224,34 @@ public class LMSUI {
         
     }
 
+    private Course createCourse() {
+        
+        System.out.println("\n-----Creating Course-----");
+
+        String CourseName = getUserString("Course Name");
+
+        int topicNum = getUserInt("How many topics will this course have?");
+
+        for (int i = 0; i < topicNum; i++) {
+
+            String topicName = getUserString("Topic Name #" + (i + 1));
+
+            int subtopicNum = getUserInt("How many subtopics will this course have?");
+
+            for (int j = 0; j < subtopicNum; j++) {
+
+                String subtopicName = getUserString("Subtopic Name #" + (i + 1));
+
+
+
+            }
+
+        }
+
+
+        return null;
+    }
+
     private int viewProfile(User user) {
         
         System.out.println("\n-----Profile-----");
@@ -236,4 +284,3 @@ public class LMSUI {
     }
 
 }
-
