@@ -49,7 +49,14 @@ public class LMS {
         currentUser.courseProgresses.add(courseProgress);
     }
     public void continueCourse(Course course){
-        
+        int index = 0;
+        for(CourseProgress progress : currentUser.courseProgresses){
+            if(progress.getID().equalsIgnoreCase(course.getID())){
+                break;
+            }
+            index++;
+        }
+        currentUser.courseProgresses.get(index)
     }
     public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
         
