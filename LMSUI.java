@@ -216,7 +216,6 @@ public class LMSUI {
     }
     private void displayCurrentCourses() {
         System.out.println("\n-----Displaying Current Courses-----");
-        System.out.println(lms.displayCourseList());
     }
 
     private void searchCourses() {
@@ -226,7 +225,7 @@ public class LMSUI {
     private void displayAllCourses() {
         
         System.out.println("\n-----Displaying All Courses-----");
-        
+        System.out.println(lms.displayCourseList()+"\n");
 
     }
 
