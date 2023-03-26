@@ -219,11 +219,23 @@ public class LMSUI {
     }
 
     private void searchCourses() {
-        
+        System.out.println("\n-----Search Courses-----");
+        System.out.println("Enter keyword to search for:");
+        String word = scanner.nextLine();
+        ArrayList<Course> results = lms.searchCourses(word);
+        if(results == null){
+            ///TODO "NO RESULTS, Return home"
+        }
+        int index = 1;
+        for(Course course : results){
+            String result = "";
+            result += Integer.toString(index)+". "+course.getTitle()+"\n";
+            System.out.println(result);
+            index++;
+        }
     }
 
     private void displayAllCourses() {
-        
         System.out.println("\n-----Displaying All Courses-----");
         System.out.println(lms.displayCourseList()+"\n");
 
