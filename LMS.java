@@ -44,12 +44,44 @@ public class LMS {
             return null;
         }
     }
-    public void enrollCourse(Course course){
-        CourseProgress courseProgress = new CourseProgress(course.getUuid(), null);
+    public void enrollCourse(String title){
+        CourseList courseList = CourseList.getInstanceCourseList();
+        Course course = courseList.getCourseByTitle(title);
+        CourseProgress courseProgress = new CourseProgress(course.getUuid());
         currentUser.courseProgresses.add(courseProgress);
     }
+    public String displayCourseList(){
+        String result = "";
+        CourseList courseList = CourseList.getInstanceCourseList();
+        ArrayList<Course> courses = courseList.getCourses();
+        int index = 1;
+        for(Course course : courses){
+            result += index+". "+course.getTitle()+"\n";
+            index ++;
+        }
+        return result;
+    }
     public void continueCourse(Course course){
-        
+        int index = 0;
+        for(CourseProgress progress : currentUser.courseProgresses){
+            if(progress.getID().equalsIgnoreCase(course.getID())){
+                break;
+            }
+            index++;
+        }
+        int topicIndex = currentUser.courseProgresses.get(index).numCompletedTopics();
+        for(int i=0; i<course.getTopics().size()-topicIndex; i++){
+            course.getTopics().get(index).toString();
+        }
+    }
+    public boolean continueTopic(int input){
+        boolean result;
+        if(input == 1){
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
     }
     public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
         

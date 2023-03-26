@@ -10,11 +10,13 @@ public class LMSUI {
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
     private String[] courseMenu = {"Enter Course", "Exit to Home"};
-    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
+    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Quiz", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
+    private String[] currentCoursesMenu = {"Select a Course", "Exit to Home"};
+    private String[] subtopicMenu = {"Continue", "Quit"};
     private Scanner scanner;
     private LMS lms;
 
@@ -32,7 +34,7 @@ public class LMSUI {
 
             int userCommand;
 			
-			if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+			if ((userCommand = menuCommandValidation(loginMenu)) == -1) continue;
 
             User user = null;
             
@@ -214,9 +216,71 @@ public class LMSUI {
 		}
 
     }
-
     private void displayCurrentCourses() {
-        
+        System.out.println("\n-----Displaying Current Courses-----");
+
+        System.out.println(lms.getCurrentCourses());
+
+        while (true) {
+            displayMenu(currentCoursesMenu, "OPTIONS");
+
+            int userCommand;
+            if ((userCommand = menuCommandValidation(currentCoursesMenu)) == -1) continue;
+
+            if (userCommand == 0) {
+
+                String courseChoice = getUserString("Course Choice Name");
+
+                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
+                Course course = lms.getByTitleCourse(courseChoice);
+
+                displayCourseDescription(course);
+
+                for (int i = courseProgress.numCompletedTopics(); i < course.getTopics().size(); i++) {
+
+                printTopic(course.getTopics().get(i+1).toString());
+
+                    while (true) {
+                        
+                        displayMenu(topicMenu, "TOPIC OPTIONS");
+                        if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+
+                        switch (userCommand) {
+                            case(0):
+                                break;
+                            case(1):
+                                i--;
+                            k
+                        
+                        
+                        }
+
+                }
+
+            }
+
+        }
+
+        String courseChoice(getUserString())
+    }
+
+    private boolean printTopic(Topic topic) {
+
+        for (Subtopic subtopic : topic.getSubTop()) {
+
+            System.out.println(subtopic.toString());
+
+            displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
+
+            int userCommand;
+
+            
+
+
+
+        }
+
+
     }
 
     private void searchCourses() {
@@ -226,7 +290,7 @@ public class LMSUI {
     private void displayAllCourses() {
         
         System.out.println("\n-----Displaying All Courses-----");
-        
+        System.out.println(lms.displayCourseList()+"\n");
 
     }
 

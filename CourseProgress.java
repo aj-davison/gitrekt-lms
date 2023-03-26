@@ -14,6 +14,10 @@ public class CourseProgress {
         this.id = id;
         this.grades = grades;
     }
+    public CourseProgress(UUID id){
+        this.id = id;
+        this.grades = new ArrayList<Double>();
+    }
 
     /**
     *Returns a string representation of this CourseProgress object
