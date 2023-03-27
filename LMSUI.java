@@ -11,13 +11,13 @@ public class LMSUI {
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
     private String[] continueCourseMenu = {"Continue Course", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
-    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Quiz", "Exit to Home"};
+    private String[] topicMenu = {"Quiz", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
-    private String[] quizMenu = {"Next Topic", "Exit to Home"};
+    private String[] quizMenu = {"Next Topic", "Display Comments", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
     private String[] billingMenu = {"Exit to Home"};
-    private String[] subtopicMenu = {"Next", "Previous", "Quit"}
+    private String[] subtopicMenu = {"Next", "Previous", "Quit"};
     private Scanner scanner;
     private LMS lms;
 
@@ -209,11 +209,6 @@ public class LMSUI {
 			if(!info.contentEquals("")) return info;
 			
 			System.out.println("You need to actually enter content");
-			System.out.print("Would you like to enter item again (y) or return to main menu (n): ");
-			String command = scanner.nextLine().trim().toLowerCase();
-			if(command == "n"){ 
-                return null;
-            }
 		}
 
     }
@@ -253,27 +248,19 @@ public class LMSUI {
 
                             switch (userCommand) {
                                 case(0):
-                                    break;
-                                case(1):
-                                    i -= 2;
-                                    break;
-                                case(2):
-                                    displayComments();
-                                    break;
-                                case(3):
                                     takeQuiz();
                                     break;
-                                case(4):
+                                case(1):
                                     quit = true;
                                     break;
                         
                         }
                         if (quit == true) break;
-
                 }
                 break;
 
             }
+            break;
 
         }
 
