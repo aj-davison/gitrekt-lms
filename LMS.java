@@ -35,6 +35,9 @@ public class LMS {
     public String displayCourseList(){
         return courseList.displayCourseList();
     }
+    public String getCurrentCourses(){
+        return currentUser.getCurrentCourses();
+    }
     /// TODO
     public void continueCourse(Course course){
         int index = 0;
@@ -65,9 +68,6 @@ public class LMS {
 
     }
     public void createComment(Comment comment){
-
-    }
-    public void returnHome(){
 
     }
     public Topic nextTopic(){
