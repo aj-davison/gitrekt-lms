@@ -449,6 +449,27 @@ public class LMSUI {
 
     private void logOut() {
         System.out.println("See ya!");
+        lms.logout();
+    }
+
+    public void commentTopic(Topic topic){
+        addComment(topic.getComments());
+    }
+    public void addComment(ArrayList<Comment> comments){
+        if(comments == null){
+
+        } else {
+            displayComment(comments);
+            
+        }
+    }
+    public String displayComment(ArrayList<Comment> comments){
+        String result = "";
+        int position = 1;
+        for(Comment comment : comments){
+            result += Integer.toString(position)+". "+comment.toString()+"\n";
+        }
+        return result;
     }
 
     public static void main(String[] args) {
