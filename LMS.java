@@ -25,6 +25,9 @@ public class LMS {
         courseList.enrollCourse(title, currentUser);
         currentUser.enrollCourse(currentCourse);
     }
+    public void getCourseProgress(String title){
+        currentUser.getCourseProgress(title);
+    }
     public ArrayList<Course> searchCourses(String title){
         return courseList.searchCourses(title);
     }
