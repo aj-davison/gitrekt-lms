@@ -14,6 +14,10 @@ public class Student extends User{
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
+    public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
+        
+    }
+
     public void unregisterCourse(Course course){
         courseProgresses.remove(course);
     }

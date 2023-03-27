@@ -108,4 +108,14 @@ public class CourseList {
         }
         return results;
     }
+    public String displayCourseList(){
+        String result = "";
+        ArrayList<Course> courses = getCourses();
+        int index = 1;
+        for(Course course : courses){
+            result += Integer.toString(index)+". "+course.getTitle()+"\n";
+            index ++;
+        }
+        return result;
+    }
 }
