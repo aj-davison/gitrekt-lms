@@ -35,6 +35,7 @@ public class LMS {
     public String displayCourseList(){
         return courseList.displayCourseList();
     }
+    /// TODO
     public void continueCourse(Course course){
         int index = 0;
         for(CourseProgress progress : currentUser.courseProgresses){
@@ -57,14 +58,8 @@ public class LMS {
         }
         return result;
     }
-    public Course makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
-        
-        Course course = new Course(title, description, null, topics, null);
-
-        DataWriter.saveCourses();
-
-
-        return course;
+    public void makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
+        makeCourse(topics, title, description, difficulty);
     }
     public void takeQuiz(){
 
