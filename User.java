@@ -47,12 +47,9 @@ public abstract class User {
         }
         return result;
     }
-    public ArrayList<Double> getGrades(Course course) {
-        //find the course by uuid a]get return that course s grades 
-        String id = course.getID();
+    public ArrayList<Double> getCourseGrades(Course course) {
         for(int i=0; i<courseProgresses.size(); i++){
-            String IDthis = courseProgresses.get(i).getID();
-            if(IDthis.equalsIgnoreCase(id)){
+            if(courseProgresses.get(i).getCourse().equals(course)){
                 return courseProgresses.get(i).getGrades();
             }
         }
