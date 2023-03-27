@@ -62,4 +62,11 @@ public class UserList {
         }
         return null;
     }
+    public User loginU(String username, String password){
+        User user = getUserByUsername(username);
+        if(user != null && user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
+    }
 }
