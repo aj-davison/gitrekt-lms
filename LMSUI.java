@@ -464,7 +464,14 @@ public class LMSUI {
 
         } else {
             displayComment(comments);
-            
+            //display menu /input options
+            if(/*input == 0*/){
+                //ask for comment info
+                Comment comment = new Comment(/*info*/, /*username*/, /*user id*/);
+                comments.add(comment);
+            }else {
+                addComment(comments.get(/*input-1*/)).getReplies());
+            }
         }
     }
     public String displayComment(ArrayList<Comment> comments){
