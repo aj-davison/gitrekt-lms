@@ -47,6 +47,9 @@ public abstract class User {
         }
         return result;
     }
+
+    public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
+
     public CourseProgress getCourseProgress(String title){
         for(CourseProgress course : this.courseProgresses){
             if(course.getCourse().getTitle().equalsIgnoreCase(title)){
