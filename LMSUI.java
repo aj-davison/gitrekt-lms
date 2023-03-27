@@ -34,7 +34,7 @@ public class LMSUI {
 
             int userCommand;
 			
-			if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+			if ((userCommand = menuCommandValidation(loginMenu)) == -1) continue;
 
             User user = null;
             
@@ -218,6 +218,69 @@ public class LMSUI {
     }
     private void displayCurrentCourses() {
         System.out.println("\n-----Displaying Current Courses-----");
+
+        System.out.println(lms.getCurrentCourses());
+
+        while (true) {
+            displayMenu(currentCoursesMenu, "OPTIONS");
+
+            int userCommand;
+            if ((userCommand = menuCommandValidation(currentCoursesMenu)) == -1) continue;
+
+            if (userCommand == 0) {
+
+                String courseChoice = getUserString("Course Choice Name");
+
+                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
+                Course course = lms.getByTitleCourse(courseChoice);
+
+                displayCourseDescription(course);
+
+                for (int i = courseProgress.numCompletedTopics(); i < course.getTopics().size(); i++) {
+
+                printTopic(course.getTopics().get(i+1).toString());
+
+                    while (true) {
+                        
+                        displayMenu(topicMenu, "TOPIC OPTIONS");
+                        if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+
+                        switch (userCommand) {
+                            case(0):
+                                break;
+                            case(1):
+                                i--;
+                            k
+                        
+                        
+                        }
+
+                }
+
+            }
+
+        }
+
+        String courseChoice(getUserString())
+    }
+
+    private boolean printTopic(Topic topic) {
+
+        for (Subtopic subtopic : topic.getSubTop()) {
+
+            System.out.println(subtopic.toString());
+
+            displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
+
+            int userCommand;
+
+            
+
+
+
+        }
+
+
     }
 
     private void searchCourses() {

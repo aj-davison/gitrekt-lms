@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class CourseProgress {
-    private UUID id; // The unique identifier for this course progress.
+    private Course course; // The unique identifier for this course progress.
     private ArrayList<Double> grades; // The list of grades associated with the given course
     
     /**
@@ -10,12 +10,12 @@ public class CourseProgress {
     *@param id the unique identifier for this course progress.
     *@param grades the list of grades associated with the given course
     */
-    public CourseProgress(UUID id, ArrayList<Double> grades) {
-        this.id = id;
+    public CourseProgress(Course course, ArrayList<Double> grades) {
+        this.course = course;
         this.grades = grades;
     }
-    public CourseProgress(UUID id){
-        this.id = id;
+    public CourseProgress(Course course){
+        this.course = course;
         this.grades = new ArrayList<Double>();
     }
 
@@ -61,8 +61,8 @@ public class CourseProgress {
     *Returns the UUID associated with this course progress.
     *@return the UUID associated with this course progress.
     */
-    public String getID() {
-        return this.id.toString();
+    public Course getCourse() {
+        return this.course;
     }
 
     /**

@@ -1,100 +1,50 @@
 import java.util.ArrayList;
 public class LMS {
-    private static UserList userList;
+    private static UserList userList = UserList.getInstanceUserList();
+    private static CourseList courseList = CourseList.getInstanceCourseList();
     private User currentUser;
     private Course currentCourse;
 
     public User loginE(String email, String password){
-        UserList userList = UserList.getInstanceUserList();
-        this.currentUser = userList.getUserByEmail(email);
-        if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
-            return currentUser;
-        }
-        return null;
+        currentUser = userList.loginE(email, password);
+        return currentUser;
     }
     public User loginU(String username, String password){
-        UserList userList = UserList.getInstanceUserList();
-        this.currentUser = userList.getUserByUsername(username);
-        if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
-            return currentUser;
-        }
-        return null;
+        currentUser = userList.loginU(username, password);
+        return currentUser;
     }
     public void logout(){
-        UserList userList = UserList.getInstanceUserList();
         userList.saveUsers();
-        CourseList courseList = CourseList.getInstanceCourseList();
         courseList.saveCourses();
     }
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
-        
-        UserList userList = UserList.getInstanceUserList();
-        if (type == 0) {
-            Student user = new Student(firstName, lastName, email, username, password);
-            userList.addStudent(firstName, lastName, email, username, password);
-            DataWriter.saveUsers();
-            return user;
-        } else if(type == 1){
-            Author user = new Author(firstName, lastName, email, username, password);
-            userList.addAuthor(firstName, lastName, email, username, password);
-            DataWriter.saveUsers();
-            return user;
-        } else {
-            System.out.println("Error, invalid input");
-            return null;
-        }
+        return userList.signUp(firstName, lastName, username, password, email, type);
     }
     public void enrollCourse(String title){
-        CourseList courseList = CourseList.getInstanceCourseList();
-        Course course = courseList.getCourseByTitle(title);
-        CourseProgress courseProgress = new CourseProgress(course.getUuid());
-        currentUser.courseProgresses.add(courseProgress);
+        courseList.enrollCourse(title, currentUser);
     }
     public ArrayList<Course> searchCourses(String title){
-        ArrayList<Course> results = new ArrayList<Course>();
-        CourseList courseList = CourseList.getInstanceCourseList();
-        ArrayList<Course> courses = courseList.getCourses();
-        title = title.toLowerCase();
-        for (Course course : courses){
-            String courseTitle = course.getTitle().toLowerCase();
-            if(courseTitle.contains(title)){
-                results.add(course);
-            }
-        }
-        if(results.size() == 0){
-            return null;
-        }
-        return results;
+        return courseList.searchCourses(title);
     }
     public Course getCourseByTitle(String title){
-        CourseList courseList = CourseList.getInstanceCourseList();
-        Course course = courseList.getCourseByTitle(title);
-        return course;
+        return courseList.getCourseByTitle(title);
     }
     public boolean isEnrolled(Course course){
         boolean result = false;
         for(CourseProgress progress : currentUser.courseProgresses){
-            if(progress.getID().equals(course.getUuid().toString())){
+            if(progress.getCourse().equals(course)){
                 result = true;
             }
         }
         return result;
     }
     public String displayCourseList(){
-        String result = "";
-        CourseList courseList = CourseList.getInstanceCourseList();
-        ArrayList<Course> courses = courseList.getCourses();
-        int index = 1;
-        for(Course course : courses){
-            result += index+". "+course.getTitle()+"\n";
-            index ++;
-        }
-        return result;
+        return courseList.displayCourseList();
     }
     public void continueCourse(Course course){
         int index = 0;
         for(CourseProgress progress : currentUser.courseProgresses){
-            if(progress.getID().equalsIgnoreCase(course.getID())){
+            if(progress.getCourse().equals(course)){
                 break;
             }
             index++;

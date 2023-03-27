@@ -88,4 +88,24 @@ public class CourseList {
         ArrayList<String> allCourses = new ArrayList<String>();
         return allCourses;
     }
+    public void enrollCourse(String title, User user){
+        Course course = getCourseByTitle(title);
+        CourseProgress courseProgress = new CourseProgress(course);
+        user.courseProgresses.add(courseProgress);
+    }
+    public ArrayList<Course> searchCourses(String title){
+        ArrayList<Course> results = new ArrayList<Course>();
+        ArrayList<Course> courses = getCourses();
+        title = title.toLowerCase();
+        for (Course course : courses){
+            String courseTitle = course.getTitle().toLowerCase();
+            if(courseTitle.contains(title)){
+                results.add(course);
+            }
+        }
+        if(results.size() == 0){
+            return null;
+        }
+        return results;
+    }
 }
