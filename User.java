@@ -47,6 +47,14 @@ public abstract class User {
         }
         return result;
     }
+    public CourseProgress getCourseProgress(String title){
+        for(CourseProgress course : this.courseProgresses){
+            if(course.getCourse().getTitle().equalsIgnoreCase(title)){
+                return course;
+            }
+        }
+        return null;
+    }
     public ArrayList<Double> getCourseGrades(Course course) {
         for(int i=0; i<courseProgresses.size(); i++){
             if(courseProgresses.get(i).getCourse().equals(course)){
@@ -89,6 +97,10 @@ public abstract class User {
             return null;
         else
             return this.password;
+    }
+    public void enrollCourse(Course course){  
+        CourseProgress courseProgress = new CourseProgress(course, null);
+        this.addCourseProgress(courseProgress);
     }
 
     public String getEmail() {
