@@ -22,6 +22,7 @@ public class LMS {
     }
     public void enrollCourse(String title){
         courseList.enrollCourse(title, currentUser);
+        currentUser.enrollCourse(currentCourse);
     }
     public ArrayList<Course> searchCourses(String title){
         return courseList.searchCourses(title);
