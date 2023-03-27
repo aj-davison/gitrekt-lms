@@ -47,7 +47,6 @@ public abstract class User {
         }
         return result;
     }
-
     public ArrayList<Double> getGrades(Course course) {
         //find the course by uuid a]get return that course s grades 
         String id = course.getID();
@@ -119,4 +118,15 @@ public abstract class User {
         result += "\n";
         return result;
     }
+    public String getCurrentCourses(){
+        String result = "";
+        int position = 1;
+        for(CourseProgress course : courseProgresses){
+            result += Integer.toString(position)+". "+course.getCourse().getTitle()+"\n";
+            position++;
+        }
+        return result;
+    }
 }
+
+
