@@ -55,4 +55,11 @@ public class UserList {
     public void saveUsers(){
         DataWriter.saveUsers();
     }
+    public User loginE(String email, String password){
+        User user = getUserByEmail(email);
+        if(user != null && user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
+    }
 }
