@@ -20,12 +20,19 @@ public class Quiz {
             return this.questions;
     }
 
+    public Question getQuestionAt(int index){
+        if(questions != null)
+            return questions.get(index);
+        else
+            return null;
+    }
+
     //TODO
     public String toString(){
         return "Quiz";
     }
     
-    public double grade(){
+    public double getGrade(){
         int score = 0;
         for(Question question : questions){
             score += question.score();
@@ -33,5 +40,9 @@ public class Quiz {
         double grade;
         grade = score/3;
         return grade;
+    }
+
+    public int getQuizSize(){
+        return questions.size();
     }
 }
