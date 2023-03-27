@@ -46,11 +46,11 @@ public class Question {
         return result;
     }
 
-    public String displayCorrect(){
-        return "Correct!";
+    public boolean wasInputCorrect(){
+        return correct;
     }
 
-    public int getCorrect() {
+    public int getCorrectAns() {
         return correctAns;
     }
     
