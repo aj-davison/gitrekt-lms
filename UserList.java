@@ -55,4 +55,33 @@ public class UserList {
     public void saveUsers(){
         DataWriter.saveUsers();
     }
+    public User loginE(String email, String password){
+        User user = getUserByEmail(email);
+        if(user != null && user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
+    }
+    public User loginU(String username, String password){
+        User user = getUserByUsername(username);
+        if(user != null && user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
+    }
+    public User signUp(String firstName, String lastName, String username, String password, String email, int type){
+        if(type == 0){
+            Student user = new Student(firstName, lastName, email, username, password);
+            addStudent(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
+            return user;
+        } else if (type == 1){
+            Author user = new Author(firstName, lastName, email, username, password);
+            addAuthor(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
+            return user;
+        } else {
+            return null;
+        }
+    }
 }
