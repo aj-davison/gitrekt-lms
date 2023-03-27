@@ -21,10 +21,7 @@ public class LMS {
         return userList.signUp(firstName, lastName, username, password, email, type);
     }
     public void enrollCourse(String title){
-        CourseList courseList = CourseList.getInstanceCourseList();
-        Course course = courseList.getCourseByTitle(title);
-        CourseProgress courseProgress = new CourseProgress(course.getUuid());
-        currentUser.courseProgresses.add(courseProgress);
+        courseList.enrollCourse(title, currentUser);
     }
     public ArrayList<Course> searchCourses(String title){
         ArrayList<Course> results = new ArrayList<Course>();
