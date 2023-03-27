@@ -16,7 +16,7 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = new ArrayList<CourseProgress>();
+        this.courseProgresses = new ArrayList<>();
         this.id = UUID.randomUUID();
     }
 
@@ -27,27 +27,33 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = new ArrayList<>();
+        setCourseProgress(courseProgresses);
     }
 
     public void setCourseProgress(ArrayList<CourseProgress> courseProgresses) {
+        if(courseProgresses == null) {
+            this.courseProgresses = new ArrayList<>();
+        }
         this.courseProgresses = courseProgresses;
-    }
-
-    public void addCourseProgress(CourseProgress courseProgress) {
-        this.courseProgresses.add(courseProgress);
     }
 
     public ArrayList<Double> getGrades(Course course) {
         //find the course by uuid a]get return that course s grades 
         String id = course.getID();
         for(int i=0; i<courseProgresses.size(); i++){
-            String IDthis = courseProgresses.get(i).getID();
-            if(IDthis.equalsIgnoreCase(id)){
-                return courseProgresses.get(i).getGrades();
+            ArrayList<Student> students = courseProgresses.get(i).getCourse().getStudents();
+            for(int j=0;j<students.size();j++) {
+                String IDthis = students.get(j).getID();
+                if(IDthis.equalsIgnoreCase(id)){
+                    return courseProgresses.get(i).getGrades();
+                }
             }
         }
         return null;
+    }
+
+    public ArrayList<CourseProgress> getCourseProgresses() {
+        return this.courseProgresses;
     }
 
     public String getUsername() {

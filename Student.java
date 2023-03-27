@@ -15,7 +15,7 @@ public class Student extends User{
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
     public void enrollCourse(Course course){  
-        CourseProgress courseProgress = new CourseProgress(id, null);
+        CourseProgress courseProgress = new CourseProgress(course, null);
         this.addCourseProgress(courseProgress);
     }
     public void unregisterCourse(Course course){
