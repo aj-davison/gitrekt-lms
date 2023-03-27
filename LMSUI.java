@@ -214,9 +214,8 @@ public class LMSUI {
     }
     private void displayCurrentCourses() {
         
-
         boolean quit = false;
-        while (true) {
+        while (!quit) {
             System.out.println("\n-----Displaying Current Courses-----");
 
             System.out.println(lms.getCurrentCourses());
@@ -255,16 +254,21 @@ public class LMSUI {
                                     break;
                         
                         }
-                        if (quit == true) break;
-                }
-                break;
+                        //if (quit == true) break;
+                    }
+                //break;
 
             }
-            break;
+            //break;
 
         }
 
-        String courseChoice(getUserString())
+        }
+    }
+
+    private void takeQuiz() {
+
+        
     }
 
     private boolean printTopic(Topic topic) {
