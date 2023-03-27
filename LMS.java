@@ -32,27 +32,19 @@ public class LMS {
     public boolean isEnrolled(Course course){
         boolean result = false;
         for(CourseProgress progress : currentUser.courseProgresses){
-            if(progress.getID().equals(course.getUuid().toString())){
+            if(progress.getCourse().equals(course)){
                 result = true;
             }
         }
         return result;
     }
     public String displayCourseList(){
-        String result = "";
-        CourseList courseList = CourseList.getInstanceCourseList();
-        ArrayList<Course> courses = courseList.getCourses();
-        int index = 1;
-        for(Course course : courses){
-            result += index+". "+course.getTitle()+"\n";
-            index ++;
-        }
-        return result;
+        return courseList.displayCourseList();
     }
     public void continueCourse(Course course){
         int index = 0;
         for(CourseProgress progress : currentUser.courseProgresses){
-            if(progress.getID().equalsIgnoreCase(course.getID())){
+            if(progress.getCourse().equals(course)){
                 break;
             }
             index++;
