@@ -11,12 +11,13 @@ public class LMSUI {
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
     private String[] continueCourseMenu = {"Continue Course", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
-    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
+    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Quiz", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
     private String[] billingMenu = {"Exit to Home"};
+    private String[] subtopicMenu = {"Next", "Previous", "Quit"}
     private Scanner scanner;
     private LMS lms;
 
@@ -217,45 +218,60 @@ public class LMSUI {
 
     }
     private void displayCurrentCourses() {
-        System.out.println("\n-----Displaying Current Courses-----");
+        
 
-        System.out.println(lms.getCurrentCourses());
-
+        boolean quit = false;
         while (true) {
-            displayMenu(currentCoursesMenu, "OPTIONS");
+            System.out.println("\n-----Displaying Current Courses-----");
+
+            System.out.println(lms.getCurrentCourses());
+            displayMenu(continueCourseMenu, "OPTIONS");
 
             int userCommand;
-            if ((userCommand = menuCommandValidation(currentCoursesMenu)) == -1) continue;
+            if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
 
             if (userCommand == 0) {
 
                 String courseChoice = getUserString("Course Choice Name");
 
                 CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
-                Course course = lms.getByTitleCourse(courseChoice);
+                Course course = lms.getCourseByTitle(courseChoice);
 
                 displayCourseDescription(course);
 
-                for (int i = courseProgress.numCompletedTopics(); i < course.getTopics().size(); i++) {
+               int numCompleteTopics = courseProgress.numCompletedTopics();
+               int numTopics = course.getTopics().size();
 
-                printTopic(course.getTopics().get(i+1).toString());
+                for (int i = numCompleteTopics; i < numTopics; i++) {
+
+                    printTopic(course.getTopics().get(i+1));
 
                     while (true) {
                         
                         displayMenu(topicMenu, "TOPIC OPTIONS");
-                        if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+                        if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
 
-                        switch (userCommand) {
-                            case(0):
-                                break;
-                            case(1):
-                                i--;
-                            k
-                        
+                            switch (userCommand) {
+                                case(0):
+                                    break;
+                                case(1):
+                                    i -= 2;
+                                    break;
+                                case(2):
+                                    displayComments();
+                                    break;
+                                case(3):
+                                    takeQuiz();
+                                    break;
+                                case(4):
+                                    quit = true;
+                                    break;
                         
                         }
+                        if (quit == true) break;
 
                 }
+                break;
 
             }
 
@@ -266,19 +282,35 @@ public class LMSUI {
 
     private boolean printTopic(Topic topic) {
 
-        for (Subtopic subtopic : topic.getSubTop()) {
+        boolean quit = false;
+        
+        for (int i = 0; i < topic.getSubTop().size(); i++) {
 
-            System.out.println(subtopic.toString());
+            System.out.println(topic.getSubTop().get(i).toString());
 
+            while (true) {
             displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
 
             int userCommand;
 
+            if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
             
-
-
-
+            switch(userCommand) {
+                case(0):
+                    break;
+                case(1):
+                    i -= 2;
+                    break;
+                case(2):
+                    quit = true;
+                    break;
+            }
+            
+            }
+            
         }
+
+        return quit;
 
 
     }
