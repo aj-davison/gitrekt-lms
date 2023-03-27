@@ -24,20 +24,7 @@ public class LMS {
         courseList.enrollCourse(title, currentUser);
     }
     public ArrayList<Course> searchCourses(String title){
-        ArrayList<Course> results = new ArrayList<Course>();
-        CourseList courseList = CourseList.getInstanceCourseList();
-        ArrayList<Course> courses = courseList.getCourses();
-        title = title.toLowerCase();
-        for (Course course : courses){
-            String courseTitle = course.getTitle().toLowerCase();
-            if(courseTitle.contains(title)){
-                results.add(course);
-            }
-        }
-        if(results.size() == 0){
-            return null;
-        }
-        return results;
+        return courseList.searchCourses(title);
     }
     public Course getCourseByTitle(String title){
         CourseList courseList = CourseList.getInstanceCourseList();
