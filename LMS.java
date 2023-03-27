@@ -18,10 +18,15 @@ public class LMS {
         courseList.saveCourses();
     }
     public User signUp(String firstName, String lastName, String username, String password, String email, int type){
-        return userList.signUp(firstName, lastName, username, password, email, type);
+        currentUser = userList.signUp(firstName, lastName, username, password, email, type);
+        return currentUser;
     }
     public void enrollCourse(String title){
         courseList.enrollCourse(title, currentUser);
+        currentUser.enrollCourse(currentCourse);
+    }
+    public void getCourseProgress(String title){
+        currentUser.getCourseProgress(title);
     }
     public ArrayList<Course> searchCourses(String title){
         return courseList.searchCourses(title);
