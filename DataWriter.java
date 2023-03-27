@@ -155,7 +155,7 @@ public class DataWriter extends DataConstants {
 
     private static JSONArray getGradesJSON(Student student, Course course) {
         JSONArray jsonGradess = new JSONArray();
-        ArrayList<Double> grades = student.getGrades(course);
+        ArrayList<Double> grades = student.getCourseGrades(course);
         if(grades == null){
             return jsonGradess;
         }
