@@ -268,7 +268,7 @@ public class LMSUI {
 
     private void takeQuiz() {
 
-        
+
     }
 
     private boolean printTopic(Topic topic) {
@@ -308,10 +308,17 @@ public class LMSUI {
 
     private void searchCourses() {
         System.out.println("\n-----Search Courses-----");
-        String word = getUserString("Keyword");
-        ArrayList<Course> results = lms.searchCourses(word);
-        if(results == null){
-            ///TODO "NO RESULTS, Return home"
+        
+        ArrayList<Course> results;
+        while (true) {
+            String word = getUserString("Keyword or # to Exit");
+            if (word.equals("#")) return;
+            results = lms.searchCourses(word);
+            if(results == null){
+                System.out.println("No Match");
+                continue;
+            }
+            break;
         }
         int index = 1;
         for(Course course : results){
@@ -349,7 +356,7 @@ public class LMSUI {
 
     }
 
-    private Course createCourse() {
+    private void createCourse() {
         
         System.out.println("\n-----Creating Course-----");
 
@@ -415,9 +422,7 @@ public class LMSUI {
 
         }
 
-        Course course = lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
-
-        return course;
+        lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
 
     }
 
