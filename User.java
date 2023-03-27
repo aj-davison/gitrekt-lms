@@ -38,6 +38,16 @@ public abstract class User {
         this.courseProgresses.add(courseProgress);
     }
 
+    public boolean isEnrolled(Course course){
+        boolean result = false;
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                result = true;
+            }
+        }
+        return result;
+    }
+
     public ArrayList<Double> getGrades(Course course) {
         //find the course by uuid a]get return that course s grades 
         String id = course.getID();
