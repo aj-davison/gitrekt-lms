@@ -68,5 +68,18 @@ public void setCreatedCourses(ArrayList<Course> createdCourses){
     result += "\n";
     return result;
 }
+public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
+    Difficulty diff;
+    if(difficulty == 0){
+        diff = Difficulty.BEGINNER;
+    } else if(difficulty == 1){
+        diff = Difficulty.INTERMEDIATE;
+    } else {
+        diff = Difficulty.ADVANCED;
+    } 
+    CourseList courseList = CourseList.getInstanceCourseList();
+    courseList.addCourse(topics, title, description, diff, id);
+    DataWriter.saveCourses();
+}
     
 }
