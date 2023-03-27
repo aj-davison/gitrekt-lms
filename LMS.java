@@ -50,6 +50,36 @@ public class LMS {
         CourseProgress courseProgress = new CourseProgress(course.getUuid());
         currentUser.courseProgresses.add(courseProgress);
     }
+    public ArrayList<Course> searchCourses(String title){
+        ArrayList<Course> results = new ArrayList<Course>();
+        CourseList courseList = CourseList.getInstanceCourseList();
+        ArrayList<Course> courses = courseList.getCourses();
+        title = title.toLowerCase();
+        for (Course course : courses){
+            String courseTitle = course.getTitle().toLowerCase();
+            if(courseTitle.contains(title)){
+                results.add(course);
+            }
+        }
+        if(results.size() == 0){
+            return null;
+        }
+        return results;
+    }
+    public Course getCourseByTitle(String title){
+        CourseList courseList = CourseList.getInstanceCourseList();
+        Course course = courseList.getCourseByTitle(title);
+        return course;
+    }
+    public boolean isEnrolled(Course course){
+        boolean result = false;
+        for(CourseProgress progress : currentUser.courseProgresses){
+            if(progress.getID().equals(course.getUuid().toString())){
+                result = true;
+            }
+        }
+        return result;
+    }
     public String displayCourseList(){
         String result = "";
         CourseList courseList = CourseList.getInstanceCourseList();
@@ -108,9 +138,5 @@ public class LMS {
     public Subtopic nextSubtopic(){
         Subtopic subtopic = new Subtopic(null, null);
         return subtopic;
-    }
-    public ArrayList<Course> searchCourses(String keyword){
-        ArrayList<Course> courseList = new ArrayList<Course>();
-        return courseList;
     }
 }

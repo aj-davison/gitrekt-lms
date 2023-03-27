@@ -9,14 +9,14 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
-    private String[] courseMenu = {"Enter Course", "Exit to Home"};
-    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Quiz", "Exit to Home"};
+    private String[] continueCourseMenu = {"Continue Course", "Exit to Home"};
+    private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
+    private String[] topicMenu = {"Next", "Previous", "Display Comments", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
-    private String[] currentCoursesMenu = {"Select a Course", "Exit to Home"};
-    private String[] subtopicMenu = {"Continue", "Quit"};
+    private String[] billingMenu = {"Exit to Home"};
     private Scanner scanner;
     private LMS lms;
 
@@ -284,11 +284,43 @@ public class LMSUI {
     }
 
     private void searchCourses() {
+        System.out.println("\n-----Search Courses-----");
+        String word = getUserString("Keyword");
+        ArrayList<Course> results = lms.searchCourses(word);
+        if(results == null){
+            ///TODO "NO RESULTS, Return home"
+        }
+        int index = 1;
+        for(Course course : results){
+            String result = "";
+            result += Integer.toString(index)+". "+course.getTitle()+"\n";
+            System.out.println(result);
+            index++;
+        }
+        int choice = getUserInt("Enter Course Number: \n");
+        displayCourseDescription(results.get(choice-1));
+    }
+
+    private void displayCourseDescription(Course course){
+        System.out.println(course.toString());
+        if(lms.isEnrolled(course)){
+            while(true){
+                displayMenu(continueCourseMenu, "COURSE OPTIONS");
+                int userCommand;
+                if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                boolean quit = false;
+                switch(userCommand){
+                    case(0):
+                        
+                }
+
+            }
+    
+        }
         
     }
 
     private void displayAllCourses() {
-        
         System.out.println("\n-----Displaying All Courses-----");
         System.out.println(lms.displayCourseList()+"\n");
 
@@ -377,14 +409,23 @@ public class LMSUI {
             
             int userCommand;
 
-            if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+            if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
 
             return userCommand;
         }
     }
 
     private void viewBilling() {
+        System.out.println("\n-----Billing-----");
+        System.out.println("Free access to learning resources will be available until the end of 2025");
         
+        while (true) {
+            displayMenu(billingMenu, "BILLING OPTIONS");
+
+            int userCommand;
+
+            if ((userCommand = menuCommandValidation(profileMenu)) == -1);
+        }
     }
 
     private void logOut() {
