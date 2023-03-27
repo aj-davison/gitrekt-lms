@@ -30,13 +30,7 @@ public class LMS {
         return courseList.getCourseByTitle(title);
     }
     public boolean isEnrolled(Course course){
-        boolean result = false;
-        for(CourseProgress progress : currentUser.courseProgresses){
-            if(progress.getCourse().equals(course)){
-                result = true;
-            }
-        }
-        return result;
+        return currentUser.isEnrolled(course);
     }
     public String displayCourseList(){
         return courseList.displayCourseList();
