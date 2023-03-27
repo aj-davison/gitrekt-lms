@@ -5,12 +5,8 @@ public class LMS {
     private Course currentCourse;
 
     public User loginE(String email, String password){
-        UserList userList = UserList.getInstanceUserList();
-        this.currentUser = userList.getUserByEmail(email);
-        if(currentUser != null && currentUser.getPassword().equalsIgnoreCase(password)){
-            return currentUser;
-        }
-        return null;
+        currentUser = userList.loginE(email, password);
+        return currentUser;
     }
     public User loginU(String username, String password){
         UserList userList = UserList.getInstanceUserList();
