@@ -67,8 +67,8 @@ public class LMS {
         }
         return result;
     }
-    public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
-        currentUser.makeCourse(topics, title, description, difficulty);
+    public void makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
+        makeCourse(topics, title, description, difficulty);
     }
     public void takeQuiz(){
 

@@ -110,7 +110,6 @@ public class CourseList {
     }
     public String displayCourseList(){
         String result = "";
-        ArrayList<Course> courses = getCourses();
         int index = 1;
         for(Course course : courses){
             result += Integer.toString(index)+". "+course.getTitle()+"\n";
