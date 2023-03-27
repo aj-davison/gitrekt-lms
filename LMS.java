@@ -27,9 +27,7 @@ public class LMS {
         return courseList.searchCourses(title);
     }
     public Course getCourseByTitle(String title){
-        CourseList courseList = CourseList.getInstanceCourseList();
-        Course course = courseList.getCourseByTitle(title);
-        return course;
+        return courseList.getCourseByTitle(title);
     }
     public boolean isEnrolled(Course course){
         boolean result = false;
