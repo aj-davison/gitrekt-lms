@@ -30,6 +30,10 @@ public abstract class User {
         setCourseProgress(courseProgresses);
     }
 
+    public void addCourseProgress(Course course) {
+        this.courseProgresses.add(new CourseProgress(course));
+    }
+
     public void addCourseProgress(Course course, ArrayList<Double> grades) {
         this.courseProgresses.add(new CourseProgress(course, grades));
     }
@@ -56,6 +60,24 @@ public abstract class User {
         return null;
     }
 
+    public CourseProgress getCourseProgress(String title){
+        for(CourseProgress course : this.courseProgresses){
+            if(course.getCourse().getTitle().equalsIgnoreCase(title)){
+                return course;
+            }
+        }
+        return null;
+    }
+    public boolean isEnrolled(Course course){
+        boolean result = false;
+        for (CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                result = true;
+            }
+        }
+        return result;
+    }
+    public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
     public ArrayList<CourseProgress> getCourseProgresses() {
         return this.courseProgresses;
     }
@@ -95,8 +117,7 @@ public abstract class User {
             return this.password;
     }
     public void enrollCourse(Course course){  
-        //CourseProgress courseProgress = new CourseProgress(course, null);
-        this.addCourseProgress(course, null);
+        this.addCourseProgress(course);
     }
 
     public String getEmail() {

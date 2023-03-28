@@ -45,6 +45,10 @@ public class Author extends Student{
         this.createdCourses = createdCourses;
     }
 
+    public void addCreatedCourses(Course course) {
+        this.createdCourses.add(course);
+    }
+
     /**
      * Returns a String representation of the Author object.
      * @return A String representing the Author object.
@@ -79,8 +83,8 @@ public class Author extends Student{
             diff = Difficulty.ADVANCED;
         } 
         CourseList courseList = CourseList.getInstanceCourseList();
-        courseList.addCourse(topics, title, description, diff, id);
         Course course = new Course(title, description, diff, topics, id);
+        courseList.addCourse(course);
         createdCourses.add(course);
         DataWriter.saveCourses();
     }
