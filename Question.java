@@ -16,6 +16,15 @@ public class Question {
         this.correct = false; 
     }
 
+    public boolean equals(Question q){
+        boolean result = false;
+        if(this.question.equals(q.getQuestion()) &&
+        this.correctAns == q.getCorrectAns()){
+            result = true;
+        }
+        return result;
+    }
+
     public String getQuestion(){
         return this.question;
     }
