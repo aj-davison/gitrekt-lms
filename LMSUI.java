@@ -12,6 +12,7 @@ public class LMSUI {
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
+    private String[] currentCoursesMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Exit to Home"};
     private String[] topicMenu = {"Quiz", "Exit to Home"};
@@ -226,36 +227,35 @@ public class LMSUI {
     private void displayCurrentCourses() {
         
         boolean quit = false;
-        while (!quit) {
-            System.out.println("\n-----Displaying Current Courses-----");
+        
+        System.out.println("\n-----Displaying Current Courses-----");
 
-            ArrayList<Course> currentCourses = lms.getCurrentCourses();
-            System.out.println(lms.currentCoursesToString());
-            displayMenu(continueCourseMenu, "CURRENT COURSE OPTIONS");
+        ArrayList<Course> currentCourses = lms.getCurrentCourses();
+        System.out.println(lms.currentCoursesToString());
+        
+        while (true) {
+        
+            displayMenu(currentCoursesMenu, "CURRENT COURSE OPTIONS");
 
             int userCommand;
-            if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+            if ((userCommand = menuCommandValidation(currentCoursesMenu)) == -1) continue;
 
-            if (userCommand == 0) {
-
-                while (true) {
-                    
-                    
-                    userCommand = getUserInt("Which course would you like to select? ") -1;
-                    if (userCommand < 0 || userCommand >= currentCourses.size()) continue;
+            switch(userCommand) {
+                case(0):
+                    while (true){
+                        userCommand = getUserInt("Which course would you like to select? ") -1;
+                        if (userCommand < 0 || userCommand >= currentCourses.size()) continue;
+                        break;
+                    }
+                    String courseChoice = currentCourses.get(userCommand).getTitle();
+                    Course course = lms.getCourseByTitle(courseChoice);
+                    displayCourseDescription(course);
                     break;
-                }
-
-                String courseChoice = currentCourses.get(userCommand).getTitle();
-                
-                Course course = lms.getCourseByTitle(courseChoice);
-                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
-
-
-                displayCourseDescription(course);
-
-
+                case(1):
+                    quit = true;
+                    break;
             }
+            if (quit == true) return;
 
         }
     }
@@ -353,15 +353,13 @@ public class LMSUI {
 
                         int userCommand;
 
-                        if ((userCommand = menuCommandValidation(oneSubTopMenu)) == -1) continue;
+                        if ((userCommand = menuCommandValidation(oneSubTopMenu)) == -1) {
+                            System.out.println("invalid");
+                            continue;
+                        }
                         
                         switch(userCommand) {
                             case(0):
-                                break;
-                            case(1):
-                                i -= 2;
-                                break;
-                            case(2):
                                 quit = true;
                                 break;
                         }
