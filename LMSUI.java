@@ -88,18 +88,22 @@ public class LMSUI {
                         break;
                     case(3):
                         createCourse();
+                        break;
                     case(4):
-                        viewProfile(user);
+                        editCourse();
                         break;
                     case(5):
-                        viewBilling();
+                        viewProfile(user);
                         break;
                     case(6):
+                        viewBilling();
+                        break;
+                    case(7):
                         logout = true;
                         logOut();
                         break;
                 }
-                if (logout = true) break;
+                if (logout == true) break;
             }
         }
         System.out.println("Goodbye, have a good day.");
@@ -242,11 +246,10 @@ public class LMSUI {
                 Course course = lms.getCourseByTitle(courseChoice);
                 CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
 
-                //if ()
 
                 displayCourseDescription(course);
 
-                continueCourse(course, courseProgress);
+
             }
 
         }
@@ -277,9 +280,9 @@ public class LMSUI {
                             break;
                 
                 }
-                //if (quit == true) break;
+                if (quit == true) break;
             }
-            //break;
+            break;
 
         }
         //break;
@@ -392,34 +395,80 @@ public class LMSUI {
 
     
 
-    private int displayCourseDescription(Course course){
+    private void displayCourseDescription(Course course){
         System.out.println(course.toString());
         int continueValue;
         if(lms.isEnrolled(course)){
             continueValue = 0;
+            if (/*course completed */ false) {
+                while(true){
+                    displayMenu(completedCourseMenu, "COURSE OPTIONS");
+                    int userCommand;
+                    if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                    boolean quit = false;
+                    switch(userCommand){
+                        case(0):
+                            viewGrades(course);
+                            break;
+                        case(1):
+                            printCertificate(course);
+                            break;
+                        case(2):
+                            quit = true;
+                            break;
+                    }
+                    if (quit == true) break;
+                }
+                return;
+            }
+            else {
+                while(true){
+                    displayMenu(continueCourseMenu, "COURSE OPTIONS");
+                    int userCommand;
+                    if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                    boolean quit = false;
+                    switch(userCommand){
+                        case(0):
+                            continueCourse(course, lms.getCourseProgress(course.getTitle()));
+                            break;
+                        case(1):
+                            viewGrades(course);
+                            break;
+                        case(2):
+                            quit = true;
+                            break;
+                    }
+                    if (quit == true) break;
+                }
+                return;
+            }
+        }
+        else {
             while(true){
-                displayMenu(continueCourseMenu, "COURSE OPTIONS");
+                displayMenu(newCourseMenu, "COURSE OPTIONS");
                 int userCommand;
-                if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                if ((userCommand = menuCommandValidation(newCourseMenu)) == -1) continue;
                 boolean quit = false;
                 switch(userCommand){
                     case(0):
-                        continueCourse();
+                        enrollCourse(course);
                         break;
                     case(1):
-                        viewGrades();
-                        break;
-                    case(2):
                         quit = true;
                         break;
-
                 }
-                if (quit = true) break;
-
+                if (quit == true) break;
             }
-    
+            return;
         }
-        
+    }
+
+    public void enrollCourse(Course course) {
+        System.out.println("\n-----Enrolling Course-----");
+        lms.enrollCourse(course.getTitle());
+
+        continueCourse(course, lms.getCourseProgress(course.getTitle()));
+
     }
 
     private void displayAllCourses() {
@@ -504,20 +553,24 @@ public class LMSUI {
 
     }
 
-    private int viewProfile(User user) {
+    public void editCourse() {
+
+    }
+
+    private void viewProfile(User user) {
         
         System.out.println("\n-----Profile-----");
         System.out.println(user.toString());
 
+        int userCommand;
         while (true) {
             
             displayMenu(profileMenu, "PROFILE OPTIONS");
             
-            int userCommand;
-
+            
             if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
 
-            return userCommand;
+            break;
         }
     }
 
@@ -525,12 +578,13 @@ public class LMSUI {
         System.out.println("\n-----Billing-----");
         System.out.println("Free access to learning resources will be available until the end of 2025");
         
+        int userCommand;
         while (true) {
             displayMenu(billingMenu, "BILLING OPTIONS");
 
-            int userCommand;
-
-            if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
+            
+            if ((userCommand = menuCommandValidation(billingMenu)) == -1) continue;
+            break;
         }
     }
 
@@ -583,6 +637,7 @@ public class LMSUI {
         while (true) {
             displayMenu(commentMenu, "COMMENT OPTIONS");
             if ((userCommand = menuCommandValidation(commentMenu)) == -1) continue;
+            break;
         }
         int commentChoice;
         switch(userCommand) {
@@ -611,6 +666,13 @@ public class LMSUI {
                 
         }
  
+    }
+
+    public void viewGrades(Course course) {
+
+    }
+    public void printCertificate(Course course) {
+
     }
         
 
