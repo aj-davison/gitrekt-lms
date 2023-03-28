@@ -12,7 +12,7 @@ public class LMSUI {
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
-    private String[] currentCoursesMenu = {"Select Course", "Exit to Home"};
+    private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Exit to Home"};
     private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
@@ -235,10 +235,10 @@ public class LMSUI {
         
         while (true) {
         
-            displayMenu(currentCoursesMenu, "CURRENT COURSE OPTIONS");
+            displayMenu(courseListMenu, "CURRENT COURSE OPTIONS");
 
             int userCommand;
-            if ((userCommand = menuCommandValidation(currentCoursesMenu)) == -1) continue;
+            if ((userCommand = menuCommandValidation(courseListMenu)) == -1) continue;
 
             switch(userCommand) {
                 case(0):
@@ -541,8 +541,32 @@ public class LMSUI {
     private void displayAllCourses() {
         System.out.println("\n-----Displaying All Courses-----");
         
-        ArrayList<Course> allCourses = lms.
+        ArrayList<Course> allCourses = lms.getCourseList();
         System.out.println(lms.displayCourseList()+"\n");
+
+        while (true) {
+        
+            displayMenu(courseListMenu, "ALL COURSE OPTIONS");
+
+            int userCommand;
+            if ((userCommand = menuCommandValidation(courseListMenu)) == -1) continue;
+
+            switch(userCommand) {
+                case(0):
+                    while (true){
+                        userCommand = getUserInt("Which course would you like to select? ") -1;
+                        if (userCommand < 0 || userCommand >= allCourses.size()) continue;
+                        break;
+                    }
+                    String courseChoice = allCourses.get(userCommand).getTitle();
+                    Course course = lms.getCourseByTitle(courseChoice);
+                    displayCourseDescription(course);
+                    break;
+                case(1):
+                    return;
+            }
+
+        }
 
     }
 
