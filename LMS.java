@@ -51,6 +51,9 @@ public class LMS {
     public String displayCreatedCourses(){
         return currentUser.displayCreatedCourses();
     }
+    public ArrayList<Course> getCreatedCourses(){
+        return currentUser.getCreatedCourses();
+    }
 
     public String currentCoursesToString() {
         return currentUser.currentCoursesToString();
