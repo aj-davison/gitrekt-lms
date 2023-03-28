@@ -8,19 +8,39 @@ import java.util.Formatter;
 
 public class LMSFileWriter {
     
-    public static void writeCourseCertificate(Course course){
-        String title = "CousreCertificate"+course.getTitle();
+    public static void writeCourseCertificate(String courseTitle, Double Grade, String FirstName, String LastName){
+        String title = "CousreCertificate"+courseTitle;
+        String FullName = FirstName+" "+LastName;
         try { 
             Formatter f = new Formatter(title+".txt");
-            f.
-
-            FileWriter myWriter = new FileWriter(title+".txt");
-            myWriter.write("Files in Java might be tricky, but it is fun enough!");
-            myWriter.
-            myWriter.close();
+            //f.format("%30s%n%n", ""); // center-align the next line
+            f.format("%30s%n", "Certificate of completion: "+courseTitle); // center-align text
+            //f.format("%30s%n%n", ""); // center-align the next line
+            //f.format("%-15s", "Name:");
+            f.format("<b>%s</b>%n", FullName); // bold text
+            ///f.format("%-15s", "Age:");
+            f.format("%30s%n", "Grade: "+Grade); // center-align text
+            f.close();
           } catch (IOException e) {
             System.out.println("An error occurred trying to create your course certificate");
             e.printStackTrace();
           }
     }
+
+
+
+    public static void topicToFile(){
+      String title = "  ";
+      try { 
+          Formatter f = new Formatter(title+".txt");
+         
+          f.close();
+        } catch (IOException e) {
+          System.out.println("An error occurred trying to create your course certificate");
+          e.printStackTrace();
+        }
+  }
+
+
+
 }
