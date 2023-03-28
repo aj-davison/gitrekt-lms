@@ -97,4 +97,7 @@ public class LMS {
         Subtopic subtopic = new Subtopic(null, null);
         return subtopic;
     }
+    public void printToFileTopic(Topic topic) {
+        LMSFileWriter.topicToFile(topic);
+    }
 }
