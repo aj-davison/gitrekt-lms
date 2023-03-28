@@ -56,6 +56,15 @@ public abstract class User {
         return null;
     }
 
+    public CourseProgress getCourseProgress(String title){
+        for(CourseProgress course : this.courseProgresses){
+            if(course.getCourse().getTitle().equalsIgnoreCase(title)){
+                return course;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<CourseProgress> getCourseProgresses() {
         return this.courseProgresses;
     }
