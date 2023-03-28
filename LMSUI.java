@@ -637,7 +637,7 @@ public class LMSUI {
             displayMenu(profileMenu, "PROFILE OPTIONS");
             
             
-            if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
+           if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
 
             break;
         }
