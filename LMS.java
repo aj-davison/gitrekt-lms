@@ -72,7 +72,9 @@ public class LMS {
     public Quiz getQuiz(Topic topic){
         return topic.getQuiz();
     }
-    
+    public String displayTopicInfo(Topic topic){
+        return topic.displayTopicInfo();
+    }
     public String currentCoursesToString() {
         return currentUser.currentCoursesToString();
     }
