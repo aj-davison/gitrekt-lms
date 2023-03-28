@@ -167,6 +167,13 @@ public abstract class User {
         }
         return result;
     }
+    public void updateGrades(Course course, double grade){
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                progress.addGrade(grade);
+            }
+        }
+    }
     
     public String currentCoursesToString(){
         String result = "";
