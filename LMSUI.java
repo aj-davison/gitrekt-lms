@@ -414,7 +414,7 @@ public class LMSUI {
 
             }
 
-            ArrayList questions = new ArrayList<Question>();
+            ArrayList<Question> questions = new ArrayList<Question>();
 
             for (int k = 0; k < 4; k++) {
 
@@ -513,7 +513,7 @@ public class LMSUI {
 
     public static void main(String[] args) {
         LMSUI lmsInterface = new LMSUI();
-        lmsInterface.run();1
+        lmsInterface.run();
     
     }
 
