@@ -29,14 +29,18 @@ public class LMSFileWriter {
 
 
 
-    public static void topicToFile(){
-      String title = "  ";
+    public static void topicToFile(Topic topic){
+      String title = topic.getName();
       try { 
           Formatter f = new Formatter(title+".txt");
-         
+          f.format("%30s%n%n", topic.getName());
+          for(Subtopic sub: topic.getSubTop()){
+            f.format("<b>%s</b>%n", sub.getName());
+            f.format("%-15s", sub.getInfo());
+          }
           f.close();
         } catch (IOException e) {
-          System.out.println("An error occurred trying to create your course certificate");
+          System.out.println("An error occurred trying to create your topic info files");
           e.printStackTrace();
         }
   }

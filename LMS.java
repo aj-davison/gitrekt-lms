@@ -4,7 +4,6 @@ public class LMS {
     private static CourseList courseList = CourseList.getInstanceCourseList();
     private User currentUser;
     private Course currentCourse;
-    private LMSFileWriter fileWriter = new LMSFileWriter();
 
     public User loginE(String email, String password){
         currentUser = userList.loginE(email, password);
@@ -82,7 +81,7 @@ public class LMS {
         return currentUser.courseComplete(course);
     }
     public void printCertificate(Course course){
-        fileWriter.writeCourseCertificate(course.getTitle(), currentUser.calcGrade(course), currentUser.getFirstName(), currentUser.getLastName());
+        LMSFileWriter.writeCourseCertificate(course.getTitle(), currentUser.calcGrade(course), currentUser.getFirstName(), currentUser.getLastName());
     }
     public void takeQuiz(){
 
