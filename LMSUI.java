@@ -15,7 +15,7 @@ public class LMSUI {
     private String[] currentCoursesMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Exit to Home"};
-    private String[] topicMenu = {"Quiz", "Exit to Home"};
+    private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
     private String[] commentMenu = {"Comment", "View Comment Replies", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Display Comments", "Print out Topic", "Exit to Home"};
@@ -269,25 +269,27 @@ public class LMSUI {
             Topic currentTopic = course.getTopics().get(i);
             printTopic(currentTopic);
 
+            int userCommand;
             boolean quit = false;
             while (true) {
                 
                 displayMenu(topicMenu, "TOPIC OPTIONS");
-                int userCommand;
                 if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
-
-                    switch (userCommand) {
-                        case(0):
-                            displayQuiz(course, currentTopic);
-                            break;
-                        case(1):
-                            quit = true;
-                            break;
-                
-                }
-                if (quit == true) break;
+                break;
             }
-            break;
+
+            switch (userCommand) {
+                case(0):
+                    displayQuiz(course, currentTopic);
+                    break;
+                case(1):
+                    displayComments(currentTopic.getComments());
+                    break;
+                case(2):
+                    break;
+                case(3):
+                    return;
+            }
 
         }
         //break;
@@ -663,11 +665,12 @@ public class LMSUI {
     }
     public void addComment(ArrayList<Comment> comments){
         
-        while (true) {
             String commentInfo = getUserString("Comment");
             Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
 
-        }
+            comments.add(comment);
+
+        
     }
 
 
@@ -680,7 +683,7 @@ public class LMSUI {
             for(Comment comment : comments){
                 result += Integer.toString(position)+". "+comment.toString()+"\n";
                 if (comment.getReplies() != null) 
-                    result += comment.getReplies().size() + " replies";
+                    result += comment.getReplies().size() + " replies" + "\n";
                 position++;
             }
 

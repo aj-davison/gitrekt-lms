@@ -18,7 +18,7 @@ public class Comment {
         this.mainComment = mainComment;
         this.username = username;
         this.userID = userId;
-        subComments = new ArrayList<>();
+        subComments = new ArrayList<Comment>();
     }
 
     /**
@@ -40,7 +40,7 @@ public class Comment {
      * @return a string representation of the Comment object
      */
     public String toString(){
-        return "comment";
+        return mainComment;
     }
 
     /**
