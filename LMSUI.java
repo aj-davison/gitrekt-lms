@@ -13,7 +13,7 @@ public class LMSUI {
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
     private String[] topicMenu = {"Quiz", "Exit to Home"};
-    private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
+    private String[] commentMenu = {"Comment", "View Comment Replies", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
     private String[] quizMenu = {"Next Topic", "Display Comments", "Print out Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
@@ -390,6 +390,8 @@ public class LMSUI {
         displayCourseDescription(results.get(choice-1));
     }
 
+    
+
     private int displayCourseDescription(Course course){
         System.out.println(course.toString());
         int continueValue;
@@ -542,6 +544,46 @@ public class LMSUI {
     }
     public void addComment(ArrayList<Comment> comments){
         
+        while (true) {
+            String commentInfo = getUserString("Comment");
+            Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
+
+    }
+}
+
+
+    public void displayComments(ArrayList<Comment> comments){
+        String result = "";
+        if(comments == null)
+            result = "No comments on this thread.";
+        else {
+            int position = 1;
+            for(Comment comment : comments){
+                result += Integer.toString(position)+". "+comment.toString()+"\n";
+                if (comment.getReplies() != null) 
+                    result += comment.getReplies().size() + " replies";
+                position++;
+            }
+
+        }
+        System.out.println(result);
+
+        commentInteraction(comments);
+    }
+
+        
+
+        
+            
+
+        
+    public void commentInteraction(ArrayList<Comment> comments) {
+        
+        int userCommand;
+        while (true) {
+            displayMenu(commentMenu, "COMMENT OPTIONS");
+            if ((userCommand = menuCommandValidation(commentMenu)) == -1) continue;
+        }
         int commentChoice;
         switch(userCommand) {
             case(0):
@@ -561,67 +603,14 @@ public class LMSUI {
                     }
                     break;
                 }
-                displayComment(comments.get(commentChoice).getReplies());
+
+                displayComments(comments.get(commentChoice).getReplies());
                 break;
+            case(2):
+
                 
         }
-    
-    
-    }
-        
-        while (true) {
-            String commentInfo = getUserString("Comment");
-            Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
-
-            
-
-
-        }
-
-
-
-
-            if(/*input == 0*/){
-                //ask for comment info
-                Comment comment = new Comment(/*info*/, /*username*/, /*user id*/);
-                comments.add(comment);
-            }else {
-                addComment(comments.get(/*input-1*/)).getReplies());
-            }
-    }
-
-
-    public void displayComment(ArrayList<Comment> comments){
-        String result = "";
-        if(comments == null)
-            result = "No comments on this thread.";
-        else {
-            int position = 1;
-            for(Comment comment : comments){
-                result += Integer.toString(position)+". "+comment.toString()+"\n";
-                if (comment.getReplies() != null) 
-                    result += "     Has " + comment.getReplies().size() + " replies";
-                position++;
-            }
-
-        }
-        System.out.println(result);
-    }
-
-        
-
-        
-            
-
-        
-    public int commentInteraction() {
-        int userCommand;
-        while (true) {
-            displayMenu(commentMenu, "COMMENT OPTIONS");
-            if ((userCommand = menuCommandValidation(commentMenu)) == -1) continue;
-        }
-        
-        return userCommand;
+ 
     }
         
 
