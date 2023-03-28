@@ -31,14 +31,6 @@ public class Question {
         return result;
     }
 
-    public boolean checkAnswer(int ans){
-        boolean result = false;
-        if (ans == this.correctAns){
-            result = true;
-        }
-        return result;
-    }
-
     public int score(){
         int score = 0;
         if(this.correct){
