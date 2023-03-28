@@ -30,6 +30,10 @@ public abstract class User {
         setCourseProgress(courseProgresses);
     }
 
+    public void addCourseProgress(Course course, ArrayList<Double> grades) {
+        this.courseProgresses.add(new CourseProgress(course, grades));
+    }
+
     public void setCourseProgress(ArrayList<CourseProgress> courseProgresses) {
         if(courseProgresses == null) {
             this.courseProgresses = new ArrayList<>();

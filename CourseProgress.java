@@ -16,7 +16,7 @@ public class CourseProgress {
     }
     public CourseProgress(Course course){
         this.course = course;
-        this.grades = new ArrayList<Double>();
+        this.grades = new ArrayList<>();
     }
 
     /**
