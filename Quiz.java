@@ -45,7 +45,11 @@ public class Quiz {
 
     //TODO
     public String toString(){
-        return "Quiz";
+        String result = "**QUIZ**\n";
+        for(Question question : this.questions){
+            result += question.toString()+"\n";
+        }
+        return result;
     }
     
     public double getGrade(){
