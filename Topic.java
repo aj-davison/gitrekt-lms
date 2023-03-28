@@ -80,7 +80,7 @@ public class Topic {
         return this.quiz;
     }
     
-    public Object getName() {
+    public String getName() {
         return this.name;
     }
 
