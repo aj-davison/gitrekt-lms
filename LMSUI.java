@@ -538,6 +538,10 @@ public class LMSUI {
         return result;
     }
 
+    public void printToFileTopic(Topic topic){
+        lms.printToFileTopic(topic);
+    }
+
 
     public static void main(String[] args) {
         LMSUI lmsInterface = new LMSUI();

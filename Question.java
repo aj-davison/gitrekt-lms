@@ -20,12 +20,15 @@ public class Question {
         return this.question;
     }
 
-    public void isCorrect(int ans){
+    public boolean isCorrect(int ans){
+        boolean result = false;
         if (ans == this.correctAns){
             this.correct = true;
+            result = true;
         } else {
             this.correct = false;
         }
+        return result;
     }
 
     public boolean checkAnswer(int ans){

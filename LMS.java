@@ -45,6 +45,10 @@ public class LMS {
         return currentUser.getCurrentCourses();
     }
 
+    public void updateGrades(Course course, double grade){
+        currentUser.updateGrades(course, grade);
+    }
+
     public String currentCoursesToString() {
 
         return currentUser.currentCoursesToString();
@@ -96,5 +100,8 @@ public class LMS {
     public Subtopic nextSubtopic(){
         Subtopic subtopic = new Subtopic(null, null);
         return subtopic;
+    }
+    public void printToFileTopic(Topic topic) {
+        LMSFileWriter.topicToFile(topic);
     }
 }
