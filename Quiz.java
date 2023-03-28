@@ -11,6 +11,22 @@ public class Quiz {
         questions.add(question);
     }
 
+    public boolean equals(Quiz quiz){
+        boolean result = false;
+        int position = 0;
+        int numMatchingQuestions = 0;
+        for(Question question : this.questions){
+            if(question.equals(quiz.getQuestionAt(position))){
+                numMatchingQuestions++;
+            }
+            position++;
+        }
+        if(numMatchingQuestions == questions.size()){
+            result = true;
+        }
+        return result;
+    }
+
     public ArrayList<Question> getQuestions() {
         if(questions == null){
             questions = new ArrayList<Question>();
