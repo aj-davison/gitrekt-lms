@@ -1,12 +1,4 @@
-import java.util.UUID;
-
-import javax.lang.model.util.ElementScanner14;
-
-import java.util.ArrayList;
-
-public class Student extends User{
-
-    private String type = "Student";
+public class Student {
     
     public Student(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
@@ -15,8 +7,10 @@ public class Student extends User{
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
     public void enrollCourse(Course course){  
-        //CourseProgress courseProgress = new CourseProgress(course, null);
-        this.addCourseProgress(course, null);
+        this.addCourseProgress(course);
+    }
+    public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
+        
     }
 
     public void unregisterCourse(Course course){

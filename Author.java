@@ -83,8 +83,8 @@ public class Author extends Student{
             diff = Difficulty.ADVANCED;
         } 
         CourseList courseList = CourseList.getInstanceCourseList();
-        courseList.addCourse(topics, title, description, diff, id);
         Course course = new Course(title, description, diff, topics, id);
+        courseList.addCourse(course);
         createdCourses.add(course);
         DataWriter.saveCourses();
     }
