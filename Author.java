@@ -80,7 +80,21 @@ public class Author extends Student{
         } 
         CourseList courseList = CourseList.getInstanceCourseList();
         courseList.addCourse(topics, title, description, diff, id);
+        Course course = new Course(title, description, diff, topics, id);
+        createdCourses.add(course);
         DataWriter.saveCourses();
+    }
+    public String displayCreatedCourses(){
+        String result = "";
+        int position = 1;
+        for(Course course : createdCourses){
+            result += Integer.toString(position)+". "+course.getTitle()+"\n";
+        }
+        return result;
+    }
+
+    public ArrayList<Course> getCreatedCourses(){
+        return this.createdCourses;
     }
         
 }
