@@ -157,6 +157,43 @@ public class Course {
         else
             return this.authorID;
     }
+    public boolean equals(Course course){
+        boolean result = false;
+        boolean topicCheck = false;
+        boolean studentCheck = false;
+        int position = 0;
+        int numMatchingTopics = 0;
+        for(Topic topic : topics){
+            if(topic.equals(course.getTopics().get(position))){
+                numMatchingTopics++;
+            }
+            position++;
+        }
+        if(numMatchingTopics == topics.size()){
+            topicCheck = true;
+        }
+        position = 0;
+        int numMatchingStudents = 0;
+        for(Student student : students){
+            if(student.equals(course.getStudents().get(position))){
+                numMatchingStudents++;
+            }
+            position++;
+        }
+        if(numMatchingStudents == students.size()){
+            studentCheck = true;
+        }
+        if(topicCheck && 
+        studentCheck &&
+        this.title.equals(course.getTitle()) &&
+        this.description.equals(course.getDescription()) &&
+        this.difficulty.equals(course.getEnumDifficulty()) &&
+        this.id.toString().equals(course.getID()) &&
+        this.authorID.toString().equals(course.getAuthorIDstring())){
+            result = true;
+        }
+        return result;
+    }
 
     /**
      * Returns the list of topics covered in the course.
@@ -181,6 +218,13 @@ public class Course {
                 return this.difficulty.toString();
             else
                 return null;
+        }
+        public Difficulty getEnumDifficulty(){
+            if (this.difficulty != null){
+                return this.difficulty;
+            } else {
+                return null;
+            }
         }
 
 
