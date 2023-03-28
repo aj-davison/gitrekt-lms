@@ -242,7 +242,7 @@ public class LMSUI {
                 Course course = lms.getCourseByTitle(courseChoice);
                 CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
 
-                
+                //if ()
 
                 displayCourseDescription(course);
 
@@ -380,25 +380,33 @@ public class LMSUI {
 
         String courseDescription = getUserString("Course Description");
 
-        String courseDifficulty = getUserString("Course Difficulty");
+        int difficulty;
+        while (true) {
 
-        int topicNum = getUserInt("How many topics will this course have?");
+            displayMenu(difficultyMenu, "DIFFICULTY OPTIONS");
 
-        ArrayList topics = new ArrayList<Topic>();
+            if ((difficulty = menuCommandValidation(continueCourseMenu)) == -1) continue;
+            break;
+        }
+    
+
+        int topicNum = getUserInt("How many topics will this course have? ");
+
+        ArrayList<Topic> topics = new ArrayList<Topic>();
         
 
         for (int i = 0; i < topicNum; i++) {
 
             String topicName = getUserString("Topic Name #" + (i + 1));
 
-            int subtopicNum = getUserInt("How many subtopics will this topic have?");
+            int subtopicNum = getUserInt("How many subtopics will this topic have? ");
 
-            ArrayList subtopics = new ArrayList<Subtopic>();
+            ArrayList<Subtopic> subtopics = new ArrayList<Subtopic>();
 
             for (int j = 0; j < subtopicNum; j++) {
 
                 String subtopicName = getUserString("Subtopic Name #" + (i + 1));
-                String subtopicInfo = getUserString("Subtopic Information: ");
+                String subtopicInfo = getUserString("Subtopic Information");
 
                 Subtopic subtopic = new Subtopic(subtopicName, subtopicInfo);
 
@@ -410,7 +418,7 @@ public class LMSUI {
 
             for (int k = 0; k < 4; k++) {
 
-                String questionContent = getUserString("Question # " + (k + 1));
+                String questionContent = getUserString("Question #" + (k + 1));
     
                 String answers[] = new String[4];
     
@@ -436,7 +444,7 @@ public class LMSUI {
 
         }
 
-        lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
+        lms.makeCourse(topics, courseName, courseDescription, difficulty);
 
     }
 
