@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader extends DataConstants {
 
     public static ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<User>();
 
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
@@ -28,7 +28,7 @@ public class DataLoader extends DataConstants {
                 String password = (String)userJSON.get(USER_PASSWORD);
                 String email = (String)userJSON.get(USER_EMAIL);
 
-                //Set user based on type
+                //Set user based on
                 if(type.equalsIgnoreCase("student")) {
                     users.add(new Student(id, new ArrayList<>(), firstName, lastName,email,username,password));
                 } else {
@@ -44,7 +44,7 @@ public class DataLoader extends DataConstants {
 
     public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
-        ArrayList<User> users = getUsers();
+        ArrayList<User> users = UserList.getInstanceUserList().getUsers();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<Topic> topics = new ArrayList<>();
         ArrayList<Subtopic> subtopics = new ArrayList<>();
@@ -91,6 +91,7 @@ public class DataLoader extends DataConstants {
                             userProgress.put(user, scores);
                         }
                     }
+                    //courseProgresses.add(new CourseProgress(id, scores));
                 }
                 String difficulty = (String)courseJSON.get(COURSE_DIFFICULTY);
 
@@ -182,12 +183,11 @@ public class DataLoader extends DataConstants {
                     //     }
                     // }
                 }
-                courses.add(new Course(id, topics, students, title, description, Difficulty.valueOf(difficulty), authorID));
-            }
-            for(Course course : courses) {
-                for(User user : users) {
-                    courseProgresses.add(new CourseProgress(course, userProgress.get(user)));
-                    user.setCourseProgress(courseProgresses);
+                Course course = new Course(id, topics, students, title, description, Difficulty.valueOf(difficulty), authorID);
+                courses.add(course);
+                for(User user : userProgress.keySet()) {
+                    user.addCourseProgress(course, userProgress.get(user));
+
                 }
             }
             reader.close();
@@ -205,8 +205,9 @@ public class DataLoader extends DataConstants {
         ArrayList<Course> courses = list2.getCourses();
 
         for(User user : users) {
-            for(CourseProgress courseProgress : user.getCourseProgresses()) {
-                System.out.println(courseProgress.getGrade());
+            //System.out.println(user.toString());
+            for(CourseProgress cp : user.getCourseProgresses()) {
+                System.out.println(cp.getGrade());
             }
         }
         // for(Course course : courses) {
