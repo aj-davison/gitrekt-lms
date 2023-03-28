@@ -16,7 +16,7 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = new ArrayList<CourseProgress>();
+        this.courseProgresses = new ArrayList<>();
         this.id = UUID.randomUUID();
     }
 
@@ -27,44 +27,37 @@ public abstract class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.courseProgresses = new ArrayList<>();
+        setCourseProgress(courseProgresses);
+    }
+
+    public void addCourseProgress(Course course, ArrayList<Double> grades) {
+        this.courseProgresses.add(new CourseProgress(course, grades));
     }
 
     public void setCourseProgress(ArrayList<CourseProgress> courseProgresses) {
+        if(courseProgresses == null) {
+            this.courseProgresses = new ArrayList<>();
+        }
         this.courseProgresses = courseProgresses;
     }
 
-    public void addCourseProgress(CourseProgress courseProgress) {
-        this.courseProgresses.add(courseProgress);
-    }
-
-    public boolean isEnrolled(Course course){
-        boolean result = false;
-        for(CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
-                result = true;
-            }
-        }
-        return result;
-    }
-
-    public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
-
-    public CourseProgress getCourseProgress(String title){
-        for(CourseProgress course : this.courseProgresses){
-            if(course.getCourse().getTitle().equalsIgnoreCase(title)){
-                return course;
-            }
-        }
-        return null;
-    }
-    public ArrayList<Double> getCourseGrades(Course course) {
+    public ArrayList<Double> getGrades(Course course) {
+        //find the course by uuid a]get return that course s grades 
+        String id = course.getID();
         for(int i=0; i<courseProgresses.size(); i++){
-            if(courseProgresses.get(i).getCourse().equals(course)){
-                return courseProgresses.get(i).getGrades();
+            ArrayList<Student> students = courseProgresses.get(i).getCourse().getStudents();
+            for(int j=0;j<students.size();j++) {
+                String IDthis = students.get(j).getID();
+                if(IDthis.equalsIgnoreCase(id)){
+                    return courseProgresses.get(i).getGrades();
+                }
             }
         }
         return null;
+    }
+
+    public ArrayList<CourseProgress> getCourseProgresses() {
+        return this.courseProgresses;
     }
 
     public String getUsername() {
@@ -102,8 +95,8 @@ public abstract class User {
             return this.password;
     }
     public void enrollCourse(Course course){  
-        CourseProgress courseProgress = new CourseProgress(course, null);
-        this.addCourseProgress(courseProgress);
+        //CourseProgress courseProgress = new CourseProgress(course, null);
+        this.addCourseProgress(course, null);
     }
 
     public String getEmail() {
