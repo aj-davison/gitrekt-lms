@@ -64,6 +64,15 @@ public abstract class User {
         }
         return null;
     }
+    public boolean isEnrolled(Course course){
+        boolean result = false;
+        for (CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                result = true;
+            }
+        }
+        return result;
+    }
 
     public ArrayList<CourseProgress> getCourseProgresses() {
         return this.courseProgresses;
