@@ -67,12 +67,6 @@ public class CourseList {
         return courses;
     }
 
-
-    //TODO
-    public void editCourse(/*TODO*/){
-
-    }
-
     /**
     Saves the courses to the JSON.
     */
