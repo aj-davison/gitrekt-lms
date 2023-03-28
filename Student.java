@@ -1,13 +1,18 @@
-public class Student {
+import java.util.UUID;
+
+import javax.lang.model.util.ElementScanner14;
+
+import java.util.ArrayList;
+
+public class Student extends User{
+
+    private String type = "Student";
     
     public Student(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);
     }
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(id, courseProgresses, firstName, lastName, email, username, password);
-    }
-    public void enrollCourse(Course course){  
-        this.addCourseProgress(course);
     }
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         

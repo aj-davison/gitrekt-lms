@@ -175,7 +175,7 @@ public class DataLoader extends DataConstants {
 
                 // Add authors created courses
                 for(User user : users) {
-                    if(authorID.toString().equals(user.getID())) {
+                    if(user.getClass().getName().equals("Author") && authorID.toString().equals(user.getID())) {
                         Author author = (Author)user;
                         author.addCreatedCourses(course);
                     }
@@ -184,9 +184,6 @@ public class DataLoader extends DataConstants {
                 // Add course progress for each user
                 for(User user : userProgress.keySet()) {
                     user.addCourseProgress(course, userProgress.get(user));
-                    if(user.getID().equals(authorID.toString())) {
-                        createdCourses.add(course);
-                    }
                 }
             }
             reader.close();
@@ -206,7 +203,7 @@ public class DataLoader extends DataConstants {
         for(User user : users) {
             if(user.getClass().getName().equals("Author")) {
                 Author author = (Author)user;
-                System.out.println(author.toString());
+                System.out.println(author.getCreatedCourses());
             }
             // System.out.println(user.toString());
         }
