@@ -108,4 +108,8 @@ public class LMS {
     public void printToFileTopic(Topic topic) {
         LMSFileWriter.topicToFile(topic);
     }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
