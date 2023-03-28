@@ -214,11 +214,11 @@ public class LMSUI {
     }
     private void displayCurrentCourses() {
         
-
         boolean quit = false;
-        while (true) {
+        while (!quit) {
             System.out.println("\n-----Displaying Current Courses-----");
 
+            ArrayList<Course> currentCourses = lms.getCurrentCourses();
             System.out.println(lms.getCurrentCourses());
             displayMenu(continueCourseMenu, "OPTIONS");
 
@@ -227,10 +227,17 @@ public class LMSUI {
 
             if (userCommand == 0) {
 
-                String courseChoice = getUserString("Course Choice Name");
+                while (true) {
 
-                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
-                Course course = lms.getCourseByTitle(courseChoice);
+                    String courseChoice = getUserString("Course Choice Name");
+                    CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
+                    if (courseProgess == null) {
+                        System.out.println
+                    }
+                    Course course = lms.getCourseByTitle(courseChoice);
+
+                }
+                
 
                 displayCourseDescription(course);
 
@@ -239,7 +246,8 @@ public class LMSUI {
 
                 for (int i = numCompleteTopics; i < numTopics; i++) {
 
-                    printTopic(course.getTopics().get(i+1));
+                    Topic currentTopic = course.getTopics().get(i+1);
+                    printTopic(currentTopic);
 
                     while (true) {
                         
@@ -248,23 +256,28 @@ public class LMSUI {
 
                             switch (userCommand) {
                                 case(0):
-                                    takeQuiz();
+                                    displayQuiz();
                                     break;
                                 case(1):
                                     quit = true;
                                     break;
                         
                         }
-                        if (quit == true) break;
-                }
-                break;
+                        //if (quit == true) break;
+                    }
+                //break;
 
             }
-            break;
+            //break;
 
         }
 
-        String courseChoice(getUserString())
+        }
+    }
+
+    private void takeQuiz() {
+
+
     }
 
     private boolean printTopic(Topic topic) {
@@ -276,22 +289,22 @@ public class LMSUI {
             System.out.println(topic.getSubTop().get(i).toString());
 
             while (true) {
-            displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
+                displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
 
-            int userCommand;
+                int userCommand;
 
-            if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
-            
-            switch(userCommand) {
-                case(0):
-                    break;
-                case(1):
-                    i -= 2;
-                    break;
-                case(2):
-                    quit = true;
-                    break;
-            }
+                if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
+                
+                switch(userCommand) {
+                    case(0):
+                        break;
+                    case(1):
+                        i -= 2;
+                        break;
+                    case(2):
+                        quit = true;
+                        break;
+                }
             
             }
             
@@ -304,10 +317,17 @@ public class LMSUI {
 
     private void searchCourses() {
         System.out.println("\n-----Search Courses-----");
-        String word = getUserString("Keyword");
-        ArrayList<Course> results = lms.searchCourses(word);
-        if(results == null){
-            ///TODO "NO RESULTS, Return home"
+        
+        ArrayList<Course> results;
+        while (true) {
+            String word = getUserString("Keyword or # to Exit");
+            if (word.equals("#")) return;
+            results = lms.searchCourses(word);
+            if(results == null){
+                System.out.println("No Match");
+                continue;
+            }
+            break;
         }
         int index = 1;
         for(Course course : results){
@@ -345,7 +365,7 @@ public class LMSUI {
 
     }
 
-    private Course createCourse() {
+    private void createCourse() {
         
         System.out.println("\n-----Creating Course-----");
 
@@ -411,9 +431,7 @@ public class LMSUI {
 
         }
 
-        Course course = lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
-
-        return course;
+        lms.makeCourse(topics, courseName, courseDescription, courseDifficulty);
 
     }
 
@@ -449,6 +467,34 @@ public class LMSUI {
 
     private void logOut() {
         System.out.println("See ya!");
+        lms.logout();
+    }
+
+    public void commentTopic(Topic topic){
+        addComment(topic.getComments());
+    }
+    public void addComment(ArrayList<Comment> comments){
+        if(comments == null){
+
+        } else {
+            displayComment(comments);
+            //display menu /input options
+            if(/*input == 0*/){
+                //ask for comment info
+                Comment comment = new Comment(/*info*/, /*username*/, /*user id*/);
+                comments.add(comment);
+            }else {
+                addComment(comments.get(/*input-1*/)).getReplies());
+            }
+        }
+    }
+    public String displayComment(ArrayList<Comment> comments){
+        String result = "";
+        int position = 1;
+        for(Comment comment : comments){
+            result += Integer.toString(position)+". "+comment.toString()+"\n";
+        }
+        return result;
     }
 
     public static void main(String[] args) {

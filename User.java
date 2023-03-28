@@ -47,6 +47,9 @@ public abstract class User {
         }
         return result;
     }
+
+    public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
+
     public CourseProgress getCourseProgress(String title){
         for(CourseProgress course : this.courseProgresses){
             if(course.getCourse().getTitle().equalsIgnoreCase(title)){
@@ -127,7 +130,21 @@ public abstract class User {
         result += "\n";
         return result;
     }
-    public String getCurrentCourses(){
+    
+    public ArrayList<Course> getCurrentCourses() {
+
+        ArrayList<Course> currentCourses = new ArrayList<Course>();
+        for (CourseProgress courseProgress : courseProgresses) {
+            
+            currentCourses.add(courseProgress.getCourse());
+
+        }
+
+        return currentCourses;
+
+    }
+    
+    public String currentCoursesToString(){
         String result = "";
         int position = 1;
         for(CourseProgress course : courseProgresses){
