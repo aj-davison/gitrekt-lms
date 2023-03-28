@@ -45,6 +45,10 @@ public class LMS {
         return currentUser.getCurrentCourses();
     }
 
+    public void updateGrades(Course course, double grade){
+        currentUser.updateGrades(course, grade);
+    }
+
     public String currentCoursesToString() {
 
         return currentUser.currentCoursesToString();

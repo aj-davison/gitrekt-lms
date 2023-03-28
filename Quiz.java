@@ -38,7 +38,7 @@ public class Quiz {
             score += question.score();
         }
         double grade;
-        grade = score/3;
+        grade = score/questions.size();
         return grade;
     }
 
