@@ -199,8 +199,10 @@ public class Course {
     }
     public String displayTopics(){
         String result = "";
+        int position = 1;
         for(Topic topic : this.topics){
-            result += topic.getName();
+            result += Integer.toString(position)+". "+topic.getName()+"\n";
+            position++;
         }
         return result;
     }
