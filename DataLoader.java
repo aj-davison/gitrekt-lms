@@ -45,15 +45,9 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<User> users = UserList.getInstanceUserList().getUsers();
-        ArrayList<Student> students = new ArrayList<>();
-        ArrayList<Topic> topics = new ArrayList<>();
-        ArrayList<Subtopic> subtopics = new ArrayList<>();
-        ArrayList<Question> questions = new ArrayList<>();
-        ArrayList<Comment> comments = new ArrayList<>();
-        ArrayList<UUID> studentIDs = new ArrayList<>();
-        ArrayList<UUID> authorIDs = new ArrayList<>();
+        
         HashMap<User, ArrayList<Double>> userProgress = new HashMap<>();
-        ArrayList<Course> createdCourses = new ArrayList<>();
+        //ArrayList<Course> createdCourses = new ArrayList<>();
         
         try {
             FileReader reader = new FileReader(COURSE_FILE_NAME);
@@ -62,6 +56,17 @@ public class DataLoader extends DataConstants {
             // Loop through courses
             JSONArray coursesArray = (JSONArray)parser.parse(reader);
             for(int i=0;i<coursesArray.size();i++) {
+                // authorIDs.clear();
+                // subtopics.clear();
+                // topics.clear();
+                // comments.clear();
+                // questions.clear();
+                // students.clear();
+                // studentIDs.clear();
+                ArrayList<Student> students = new ArrayList<>();
+                ArrayList<Topic> topics = new ArrayList<>();
+                ArrayList<UUID> studentIDs = new ArrayList<>();
+                ArrayList<UUID> authorIDs = new ArrayList<>();
                 JSONObject courseJSON = (JSONObject)coursesArray.get(i);
                 UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
                 String title = (String)courseJSON.get(COURSE_TITLE);
@@ -100,6 +105,7 @@ public class DataLoader extends DataConstants {
                     String topicTitle = (String)topicJSON.get(COURSE_TOPIC_TITLE);
 
                     // Loop thru subtopics
+                    ArrayList<Subtopic> subtopics = new ArrayList<>();
                     JSONArray subtopicsArray = (JSONArray)topicJSON.get(COURSE_TOPIC_SUBTOPICS);
                     for(int k=0;k<subtopicsArray.size();k++) {
                         JSONObject subtopicJSON = (JSONObject)subtopicsArray.get(k);
@@ -109,6 +115,7 @@ public class DataLoader extends DataConstants {
                     }
 
                     // Loop thru quizzes
+                    ArrayList<Question> questions = new ArrayList<>();
                     JSONArray quizArray = (JSONArray)topicJSON.get(COURSE_TOPIC_QUIZ);
                     for(int k=0;k<quizArray.size();k++) {
                         JSONObject quizJSON = (JSONObject)quizArray.get(k);
@@ -126,6 +133,7 @@ public class DataLoader extends DataConstants {
                     }
 
                     // Loop thru comments
+                    ArrayList<Comment> comments = new ArrayList<>();
                     JSONArray commentsArray = (JSONArray)topicJSON.get(COURSE_TOPIC_COMMENTS);
                     for(int k=0;k<commentsArray.size();k++) {
                         JSONObject commentJSON = (JSONObject)commentsArray.get(k);
@@ -200,19 +208,13 @@ public class DataLoader extends DataConstants {
         CourseList list2 = CourseList.getInstanceCourseList();
         ArrayList<Course> courses = list2.getCourses();
 
-        for(User user : users) {
-            if(user.getClass().getName().equals("Author")) {
-                Author author = (Author)user;
-                System.out.println(author.getCreatedCourses());
+        for(Course course : courses) {
+            for(Topic topic : course.getTopics()) {
+                Quiz quiz = topic.getQuiz();
+                for(Question question : quiz.getQuestions()) {
+                    System.out.println(question.toString());
+                }
             }
-            // System.out.println(user.toString());
         }
-        // for(Course course : courses) {
-        //     for(Student stu : course.getStudents()) {
-        //         for(CourseProgress cp : stu.courseProgresses) {
-        //             System.out.println(cp.getGrade());
-        //         }
-        //     }
-        // }
     }
 }
