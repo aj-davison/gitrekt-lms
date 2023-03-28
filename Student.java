@@ -31,6 +31,9 @@ public class Student extends User{
         return grades;
     }
     */
+    public ArrayList<Course> getCreatedCourses(){
+        return null;
+    }
     public String displayCreatedCourses(){
         return "Sorry, you are a student";
     }
