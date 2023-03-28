@@ -54,7 +54,25 @@ public class LMS {
     public ArrayList<Course> getCreatedCourses(){
         return currentUser.getCreatedCourses();
     }
-
+    public String displayTopics(Course course){
+        return course.displayTopics();
+    }
+    public ArrayList<Topic> getTopics(Course course){
+        return course.getTopics();
+    }
+    public String displaySubtopics(Topic topic){
+        return topic.displaySubtopics();
+    }
+    public ArrayList<Subtopic> getSubtopics(Topic topic){
+        return topic.getSubTop();
+    }
+    public String displayQuiz(Topic topic){
+        return topic.displayQuiz();
+    }
+    public Quiz getQuiz(Topic topic){
+        return topic.getQuiz();
+    }
+    
     public String currentCoursesToString() {
         return currentUser.currentCoursesToString();
     }
