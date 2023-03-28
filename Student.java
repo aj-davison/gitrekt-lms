@@ -14,14 +14,11 @@ public class Student extends User{
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
-<<<<<<< HEAD
     public void enrollCourse(Course course){  
-        CourseProgress courseProgress = new CourseProgress(course, null);
-        this.addCourseProgress(courseProgress);
-=======
+        this.addCourseProgress(course);
+    }
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         
->>>>>>> 42fae37317016a7f2105a09767c86e137b164623
     }
 
     public void unregisterCourse(Course course){
