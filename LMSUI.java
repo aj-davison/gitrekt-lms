@@ -353,15 +353,13 @@ public class LMSUI {
 
                         int userCommand;
 
-                        if ((userCommand = menuCommandValidation(oneSubTopMenu)) == -1) continue;
+                        if ((userCommand = menuCommandValidation(oneSubTopMenu)) == -1) {
+                            System.out.println("invalid");
+                            continue;
+                        }
                         
                         switch(userCommand) {
                             case(0):
-                                break;
-                            case(1):
-                                i -= 2;
-                                break;
-                            case(2):
                                 quit = true;
                                 break;
                         }
