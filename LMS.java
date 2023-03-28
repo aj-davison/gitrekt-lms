@@ -4,6 +4,7 @@ public class LMS {
     private static CourseList courseList = CourseList.getInstanceCourseList();
     private User currentUser;
     private Course currentCourse;
+    private LMSFileWriter fileWriter = new LMSFileWriter();
 
     public User loginE(String email, String password){
         currentUser = userList.loginE(email, password);
@@ -44,11 +45,6 @@ public class LMS {
     public ArrayList<Course> getCurrentCourses(){
         return currentUser.getCurrentCourses();
     }
-
-    public String currentCoursesToString() {
-        return currentUser.currentCoursesToString();
-
-    }
     /// TODO
     public void continueCourse(Course course){
         int index = 0;
@@ -72,8 +68,14 @@ public class LMS {
         }
         return result;
     }
-    public void makeCourse(ArrayList<Topic> topics, String title, String description, String difficulty){
-        makeCourse(topics, title, description, difficulty);
+    public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
+        currentUser.makeCourse(topics, title, description, difficulty);
+    }
+    public boolean courseComplete(Course course){
+        return currentUser.courseComplete(course);
+    }
+    public void printCertificate(Course course){
+        fileWriter.writeCourseCertificate(course.getTitle(), currentUser.calcGrade(course), currentUser.getFirstName(), currentUser.getLastName());
     }
     public void takeQuiz(){
 
