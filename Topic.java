@@ -88,6 +88,12 @@ public class Topic {
         return this.quiz.toString();
     }
 
+    public String displayTopicInfo(){
+        String result = this.displaySubtopics()+"\n";
+        result += this.displayQuiz();
+        return result;
+    }
+
 
     public void addComment(Comment comment){
         comments.add(comment);
