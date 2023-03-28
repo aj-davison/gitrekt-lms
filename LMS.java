@@ -53,6 +53,12 @@ public class LMS {
         return currentUser.currentCoursesToString();
     }
 
+    public void addSubtopic(Topic topic, Subtopic subtopic){
+        topic.addSubtopic(subtopic);
+    }
+    public void addQuestion(Topic topic, Question question){
+        topic.getQuiz().addQuestion(question);
+    }
     /// TODO
     public void continueCourse(Course course){
         int index = 0;
