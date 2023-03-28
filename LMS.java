@@ -50,9 +50,7 @@ public class LMS {
     }
 
     public String currentCoursesToString() {
-
         return currentUser.currentCoursesToString();
-
     }
 
     /// TODO

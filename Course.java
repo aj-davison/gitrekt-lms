@@ -21,6 +21,7 @@ public class Course {
      * @param difficulty the difficulty of the course
      * @param authorID the UUID of the author who created the course
      */
+    /* *
     public Course(String title, String description,  Difficulty difficulty, UUID authorID) {
         this.topics = new ArrayList<Topic>();
         this.students = new ArrayList<Student>();
@@ -30,7 +31,9 @@ public class Course {
         this.authorID = authorID;
         this.difficulty = difficulty;
     }
+    */
 
+    
     public Course(String title, String description,  Difficulty difficulty, ArrayList<Topic> topics, UUID authorID) {
         this.topics = topics;
         this.students = new ArrayList<Student>();

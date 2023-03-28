@@ -34,7 +34,7 @@ public class CourseList {
     @param authorID - the ID of the author of the course
     */
     public void addCourse(ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID){
-        courses.add(new Course(title, description, difficulty, authorID));
+        courses.add(new Course(title, description, difficulty, topics, authorID));
     }
 
     /**
