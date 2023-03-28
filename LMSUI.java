@@ -8,7 +8,7 @@ public class LMSUI {
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
-    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
+    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "Edit Course", "View Profile", "Billing Page", "Log Out"};
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
@@ -246,39 +246,46 @@ public class LMSUI {
 
                 displayCourseDescription(course);
 
-               int numCompleteTopics = courseProgress.numCompletedTopics();
-               int numTopics = course.getTopics().size();
+                continueCourse(course, courseProgress);
+            }
 
-                for (int i = numCompleteTopics; i < numTopics; i++) {
+        }
+    }
 
-                    Topic currentTopic = course.getTopics().get(i+1);
-                    printTopic(currentTopic);
+    public void continueCourse(Course course, CourseProgress courseProgress) {
+        int numCompleteTopics = courseProgress.numCompletedTopics();
+        int numTopics = course.getTopics().size();
 
-                    while (true) {
-                        
-                        displayMenu(topicMenu, "TOPIC OPTIONS");
-                        if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
+        for (int i = numCompleteTopics; i < numTopics; i++) {
 
-                            switch (userCommand) {
-                                case(0):
-                                    displayQuiz(currentCourse, currentTopic);
-                                    break;
-                                case(1):
-                                    quit = true;
-                                    break;
-                        
-                        }
-                        //if (quit == true) break;
-                    }
-                //break;
+            Topic currentTopic = course.getTopics().get(i+1);
+            printTopic(currentTopic);
 
+            boolean quit = false;
+            while (true) {
+                
+                displayMenu(topicMenu, "TOPIC OPTIONS");
+                int userCommand;
+                if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
+
+                    switch (userCommand) {
+                        case(0):
+                            displayQuiz(course, currentTopic);
+                            break;
+                        case(1):
+                            quit = true;
+                            break;
+                
+                }
+                //if (quit == true) break;
             }
             //break;
 
         }
+        //break;
 
-        }
     }
+
 
     private void displayQuiz(Course currentCourse, Topic currentTopic) {
 
@@ -383,9 +390,11 @@ public class LMSUI {
         displayCourseDescription(results.get(choice-1));
     }
 
-    private void displayCourseDescription(Course course){
+    private int displayCourseDescription(Course course){
         System.out.println(course.toString());
+        int continueValue;
         if(lms.isEnrolled(course)){
+            continueValue = 0;
             while(true){
                 displayMenu(continueCourseMenu, "COURSE OPTIONS");
                 int userCommand;
@@ -393,8 +402,17 @@ public class LMSUI {
                 boolean quit = false;
                 switch(userCommand){
                     case(0):
-                        
+                        continueCourse();
+                        break;
+                    case(1):
+                        viewGrades();
+                        break;
+                    case(2):
+                        quit = true;
+                        break;
+
                 }
+                if (quit = true) break;
 
             }
     
@@ -510,7 +528,7 @@ public class LMSUI {
 
             int userCommand;
 
-            if ((userCommand = menuCommandValidation(profileMenu)) == -1);
+            if ((userCommand = menuCommandValidation(profileMenu)) == -1) continue;
         }
     }
 
@@ -523,11 +541,16 @@ public class LMSUI {
         addComment(topic.getComments());
     }
     public void addComment(ArrayList<Comment> comments){
-        if(comments == null){
+        while (true) {
+            String commentInfo = getUserString("Comment");
+            Comment comment = new Comment(commentInfo, lms.currentUser.getUsername());
 
-        } else {
-            displayComment(comments);
-            //display menu /input options
+
+        }
+
+
+
+
             if(/*input == 0*/){
                 //ask for comment info
                 Comment comment = new Comment(/*info*/, /*username*/, /*user id*/);
@@ -535,15 +558,55 @@ public class LMSUI {
             }else {
                 addComment(comments.get(/*input-1*/)).getReplies());
             }
-        }
     }
+
+
     public String displayComment(ArrayList<Comment> comments){
         String result = "";
-        int position = 1;
-        for(Comment comment : comments){
-            result += Integer.toString(position)+". "+comment.toString()+"\n";
+        if(comments == null)
+            result = "No comments on this thread.";
+        else {
+            int position = 1;
+            for(Comment comment : comments){
+                result += Integer.toString(position)+". "+comment.toString()+"\n";
+                if (comment.getReplies() != null) 
+                    result += "     Has " + comment.getReplies().size() + " replies";
+                position++;
+            }
+
         }
-        return result;
+        
+        while (true) {
+            displayMenu(commentMenu, "COMMENT OPTIONS");
+            int userCommand;
+            if ((userCommand = menuCommandValidation(commentMenu)) == -1) continue;
+            int commentChoice;
+            switch(userCommand) {
+                case(0):
+                    addComment(comments);
+                    break;
+                case(1):
+                    if (comments == null) {
+                        System.out.println("No comments to comment on");
+                        break; 
+                    } 
+                    while (true) {
+
+                        commentChoice = getUserInt("Which comment do you want to comment on? ") - 1;
+                        if (commentChoice < 0 || commentChoice >= comments.size()) {
+                            System.out.println("Invalid");
+                            continue;
+                        }
+                        break;
+                    }
+                    displayComment(comments.get(commentChoice).getReplies());
+                    break;
+                    
+            }
+        
+        
+            return result;
+        }
     }
 
     public void printToFileTopic(Topic topic){
