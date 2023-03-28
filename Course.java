@@ -197,6 +197,15 @@ public class Course {
         else    
             return null;
     }
+    public String displayTopics(){
+        String result = "";
+        int position = 1;
+        for(Topic topic : this.topics){
+            result += Integer.toString(position)+". "+topic.getName()+"\n";
+            position++;
+        }
+        return result;
+    }
 
     /**
      * Returns the difficulty level of the course.
