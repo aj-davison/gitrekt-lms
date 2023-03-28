@@ -130,7 +130,21 @@ public abstract class User {
         result += "\n";
         return result;
     }
-    public String getCurrentCourses(){
+    
+    public ArrayList<Course> getCurrentCourses() {
+
+        ArrayList<Course> currentCourses = new ArrayList<Course>();
+        for (CourseProgress courseProgress : courseProgresses) {
+            
+            currentCourses.add(courseProgress.getCourse());
+
+        }
+
+        return currentCourses;
+
+    }
+    
+    public String currentCoursesToString(){
         String result = "";
         int position = 1;
         for(CourseProgress course : courseProgresses){

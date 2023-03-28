@@ -218,6 +218,7 @@ public class LMSUI {
         while (!quit) {
             System.out.println("\n-----Displaying Current Courses-----");
 
+            ArrayList<Course> currentCourses = lms.getCurrentCourses();
             System.out.println(lms.getCurrentCourses());
             displayMenu(continueCourseMenu, "OPTIONS");
 
@@ -226,10 +227,17 @@ public class LMSUI {
 
             if (userCommand == 0) {
 
-                String courseChoice = getUserString("Course Choice Name");
+                while (true) {
 
-                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
-                Course course = lms.getCourseByTitle(courseChoice);
+                    String courseChoice = getUserString("Course Choice Name");
+                    CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
+                    if (courseProgess == null) {
+                        System.out.println
+                    }
+                    Course course = lms.getCourseByTitle(courseChoice);
+
+                }
+                
 
                 displayCourseDescription(course);
 
@@ -238,7 +246,8 @@ public class LMSUI {
 
                 for (int i = numCompleteTopics; i < numTopics; i++) {
 
-                    printTopic(course.getTopics().get(i+1));
+                    Topic currentTopic = course.getTopics().get(i+1);
+                    printTopic(currentTopic);
 
                     while (true) {
                         
@@ -247,7 +256,7 @@ public class LMSUI {
 
                             switch (userCommand) {
                                 case(0):
-                                    takeQuiz();
+                                    displayQuiz();
                                     break;
                                 case(1):
                                     quit = true;
@@ -280,22 +289,22 @@ public class LMSUI {
             System.out.println(topic.getSubTop().get(i).toString());
 
             while (true) {
-            displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
+                displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
 
-            int userCommand;
+                int userCommand;
 
-            if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
-            
-            switch(userCommand) {
-                case(0):
-                    break;
-                case(1):
-                    i -= 2;
-                    break;
-                case(2):
-                    quit = true;
-                    break;
-            }
+                if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
+                
+                switch(userCommand) {
+                    case(0):
+                        break;
+                    case(1):
+                        i -= 2;
+                        break;
+                    case(2):
+                        quit = true;
+                        break;
+                }
             
             }
             
