@@ -9,7 +9,8 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
-    private String[] continueCourseMenu = {"Continue Course", "Exit to Home"};
+    private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
+    private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
     private String[] topicMenu = {"Quiz", "Exit to Home"};
     private String[] commentMenu = {"Comment", "Comment on a Comment", "Next Topic", "Exit to Home"};
