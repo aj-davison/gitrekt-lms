@@ -143,6 +143,30 @@ public abstract class User {
         return currentCourses;
 
     }
+    public boolean courseComplete(Course course){
+        boolean result = false;
+        int position = 0;
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                break;
+            }
+            position++;
+        }
+        if(this.courseProgresses.get(position).getGrades().size() == course.getTopics().size()){
+            result = true;
+        }
+        return result;
+    }
+
+    public Double calcGrade(Course course){
+        double result = 0.0;
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                result = progress.getGrade();
+            }
+        }
+        return result;
+    }
     
     public String currentCoursesToString(){
         String result = "";
