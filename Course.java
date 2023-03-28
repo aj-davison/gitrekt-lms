@@ -160,7 +160,6 @@ public class Course {
     public boolean equals(Course course){
         boolean result = false;
         boolean topicCheck = false;
-        boolean studentCheck = false;
         int position = 0;
         int numMatchingTopics = 0;
         for(Topic topic : topics){
@@ -172,19 +171,7 @@ public class Course {
         if(numMatchingTopics == topics.size()){
             topicCheck = true;
         }
-        position = 0;
-        int numMatchingStudents = 0;
-        for(Student student : students){
-            if(student.equals(course.getStudents().get(position))){
-                numMatchingStudents++;
-            }
-            position++;
-        }
-        if(numMatchingStudents == students.size()){
-            studentCheck = true;
-        }
         if(topicCheck && 
-        studentCheck &&
         this.title.equals(course.getTitle()) &&
         this.description.equals(course.getDescription()) &&
         this.difficulty.equals(course.getEnumDifficulty()) &&
