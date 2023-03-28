@@ -31,7 +31,9 @@ public class Student extends User{
         return grades;
     }
     */
-
+    public String displayCreatedCourses(){
+        return "Sorry, you are a student";
+    }
     public String toString(){
         String result = "";
         if(this.courseProgresses == null){
