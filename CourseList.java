@@ -33,8 +33,8 @@ public class CourseList {
     @param difficulty - the difficulty level of the course
     @param authorID - the ID of the author of the course
     */
-    public void addCourse(ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID){
-        courses.add(new Course(title, description, difficulty, topics, authorID));
+    public void addCourse(Course course){
+        courses.add(course);
     }
 
     /**
