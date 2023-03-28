@@ -36,6 +36,12 @@ public class Question {
         this.correct = false;
         return score;
     }
+    public String toString(){
+        String result = "";
+        result += this.question+"\n";
+        result += "\n"+displayAnswers();
+        return result;
+    }
 
     public String displayAnswers(){
         String result = "";
@@ -44,10 +50,6 @@ public class Question {
         result += "3. "+this.answers[2]+"\n";
         result += "4. "+this.answers[3]+"\n";
         return result;
-    }
-
-    public boolean wasInputCorrect(){
-        return correct;
     }
 
     public int getCorrectAns() {
