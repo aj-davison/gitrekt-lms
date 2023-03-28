@@ -467,7 +467,7 @@ public class LMSUI {
         int continueValue;
         if(lms.isEnrolled(course)){
             continueValue = 0;
-            if (/*course completed */ false) {
+            if (lms.isCompleted(course)) {
                 while(true){
                     displayMenu(completedCourseMenu, "COURSE OPTIONS");
                     int userCommand;
@@ -540,6 +540,8 @@ public class LMSUI {
 
     private void displayAllCourses() {
         System.out.println("\n-----Displaying All Courses-----");
+        
+        ArrayList<Course> allCourses = lms.
         System.out.println(lms.displayCourseList()+"\n");
 
     }

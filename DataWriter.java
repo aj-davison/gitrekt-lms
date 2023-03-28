@@ -53,13 +53,6 @@ public class DataWriter extends DataConstants {
         return jsonTopics;
     }
 
-
-
-
-
-
-    
-
     private static JSONObject getTopicJSON(Topic topic) {
         JSONObject topicsDetails = new JSONObject();
         topicsDetails.put(COURSE_TOPIC_TITLE, topic.getName());
@@ -69,27 +62,38 @@ public class DataWriter extends DataConstants {
         return topicsDetails;
     }
 
-    private static JSONArray getTopicComments(Topic topic) {
+    private static void getTopicComments(Topic topic) {
+        getAllCommets(topic.getComments());
+    }
+
+    public static JSONArray getAllCommets(ArrayList<Comment> comments){
         JSONArray jsonComments = new JSONArray();
-        ArrayList<Comment> comments =  topic.getComments();
+        //ArrayList<Comment> comments =  topic.getComments();
         for(int i=0; i<comments.size(); i++){
             jsonComments.add(commentJSON(comments.get(i)));
         }
         return jsonComments;
     }
 
-    private static JSONObject commentJSON(Comment comment) {
+    private static JSONArray commentJSON(Comment comment) {
+        JSONArray jsonCommentsComments = new JSONArray();
         JSONObject commentDetail = new JSONObject();
         commentDetail.put(COURSE_TOPIC_COMMENTS_CONTENT, comment.getContent());
         commentDetail.put(COURSE_TOPIC_COMMENTS_CREATOR_ID, comment.getID().toString());
+        jsonCommentsComments.add(commentDetail);
         JSONArray jsonReplies = new JSONArray();
-        for(int i=0; 0<comment.getReplies().size(); i++){
-            //jsonReplies.add(comment.getReplies().get(i));
-            jsonReplies.add(commentJSON(comment.getReplies().get(i)));
+        if(comment.getReplies() != null)
+        {
+            for(int i=0; 0<comment.getReplies().size(); i++){
+                //jsonReplies.add(comment.getReplies().get(i));
+                jsonCommentsComments.add(getAllCommets(comment.getReplies()));
+                //jsonReplies.add(commentJSON(comment.getReplies().get(i)));
+            }
+            //commentDetail.put(COURSE_TOPIC_COMMENTS_REPLIES, jsonReplies);
+    
+            return jsonCommentsComments;
         }
-        commentDetail.put(COURSE_TOPIC_COMMENTS_REPLIES, jsonReplies);
-
-        return commentDetail;
+            return jsonCommentsComments;
     }
 
     private static JSONArray getTopicQuizJSON(Topic topic) {

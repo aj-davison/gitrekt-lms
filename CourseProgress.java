@@ -19,6 +19,14 @@ public class CourseProgress {
         this.grades = new ArrayList<>();
     }
 
+    public boolean isCompleted(Course course){
+        boolean result = false;
+        if(course.getTopics().size() == this.grades.size()){
+            result = true;
+        }
+        return result;
+    }
+
     /**
     *Returns a string representation of this CourseProgress object
     *@return a string representation of this CourseProgress object
@@ -55,6 +63,17 @@ public class CourseProgress {
     */
     public ArrayList<Double> getGrades(){
         return this.grades;
+    }
+
+    public String displayTopicGrades(){
+        String result = "";
+        int position = 1;
+        for(Double grade : this.grades){
+            Double percent = grade*100;
+            result += Integer.toString(position)+". "+Double.toString(percent)+"%\n";
+            position++;
+        }
+        return result;
     }
 
     /**
