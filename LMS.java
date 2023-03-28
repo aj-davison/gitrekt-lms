@@ -45,6 +45,13 @@ public class LMS {
     public ArrayList<Course> getCurrentCourses(){
         return currentUser.getCurrentCourses();
     }
+
+    public String currentCoursesToString() {
+
+        return currentUser.currentCoursesToString();
+
+    }
+
     /// TODO
     public void continueCourse(Course course){
         int index = 0;
