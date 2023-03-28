@@ -14,12 +14,14 @@ public class LMSFileWriter {
         try { 
             Formatter f = new Formatter(title+".txt");
             //f.format("%30s%n%n", ""); // center-align the next line
-            f.format("%30s%n", "Certificate of completion: "+courseTitle); // center-align text
+            f.format("%35s%n", "Certificate of completion: "+courseTitle); // center-align text
             //f.format("%30s%n%n", ""); // center-align the next line
             //f.format("%-15s", "Name:");
-            f.format("<b>%s</b>%n", FullName); // bold text
+            f.format("%30s%n", FullName); // bold text
             ///f.format("%-15s", "Age:");
-            f.format("%30s%n", "Grade: "+Grade); // center-align text
+            f.format("%27s%n", "Grade: "+Grade); // center-align text
+            f.format("%s%n", "-----------------------------------------------");
+            f.format("%37s%n", "Certified by the GitRekt LMS team"); // bold text
             f.close();
           } catch (IOException e) {
             System.out.println("An error occurred trying to create your course certificate");
@@ -27,16 +29,16 @@ public class LMSFileWriter {
           }
     }
 
-
-
     public static void topicToFile(Topic topic){
       String title = topic.getName();
       try { 
           Formatter f = new Formatter(title+".txt");
           f.format("%30s%n%n", topic.getName());
+          f.format("%s%n", "-----------------------------------------------");
           for(Subtopic sub: topic.getSubTop()){
-            f.format("<b>%s</b>%n", sub.getName());
+            f.format("%27s%n", sub.getName());
             f.format("%-15s", sub.getInfo());
+            f.format("%27s%n", ".............");
           }
           f.close();
         } catch (IOException e) {
@@ -44,6 +46,17 @@ public class LMSFileWriter {
           e.printStackTrace();
         }
   }
+
+
+  public static void main(String[] args){
+    //UserList userList = UserList.getInstanceUserList();
+    //CourseList courseList = CourseList.getInstanceCourseList();
+    //ArrayList<User> users =userList.getUsers();
+    //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
+    //saveUsers();
+    //saveCourses();
+    writeCourseCertificate("HowToCookBurgers", 50.5, "Kuba", "Jerzmanowski");
+}
 
 
 
