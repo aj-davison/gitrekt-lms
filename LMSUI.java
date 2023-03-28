@@ -261,7 +261,7 @@ public class LMSUI {
 
                             switch (userCommand) {
                                 case(0):
-                                    displayQuiz();
+                                    displayQuiz(currentCourse, currentTopic);
                                     break;
                                 case(1):
                                     quit = true;
@@ -280,7 +280,43 @@ public class LMSUI {
         }
     }
 
-    private void takeQuiz() {
+    private void displayQuiz(Course currentCourse, Topic currentTopic) {
+
+        System.out.println("\n-----Quiz-----");
+        Quiz quiz = currentTopic.getQuiz();
+
+        for (int i = 0; i < quiz.getQuizSize(); i++) {
+
+            Question question = quiz.getQuestionAt(i);
+            System.out.println(question.toString());
+
+            int userAnswer;
+
+            while (true) {
+
+                userAnswer = getUserInt("Which answer is correct? ") -1;
+                if (userAnswer < 0 || userAnswer >= question.getAns().length) {
+                    System.out.println("Invalid");
+                    continue;
+                }
+                break;
+            }
+
+            if (question.isCorrect(userAnswer)) {
+                System.out.println("Correct!");
+                
+            }
+            else {
+
+                System.out.println("Wrong!");
+                System.out.println("Correct Answer: " + question.getCorrectAns());
+
+            }
+
+        }
+
+        System.out.println("Your Grade: " + quiz.getGrade());
+        lms.updateGrades(currentCourse, quiz.getGrade());
 
 
     }
