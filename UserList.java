@@ -69,4 +69,19 @@ public class UserList {
         }
         return null;
     }
+    public User signUp(String firstName, String lastName, String username, String password, String email, int type){
+        if(type == 0){
+            Student user = new Student(firstName, lastName, email, username, password);
+            addStudent(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
+            return user;
+        } else if (type == 1){
+            Author user = new Author(firstName, lastName, email, username, password);
+            addAuthor(firstName, lastName, email, username, password);
+            DataWriter.saveUsers();
+            return user;
+        } else {
+            return null;
+        }
+    }
 }

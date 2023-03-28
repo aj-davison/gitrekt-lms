@@ -23,7 +23,27 @@ public class Topic {
         this.position =0;
     }
 
-
+    public boolean equals(Topic topic){
+        boolean result = false;
+        boolean subtopicCheck = false;
+        int position = 0;
+        int numMatchingSubtopics = 0;
+        for(Subtopic subtopic : subtopics){
+            if(subtopic.equals(topic.getSubTop().get(position))){
+                numMatchingSubtopics++;
+            }
+            position++;
+        }
+        if(numMatchingSubtopics == subtopics.size()){
+            subtopicCheck = true;
+        }
+        if(subtopicCheck &&
+        this.name.equals(topic.getName()) &&
+        this.quiz.equals(topic.getQuiz())){
+            result = true;
+        }
+        return result;
+    }
     public boolean completionStatus(){
         boolean result;
         if(!hasNext()){
@@ -80,7 +100,7 @@ public class Topic {
         return this.quiz;
     }
     
-    public Object getName() {
+    public String getName() {
         return this.name;
     }
 

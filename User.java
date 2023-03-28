@@ -94,6 +94,10 @@ public abstract class User {
         else
             return this.password;
     }
+    public void enrollCourse(Course course){  
+        //CourseProgress courseProgress = new CourseProgress(course, null);
+        this.addCourseProgress(course, null);
+    }
 
     public String getEmail() {
         if(email == null)
@@ -119,4 +123,60 @@ public abstract class User {
         result += "\n";
         return result;
     }
+    
+    public ArrayList<Course> getCurrentCourses() {
+
+        ArrayList<Course> currentCourses = new ArrayList<Course>();
+        for (CourseProgress courseProgress : courseProgresses) {
+            
+            currentCourses.add(courseProgress.getCourse());
+
+        }
+
+        return currentCourses;
+
+    }
+    public boolean courseComplete(Course course){
+        boolean result = false;
+        int position = 0;
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                break;
+            }
+            position++;
+        }
+        if(this.courseProgresses.get(position).getGrades().size() == course.getTopics().size()){
+            result = true;
+        }
+        return result;
+    }
+
+    public Double calcGrade(Course course){
+        double result = 0.0;
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                result = progress.getGrade();
+            }
+        }
+        return result;
+    }
+    public void updateGrades(Course course, double grade){
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                progress.addGrade(grade);
+            }
+        }
+    }
+    
+    public String currentCoursesToString(){
+        String result = "";
+        int position = 1;
+        for(CourseProgress course : courseProgresses){
+            result += Integer.toString(position)+". "+course.getCourse().getTitle()+"\n";
+            position++;
+        }
+        return result;
+    }
 }
+
+

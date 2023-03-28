@@ -43,5 +43,17 @@
         "type": "student",
         "email": "chribar@email.sc.edu",
         "username": "calliejh13"
+<<<<<<< HEAD
+=======
+    },
+    {
+        "firstName": "Kuba",
+        "lastName": "Jerzmanowski",
+        "password": "123",
+        "id": "b1264778-ab06-4b3d-8ea9-88a82604bcf7",
+        "type": "student",
+        "email": "Koobman.kj@gmail.com",
+        "username": "BobLovesBuns"
+>>>>>>> 42fae37317016a7f2105a09767c86e137b164623
     }
 ]

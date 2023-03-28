@@ -34,7 +34,7 @@ public class CourseList {
     @param authorID - the ID of the author of the course
     */
     public void addCourse(ArrayList<Topic> topics, String title, String description, Difficulty difficulty, UUID authorID){
-        courses.add(new Course(title, description, difficulty, authorID));
+        courses.add(new Course(title, description, difficulty, topics, authorID));
     }
 
     /**
@@ -87,5 +87,34 @@ public class CourseList {
     public ArrayList<String> getAllCourses(){
         ArrayList<String> allCourses = new ArrayList<String>();
         return allCourses;
+    }
+    public void enrollCourse(String title, User user){
+        Course course = getCourseByTitle(title);
+        CourseProgress courseProgress = new CourseProgress(course);
+        user.courseProgresses.add(courseProgress);
+    }
+    public ArrayList<Course> searchCourses(String title){
+        ArrayList<Course> results = new ArrayList<Course>();
+        ArrayList<Course> courses = getCourses();
+        title = title.toLowerCase();
+        for (Course course : courses){
+            String courseTitle = course.getTitle().toLowerCase();
+            if(courseTitle.contains(title)){
+                results.add(course);
+            }
+        }
+        if(results.size() == 0){
+            return null;
+        }
+        return results;
+    }
+    public String displayCourseList(){
+        String result = "";
+        int index = 1;
+        for(Course course : courses){
+            result += Integer.toString(index)+". "+course.getTitle()+"\n";
+            index ++;
+        }
+        return result;
     }
 }

@@ -11,6 +11,22 @@ public class Quiz {
         questions.add(question);
     }
 
+    public boolean equals(Quiz quiz){
+        boolean result = false;
+        int position = 0;
+        int numMatchingQuestions = 0;
+        for(Question question : this.questions){
+            if(question.equals(quiz.getQuestionAt(position))){
+                numMatchingQuestions++;
+            }
+            position++;
+        }
+        if(numMatchingQuestions == questions.size()){
+            result = true;
+        }
+        return result;
+    }
+
     public ArrayList<Question> getQuestions() {
         if(questions == null){
             questions = new ArrayList<Question>();
@@ -20,18 +36,29 @@ public class Quiz {
             return this.questions;
     }
 
+    public Question getQuestionAt(int index){
+        if(questions != null)
+            return questions.get(index);
+        else
+            return null;
+    }
+
     //TODO
     public String toString(){
         return "Quiz";
     }
     
-    public double grade(){
+    public double getGrade(){
         int score = 0;
         for(Question question : questions){
             score += question.score();
         }
         double grade;
-        grade = score/3;
+        grade = score/questions.size();
         return grade;
+    }
+
+    public int getQuizSize(){
+        return questions.size();
     }
 }

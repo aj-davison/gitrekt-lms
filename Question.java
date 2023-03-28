@@ -16,16 +16,28 @@ public class Question {
         this.correct = false; 
     }
 
+    public boolean equals(Question q){
+        boolean result = false;
+        if(this.question.equals(q.getQuestion()) &&
+        this.correctAns == q.getCorrectAns()){
+            result = true;
+        }
+        return result;
+    }
+
     public String getQuestion(){
         return this.question;
     }
 
-    public void isCorrect(int ans){
+    public boolean isCorrect(int ans){
+        boolean result = false;
         if (ans == this.correctAns){
             this.correct = true;
+            result = true;
         } else {
             this.correct = false;
         }
+        return result;
     }
 
     public int score(){
@@ -35,6 +47,12 @@ public class Question {
         }
         this.correct = false;
         return score;
+    }
+    public String toString(){
+        String result = "";
+        result += this.question+"\n";
+        result += "\n"+displayAnswers();
+        return result;
     }
 
     public String displayAnswers(){
@@ -46,11 +64,7 @@ public class Question {
         return result;
     }
 
-    public String displayCorrect(){
-        return "Correct!";
-    }
-
-    public int getCorrect() {
+    public int getCorrectAns() {
         return correctAns;
     }
     
