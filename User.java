@@ -79,7 +79,8 @@ public abstract class User {
     }
     
     public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
-
+    public abstract String displayCreatedCourses();
+    
     public ArrayList<CourseProgress> getCourseProgresses() {
         return this.courseProgresses;
     }
