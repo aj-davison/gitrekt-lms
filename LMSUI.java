@@ -8,7 +8,7 @@ public class LMSUI {
     private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
-    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "View Profile", "Billing Page", "Log Out"};
+    private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "Edit Course", "View Profile", "Billing Page", "Log Out"};
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
