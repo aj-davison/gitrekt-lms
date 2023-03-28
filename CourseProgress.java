@@ -24,7 +24,7 @@ public class CourseProgress {
     *@return a string representation of this CourseProgress object
     */
     public String toString() {
-        return "CourseProgress";
+        return this.course.toString();
     }
 
     /**
