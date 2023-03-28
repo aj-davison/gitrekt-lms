@@ -30,8 +30,8 @@ public abstract class User {
         setCourseProgress(courseProgresses);
     }
 
-    public void addCourseProgress(Course course, ArrayList<Double> grades) {
-        this.courseProgresses.add(new CourseProgress(course, grades));
+    public void addCourseProgress(Course course) {
+        this.courseProgresses.add(new CourseProgress(course));
     }
 
     public void setCourseProgress(ArrayList<CourseProgress> courseProgresses) {
@@ -95,8 +95,7 @@ public abstract class User {
             return this.password;
     }
     public void enrollCourse(Course course){  
-        //CourseProgress courseProgress = new CourseProgress(course, null);
-        this.addCourseProgress(course, null);
+        this.addCourseProgress(course);
     }
 
     public String getEmail() {
