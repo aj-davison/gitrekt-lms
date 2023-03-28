@@ -66,13 +66,26 @@ public class Topic {
     public boolean hasNext(){
         return subtopics.get(position) != null && position < subtopics.size();
     }
-
+    /* 
     public String toString(){
         String result = "";
         result += this.name+"\n";
         result += this.nextSubtopic().toString();
         position++;
         return result;
+    } */
+
+    public String displaySubtopics(){
+        String result = "";
+        int position = 1;
+        for(Subtopic subtopic : this.subtopics){
+            result += Integer.toString(position)+". "+subtopic.toString()+"\n";
+            position++;
+        }
+        return result;
+    }
+    public String displayQuiz(){
+        return this.quiz.toString();
     }
 
 
