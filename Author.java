@@ -45,6 +45,10 @@ public class Author extends Student{
         this.createdCourses = createdCourses;
     }
 
+    public void addCreatedCourses(Course course) {
+        this.createdCourses.add(course);
+    }
+
     /**
      * Returns a String representation of the Author object.
      * @return A String representing the Author object.
