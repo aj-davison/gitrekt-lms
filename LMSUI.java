@@ -261,7 +261,7 @@ public class LMSUI {
 
                             switch (userCommand) {
                                 case(0):
-                                    displayQuiz();
+                                    displayQuiz(currentTopic);
                                     break;
                                 case(1):
                                     quit = true;
@@ -280,7 +280,35 @@ public class LMSUI {
         }
     }
 
-    private void takeQuiz() {
+    private void displayQuiz(Topic currentTopic) {
+
+        System.out.println("\n-----Quiz-----");
+        Quiz quiz = currentTopic.getQuiz();
+
+        for (int i = 0; i < quiz.getQuizSize(); i++) {
+
+            Question question = quiz.getQuestionAt(i);
+            System.out.println(question.toString());
+
+            int userAnswer;
+
+            while (true) {
+
+                userAnswer = getUserInt("Which answer is correct? ") -1;
+                if (userAnswer < 0 || userAnswer >= question.getAns().length) {
+                    System.out.println("Invalid");
+                    continue;
+                }
+                break;
+            }
+
+        if (question.isCorrect(userAnswer)) {
+
+            
+        }
+
+
+        }
 
 
     }
