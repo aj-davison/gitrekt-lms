@@ -59,6 +59,7 @@ public class Topic {
             return null;
         }
         Subtopic subtopic = subtopics.get(position);
+        position++;
         return subtopic;
     }
 

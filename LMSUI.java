@@ -20,6 +20,9 @@ public class LMSUI {
     private String[] billingMenu = {"Exit to Home"};
     private String[] subtopicMenu = {"Next", "Previous", "Quit"};
     private String[] difficultyMenu = {"Beginner", "Intermediate", "Advanced"};
+    private String[] endOfSubTopsMenu = {"Previous", "Quit"};
+    private String[] firstSubTopsMenu = {"Next", "Quit"};
+    private String[] oneSubTopMenu = {"Quit"};
     private Scanner scanner;
     private LMS lms;
 
@@ -261,7 +264,7 @@ public class LMSUI {
 
         for (int i = numCompleteTopics; i < numTopics; i++) {
 
-            Topic currentTopic = course.getTopics().get(i+1);
+            Topic currentTopic = course.getTopics().get(i);
             printTopic(currentTopic);
 
             boolean quit = false;
@@ -335,38 +338,100 @@ public class LMSUI {
 
         boolean quit = false;
 
-        while (!quit) {
+        while (true) {
         
             for (int i = 0; i < topic.getSubTop().size(); i++) {
 
                 System.out.println(topic.getSubTop().get(i).toString());
-
-                while (true) {
-                    displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
-
-                    int userCommand;
-
-                    if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
-                    
-                    switch(userCommand) {
-                        case(0):
-                            break;
-                        case(1):
-                            i -= 2;
-                            break;
-                        case(2):
-                            quit = true;
-                            break;
-                    }
-                    if (quit == true) break;
-                }
                 
+                
+                if (topic.getSubTop().size() == 1) {
+                    while (true) {
+                        displayMenu(oneSubTopMenu, "SUBTOPIC OPTIONS");
+
+                        int userCommand;
+
+                        if ((userCommand = menuCommandValidation(oneSubTopMenu)) == -1) continue;
+                        
+                        switch(userCommand) {
+                            case(0):
+                                break;
+                            case(1):
+                                i -= 2;
+                                break;
+                            case(2):
+                                quit = true;
+                                break;
+                        }
+                        if (quit == true) return;
+                        break;
+                    }
                 }
-            
-        }
+                else if (i != topic.getSubTop().size() - 1 && i != 0) {
+                    while (true) {
+                        displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
 
+                        int userCommand;
 
+                        if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
+                        
+                        switch(userCommand) {
+                            case(0):
+                                break;
+                            case(1):
+                                i -= 2;
+                                break;
+                            case(2):
+                                quit = true;
+                                break;
+                        }
+                        if (quit == true) return;
+                        break;
+                    }
+                }
+                else if (topic.getSubTop().size() != 1 && i==0) {
+                    while (true) {
+                        displayMenu(firstSubTopsMenu, "SUBTOPIC OPTIONS");
+
+                        int userCommand;
+
+                        if ((userCommand = menuCommandValidation(firstSubTopsMenu)) == -1) continue;
+                        
+                        switch(userCommand) {
+                            case(0):
+                                break;
+                            case(1):
+                                quit = true;
+                                break;
+                        }
+                        if (quit == true) return;
+                        break;
+                    }
+                }
+                else {
+                    while (true) {
+                        displayMenu(endOfSubTopsMenu, "SUBTOPIC OPTIONS");
+
+                        int userCommand;
+
+                        if ((userCommand = menuCommandValidation(endOfSubTopsMenu)) == -1) continue;
+                        
+                        switch(userCommand) {
+                            case(0):
+                                i -= 2;
+                                break;
+                            case(1):
+                                quit = true;
+                                break;
+                        }
+                        if (quit == true) return;
+                        break;
+                    }
+                }
+            }     
+        } 
     }
+
 
     private void searchCourses() {
         System.out.println("\n-----Search Courses-----");
@@ -602,8 +667,8 @@ public class LMSUI {
             String commentInfo = getUserString("Comment");
             Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
 
+        }
     }
-}
 
 
     public void displayComments(ArrayList<Comment> comments){
