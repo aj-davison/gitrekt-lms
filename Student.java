@@ -1,12 +1,4 @@
-import java.util.UUID;
-
-import javax.lang.model.util.ElementScanner14;
-
-import java.util.ArrayList;
-
-public class Student extends User{
-
-    private String type = "Student";
+public class Student {
     
     public Student(String firstName, String lastName, String email, String username, String password){
         super(firstName, lastName, email, username, password);

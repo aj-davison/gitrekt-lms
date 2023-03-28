@@ -541,9 +541,39 @@ public class LMSUI {
         addComment(topic.getComments());
     }
     public void addComment(ArrayList<Comment> comments){
+        
+        int commentChoice;
+        switch(userCommand) {
+            case(0):
+                addComment(comments);
+                break;
+            case(1):
+                if (comments == null) {
+                    System.out.println("No comments to comment on");
+                    break; 
+                } 
+                while (true) {
+
+                    commentChoice = getUserInt("Which comment do you want to view replies? ") - 1;
+                    if (commentChoice < 0 || commentChoice >= comments.size()) {
+                        System.out.println("Invalid");
+                        continue;
+                    }
+                    break;
+                }
+                displayComment(comments.get(commentChoice).getReplies());
+                break;
+                
+        }
+    
+    
+    }
+        
         while (true) {
             String commentInfo = getUserString("Comment");
-            Comment comment = new Comment(commentInfo, lms.currentUser.getUsername());
+            Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
+
+            
 
 
         }
@@ -561,7 +591,7 @@ public class LMSUI {
     }
 
 
-    public String displayComment(ArrayList<Comment> comments){
+    public void displayComment(ArrayList<Comment> comments){
         String result = "";
         if(comments == null)
             result = "No comments on this thread.";
@@ -575,39 +605,26 @@ public class LMSUI {
             }
 
         }
+        System.out.println(result);
+    }
+
         
+
+        
+            
+
+        
+    public int commentInteraction() {
+        int userCommand;
         while (true) {
             displayMenu(commentMenu, "COMMENT OPTIONS");
-            int userCommand;
             if ((userCommand = menuCommandValidation(commentMenu)) == -1) continue;
-            int commentChoice;
-            switch(userCommand) {
-                case(0):
-                    addComment(comments);
-                    break;
-                case(1):
-                    if (comments == null) {
-                        System.out.println("No comments to comment on");
-                        break; 
-                    } 
-                    while (true) {
-
-                        commentChoice = getUserInt("Which comment do you want to comment on? ") - 1;
-                        if (commentChoice < 0 || commentChoice >= comments.size()) {
-                            System.out.println("Invalid");
-                            continue;
-                        }
-                        break;
-                    }
-                    displayComment(comments.get(commentChoice).getReplies());
-                    break;
-                    
-            }
-        
-        
-            return result;
         }
+        
+        return userCommand;
     }
+        
+
 
     public void printToFileTopic(Topic topic){
         lms.printToFileTopic(topic);
