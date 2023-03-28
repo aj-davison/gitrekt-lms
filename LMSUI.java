@@ -19,6 +19,7 @@ public class LMSUI {
     private String[] profileMenu = {"Exit to Home"};
     private String[] billingMenu = {"Exit to Home"};
     private String[] subtopicMenu = {"Next", "Previous", "Quit"};
+    private String[] difficultyMenu = {"Beginner", "Intermediate", "Advanced"};
     private Scanner scanner;
     private LMS lms;
 
@@ -220,8 +221,8 @@ public class LMSUI {
             System.out.println("\n-----Displaying Current Courses-----");
 
             ArrayList<Course> currentCourses = lms.getCurrentCourses();
-            System.out.println(lms.getCurrentCourses());
-            displayMenu(continueCourseMenu, "OPTIONS");
+            System.out.println(lms.currentCoursesToString());
+            displayMenu(continueCourseMenu, "CURRENT COURSE OPTIONS");
 
             int userCommand;
             if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
@@ -229,15 +230,18 @@ public class LMSUI {
             if (userCommand == 0) {
 
                 while (true) {
-
-                    String courseChoice = getUserString("Course Choice Name");
-                    CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
-                    if (courseProgess == null) {
-                        System.out.println
-                    }
-                    Course course = lms.getCourseByTitle(courseChoice);
-
+                    
+                    
+                    userCommand = getUserInt("Which course would you like to select? ") -1;
+                    if (userCommand < 0 || userCommand >= currentCourses.size()) continue;
+                    break;
                 }
+
+                String courseChoice = currentCourses.get(userCommand).getTitle();
+                
+                Course course = lms.getCourseByTitle(courseChoice);
+                CourseProgress courseProgress = lms.getCourseProgress(courseChoice);
+
                 
 
                 displayCourseDescription(course);
@@ -281,37 +285,39 @@ public class LMSUI {
 
     }
 
-    private boolean printTopic(Topic topic) {
+    private void printTopic(Topic topic) {
 
         boolean quit = false;
+
+        while (!quit) {
         
-        for (int i = 0; i < topic.getSubTop().size(); i++) {
+            for (int i = 0; i < topic.getSubTop().size(); i++) {
 
-            System.out.println(topic.getSubTop().get(i).toString());
+                System.out.println(topic.getSubTop().get(i).toString());
 
-            while (true) {
-                displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
+                while (true) {
+                    displayMenu(subtopicMenu, "SUBTOPIC OPTIONS");
 
-                int userCommand;
+                    int userCommand;
 
-                if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
+                    if ((userCommand = menuCommandValidation(subtopicMenu)) == -1) continue;
+                    
+                    switch(userCommand) {
+                        case(0):
+                            break;
+                        case(1):
+                            i -= 2;
+                            break;
+                        case(2):
+                            quit = true;
+                            break;
+                    }
+                    if (quit == true) break;
+                }
                 
-                switch(userCommand) {
-                    case(0):
-                        break;
-                    case(1):
-                        i -= 2;
-                        break;
-                    case(2):
-                        quit = true;
-                        break;
                 }
             
-            }
-            
         }
-
-        return quit;
 
 
     }
@@ -400,11 +406,9 @@ public class LMSUI {
 
             }
 
-            int questionNum = getUserInt("How many questions will the quiz for this topic have?");
-
             ArrayList questions = new ArrayList<Question>();
 
-            for (int k = 0; k < topicNum; k++) {
+            for (int k = 0; k < 4; k++) {
 
                 String questionContent = getUserString("Question # " + (k + 1));
     
@@ -498,9 +502,10 @@ public class LMSUI {
         return result;
     }
 
+
     public static void main(String[] args) {
         LMSUI lmsInterface = new LMSUI();
-        lmsInterface.run();
+        lmsInterface.run();1
     
     }
 
