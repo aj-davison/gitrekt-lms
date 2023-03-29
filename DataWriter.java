@@ -84,7 +84,7 @@ public class DataWriter extends DataConstants {
         JSONArray jsonReplies = new JSONArray();
         if(comment.getReplies() != null)
         {
-            for(int i=0; 0<comment.getReplies().size(); i++){
+            for(int i=0; i<comment.getReplies().size(); i++){
                 //jsonReplies.add(comment.getReplies().get(i));
                 jsonCommentsComments.add(getAllCommets(comment.getReplies()));
                 //jsonReplies.add(commentJSON(comment.getReplies().get(i)));
