@@ -27,7 +27,7 @@ public class LMSUI {
     private String[] difficultyMenu = {"Beginner", "Intermediate", "Advanced"};
     private String[] endOfSubTopsMenu = {"Previous", "Quit"};
     private String[] firstSubTopsMenu = {"Next", "Quit"};
-    private String[] oneSubTopMenu = {"Quit"};
+    private String[] oneSubTopMenu = {"Continue to Quiz and Comments"}; //I Chnged
     private Scanner scanner;
     private LMS lms;
 
