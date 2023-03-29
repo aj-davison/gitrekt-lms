@@ -42,7 +42,7 @@ public class Comment {
     public String toString(){
         String result = "";
         result += this.username+":\n";
-        result += "     "+mainComment;
+        result += "     '"+mainComment+"'";
         return result;
     }
 
