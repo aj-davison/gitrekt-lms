@@ -60,10 +60,24 @@ public abstract class User {
         return null;
     }
 
+    public void writeCertificate(Course course){
+        CourseProgress progress = getCourseProgress(course);
+        Double grade = progress.getGrade();
+        LMSFileWriter.writeCourseCertificate(course.getTitle(), grade, firstName, lastName);
+    }
+
     public CourseProgress getCourseProgress(String title){
         for(CourseProgress course : this.courseProgresses){
             if(course.getCourse().getTitle().equalsIgnoreCase(title)){
                 return course;
+            }
+        }
+        return null;
+    }
+    public CourseProgress getCourseProgress(Course course){
+        for(CourseProgress progress : this.courseProgresses){
+            if(progress.getCourse().equals(course)){
+                return progress;
             }
         }
         return null;
