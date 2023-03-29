@@ -141,7 +141,7 @@ public class LMS {
         return subtopic;
     }
     public void printToFileTopic(Topic topic) {
-        LMSFileWriter.topicToFile(topic);
+        topic.printToFileTopic();;
     }
 
     public User getCurrentUser() {
