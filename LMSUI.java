@@ -713,7 +713,7 @@ public class LMSUI {
             for(Comment comment : comments){
                 result += Integer.toString(position)+". "+comment.toString()+"\n";
                 if (comment.getReplies() != null) 
-                    result += comment.getReplies().size() + " replies" + "\n";
+                    result += "     "+comment.getReplies().size() + " replies" + "\n\n";
                 position++;
             }
 
