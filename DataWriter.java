@@ -62,8 +62,8 @@ public class DataWriter extends DataConstants {
         return topicsDetails;
     }
 
-    private static void getTopicComments(Topic topic) {
-        getAllCommets(topic.getComments());
+    private static JSONArray getTopicComments(Topic topic) {
+       return getAllCommets(topic.getComments());
     }
 
     public static JSONArray getAllCommets(ArrayList<Comment> comments){
