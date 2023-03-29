@@ -19,6 +19,14 @@ public class CourseProgress {
         this.grades = new ArrayList<>();
     }
 
+    public boolean isCompleted(Course course){
+        boolean result = false;
+        if(course.getTopics().size() == this.grades.size()){
+            result = true;
+        }
+        return result;
+    }
+
     /**
     *Returns a string representation of this CourseProgress object
     *@return a string representation of this CourseProgress object
