@@ -365,6 +365,8 @@ public class LMSUI {
                         switch(userCommand) {
                             case(0):
                                 quit = true;
+                                System.out.print("\033[H\033[2J");  //these are my chenges to clear the consle when you go to the quiz if it works we will move it to allother metheds that need it 
+                                System.out.flush();  //these are my chenges to clear the consle when you go to the quiz if it works we will move it to allother metheds that need it
                                 break;
                         }
                         if (quit == true) return;
@@ -672,6 +674,8 @@ public class LMSUI {
     }
 
     private void viewBilling() {
+        System.out.print("\033[H\033[2J");  //clear the consle 
+        System.out.flush();  //clear the consle
         System.out.println("\n-----Billing-----");
         System.out.println("Free access to learning resources will be available until the end of 2025");
         
@@ -681,6 +685,8 @@ public class LMSUI {
 
             
             if ((userCommand = menuCommandValidation(billingMenu)) == -1) continue;
+            System.out.print("\033[H\033[2J");  //clear the consle 
+            System.out.flush();  //clear the consle
             break;
         }
     }
