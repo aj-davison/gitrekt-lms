@@ -14,7 +14,9 @@ public class LMSUI {
     private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
-    private String[] createdCoursesMenu = {"Exit to Home"};
+    private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
+    private String[] createdTopicMenu = {"Choose Topic", "Exit to Home"};
+    private String[] editTopicMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
     private String[] commentMenu = {"Comment", "View Comment Replies", "Next Topic", "Exit to Home"};
     private String[] basicMenu = {"Exit to Home"};
