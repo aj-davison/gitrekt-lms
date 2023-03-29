@@ -82,6 +82,10 @@ public class LMS {
         return currentUser.getCourseProgress(course.getTitle()).isCompleted(course);
     }
 
+    public String displayTopicGrades(Course course){
+        return currentUser.getCourseProgress(course.getTitle()).displayTopicGrades();
+    }
+
     public void addSubtopic(Topic topic, Subtopic subtopic){
         topic.addSubtopic(subtopic);
     }
