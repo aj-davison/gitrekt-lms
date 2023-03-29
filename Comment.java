@@ -40,7 +40,10 @@ public class Comment {
      * @return a string representation of the Comment object
      */
     public String toString(){
-        return mainComment;
+        String result = "";
+        result += this.username+"\n";
+        result += mainComment;
+        return result;
     }
 
     /**
