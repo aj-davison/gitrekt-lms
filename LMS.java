@@ -144,6 +144,10 @@ public class LMS {
         topic.printToFileTopic();;
     }
 
+    public void writeCertificate(Course course){
+        currentUser.writeCertificate(course);
+    }
+
     public User getCurrentUser() {
         return currentUser;
     }
