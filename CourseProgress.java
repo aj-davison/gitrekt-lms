@@ -65,6 +65,17 @@ public class CourseProgress {
         return this.grades;
     }
 
+    public String displayTopicGrades(){
+        String result = "";
+        int position = 1;
+        for(Double grade : this.grades){
+            Double percent = grade*100;
+            result += Integer.toString(position)+". "+Double.toString(percent)+"%\n";
+            position++;
+        }
+        return result;
+    }
+
     /**
     *Returns the UUID associated with this course progress.
     *@return the UUID associated with this course progress.
