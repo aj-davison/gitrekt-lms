@@ -9,9 +9,9 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "Edit Course", "View Profile", "Billing Page", "Log Out"};
-    private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
-    private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
-    private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
+    private String[] continueCourseMenu = {"Continue Course", "View Grades", "View Topics", "Exit to Home"};
+    private String[] completedCourseMenu = {"View Grades", "Print Certificate", "View Topics","Exit to Home"};
+    private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
@@ -27,7 +27,7 @@ public class LMSUI {
     private String[] difficultyMenu = {"Beginner", "Intermediate", "Advanced"};
     private String[] endOfSubTopsMenu = {"Previous", "Quit"};
     private String[] firstSubTopsMenu = {"Next", "Quit"};
-    private String[] oneSubTopMenu = {"Quit"};
+    private String[] oneSubTopMenu = {"Continue to Quiz and Comments"}; 
     private Scanner scanner;
     private LMS lms;
 
@@ -58,15 +58,19 @@ public class LMSUI {
             switch(userCommand) {
                 case(0):
                     user = loginU();
+                    clearScreen();
                     break;
                 case(1):
                     user = loginE();
+                    clearScreen();
                     break;
                 case(2):
                     user = createAccount();
+                    clearScreen();
                     break;
                 case(3):
                     quit = true;
+                    clearScreen();
                     break;
             }
             
@@ -87,24 +91,31 @@ public class LMSUI {
                 switch (userCommand) {
                     case(0):
                         displayCurrentCourses();
+                        clearScreen();
                         break;
                     case(1):
                         searchCourses();
+                        clearScreen();
                         break;
                     case(2):
                         displayAllCourses();
+                        clearScreen();
                         break;
                     case(3):
                         createCourse();
+                        clearScreen();
                         break;
                     case(4):
                         editCourse();
+                        clearScreen();
                         break;
                     case(5):
                         viewProfile(user);
+                        clearScreen();
                         break;
                     case(6):
                         viewBilling();
+                        clearScreen();
                         break;
                     case(7):
                         logout = true;
@@ -252,7 +263,7 @@ public class LMSUI {
                     String courseChoice = currentCourses.get(userCommand).getTitle();
                     Course course = lms.getCourseByTitle(courseChoice);
                     displayCourseDescription(course);
-                    break;
+                    return;
                 case(1):
                     quit = true;
                     break;
@@ -365,6 +376,8 @@ public class LMSUI {
                         switch(userCommand) {
                             case(0):
                                 quit = true;
+                                System.out.print("\033[H\033[2J");  //these are my chenges to clear the consle when you go to the quiz if it works we will move it to allother metheds that need it 
+                                System.out.flush();  //these are my chenges to clear the consle when you go to the quiz if it works we will move it to allother metheds that need it
                                 break;
                         }
                         if (quit == true) return;
@@ -462,7 +475,7 @@ public class LMSUI {
         displayCourseDescription(results.get(choice-1));
     }
 
-    
+    //sup
 
     private void displayCourseDescription(Course course){
         System.out.println(course.toString());
@@ -481,9 +494,12 @@ public class LMSUI {
                             break;
                         case(1):
                             printCertificate(course);
+                            return;
+                        case(3):
+                            printTopicToFile();
                             break;
                         case(2):
-                            quit = true;
+                        quit = true;
                             break;
                     }
                     if (quit == true) break;
@@ -541,6 +557,7 @@ public class LMSUI {
     }
 
     private void displayAllCourses() {
+        clearScreen();
         System.out.println("\n-----Displaying All Courses-----");
         
         ArrayList<Course> allCourses = lms.getCourseList();
@@ -563,7 +580,7 @@ public class LMSUI {
                     String courseChoice = allCourses.get(userCommand).getTitle();
                     Course course = lms.getCourseByTitle(courseChoice);
                     displayCourseDescription(course);
-                    break;
+                    return;
                 case(1):
                     return;
             }
@@ -573,7 +590,7 @@ public class LMSUI {
     }
 
     private void createCourse() {
-        
+        clearScreen();
         System.out.println("\n-----Creating Course-----");
 
         String courseName = getUserString("Course Name");
@@ -651,11 +668,13 @@ public class LMSUI {
     }
 
     public void editCourse() {
+        clearScreen();
+        //toDo
 
     }
 
     private void viewProfile(User user) {
-        
+        clearScreen();
         System.out.println("\n-----Profile-----");
         System.out.println(user.toString());
 
@@ -672,6 +691,7 @@ public class LMSUI {
     }
 
     private void viewBilling() {
+        clearScreen();
         System.out.println("\n-----Billing-----");
         System.out.println("Free access to learning resources will be available until the end of 2025");
         
@@ -686,6 +706,7 @@ public class LMSUI {
     }
 
     private void logOut() {
+        clearScreen();
         System.out.println("See ya!");
         lms.logout();
     }
@@ -693,6 +714,7 @@ public class LMSUI {
     public void commentTopic(Topic topic){
         addComment(topic.getComments());
     }
+
     public void addComment(ArrayList<Comment> comments){
         
             String commentInfo = getUserString("Comment");
@@ -703,8 +725,8 @@ public class LMSUI {
         
     }
 
-
     public void displayComments(ArrayList<Comment> comments){
+        clearScreen();
         String result = "";
         if(comments == null)
             result = "No comments on this thread.";
@@ -713,7 +735,7 @@ public class LMSUI {
             for(Comment comment : comments){
                 result += Integer.toString(position)+". "+comment.toString()+"\n";
                 if (comment.getReplies() != null) 
-                    result += comment.getReplies().size() + " replies" + "\n";
+                    result += "     "+comment.getReplies().size() + " replies" + "\n\n";
                 position++;
             }
 
@@ -730,7 +752,7 @@ public class LMSUI {
 
         
     public void commentInteraction(ArrayList<Comment> comments) {
-        
+        clearScreen();
         int userCommand;
         while (true) {
             displayMenu(commentMenu, "COMMENT OPTIONS");
@@ -760,22 +782,44 @@ public class LMSUI {
                 displayComments(comments.get(commentChoice).getReplies());
                 break;
             case(2):
-
+                
                 
         }
  
     }
 
+    public void clearScreen(){
+        System.out.print("\033[H\033[2J");  //clear the consle 
+        System.out.flush();  //clear the consle
+    }
+
     public void viewGrades(Course course) {
+        clearScreen();
 
     }
+
     public void printCertificate(Course course) {
+
+        System.out.println("\n-----Printing Certificate-----");
+        lms.printCertificate(course);
+        System.out.println("\n-----Success! Redirecting Home-----");
+
+
 
     }
         
+    public void viewTopics(Course course) {
+        ArrayList<Topic> topics = lms.getTopics(course);
+        System.out.println(course.displayTopics());
 
 
-    public void printToFileTopic(Topic topic){
+
+
+    }
+
+
+    public void printTopicToFile(Topic topic){
+        clearScreen();
         lms.printToFileTopic(topic);
     }
 

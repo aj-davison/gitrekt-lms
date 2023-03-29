@@ -94,6 +94,9 @@ public class Topic {
         return result;
     }
 
+    public void printToFileTopic() {
+        LMSFileWriter.topicToFile(this);
+    }
 
     public void addComment(Comment comment){
         comments.add(comment);

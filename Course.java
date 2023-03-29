@@ -174,7 +174,8 @@ public class Course {
         if(numMatchingTopics == topics.size()){
             topicCheck = true;
         }
-        if(topicCheck && 
+        if(course != null && 
+        topicCheck && 
         this.title.equals(course.getTitle()) &&
         this.description.equals(course.getDescription()) &&
         this.difficulty.equals(course.getEnumDifficulty()) &&

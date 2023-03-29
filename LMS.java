@@ -141,7 +141,11 @@ public class LMS {
         return subtopic;
     }
     public void printToFileTopic(Topic topic) {
-        LMSFileWriter.topicToFile(topic);
+        topic.printToFileTopic();;
+    }
+
+    public void writeCertificate(Course course){
+        currentUser.writeCertificate(course);
     }
 
     public User getCurrentUser() {
