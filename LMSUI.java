@@ -577,7 +577,7 @@ public class LMSUI {
 
             for (int j = 0; j < subtopicNum; j++) {
 
-                String subtopicName = getUserString("Subtopic Name #" + (i + 1));
+                String subtopicName = getUserString("Subtopic Name #" + (j + 1));
                 String subtopicInfo = getUserString("Subtopic Information");
 
                 Subtopic subtopic = new Subtopic(subtopicName, subtopicInfo);
@@ -585,10 +585,12 @@ public class LMSUI {
                 subtopics.add(subtopic);
 
             }
+            
+            int questionNum = getUserInt("How many questions will this quiz have? ");
 
             ArrayList<Question> questions = new ArrayList<Question>();
 
-            for (int k = 0; k < 4; k++) {
+            for (int k = 0; k < questionNum; k++) {
 
                 String questionContent = getUserString("Question #" + (k + 1));
     
