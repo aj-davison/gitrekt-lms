@@ -70,6 +70,13 @@ public class Author extends Student{
         return result;
     }
 
+/**
+    Creates a new course object with the specified topics, title, description, and difficulty, and adds it to the course list.
+    @param topics a list of Topic objects that will be covered in the course
+    @param title the title of the new course
+    @param description brief description of the new course
+    @param difficulty integer representing the difficulty level of the new course: 0 for beginner, 1 for intermediate, and 2 for advanced
+    */
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         Difficulty diff;
         if(difficulty == 0){
@@ -78,24 +85,32 @@ public class Author extends Student{
             diff = Difficulty.INTERMEDIATE;
         } else {
             diff = Difficulty.ADVANCED;
-        } 
+        }
         CourseList courseList = CourseList.getInstanceCourseList();
         Course course = new Course(title, description, diff, topics, id);
         courseList.addCourse(course);
         createdCourses.add(course);
         DataWriter.saveCourses();
-    }
-    public String displayCreatedCourses(){
-        String result = "";
-        int position = 1;
-        for(Course course : createdCourses){
-            result += Integer.toString(position)+". "+course.getTitle()+"\n";
         }
-        return result;
-    }
-
-    public ArrayList<Course> getCreatedCourses(){
-        return this.createdCourses;
-    }
         
+        /**
+        Returns a string representation of the titles of all created courses.
+        @return a string containing the title of each created course, along with its position in the list
+        */
+        public String displayCreatedCourses(){
+            String result = "";
+            int position = 1;
+            for(Course course : createdCourses){
+                result += Integer.toString(position)+". "+course.getTitle()+"\n";
+            }
+            return result;
+        }
+
+        /**
+        Returns a list of all courses created by the user.
+        @return an ArrayList containing all courses created by the user
+        */
+        public ArrayList<Course> getCreatedCourses(){
+            return this.createdCourses;
+        }
 }
