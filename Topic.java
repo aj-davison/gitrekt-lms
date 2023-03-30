@@ -29,7 +29,8 @@ public class Topic {
         int position = 0;
         int numMatchingSubtopics = 0;
         for(Subtopic subtopic : subtopics){
-            if(subtopic.equals(topic.getSubTop().get(position))){
+            Subtopic correctSubTop = topic.getSubTop().get(position);
+            if(subtopic.toString().equals(correctSubTop.toString())){
                 numMatchingSubtopics++;
             }
             position++;
@@ -37,7 +38,8 @@ public class Topic {
         if(numMatchingSubtopics == subtopics.size()){
             subtopicCheck = true;
         }
-        if(subtopicCheck &&
+        if(topic != null &&
+        subtopicCheck &&
         this.name.equals(topic.getName()) &&
         this.quiz.equals(topic.getQuiz())){
             result = true;

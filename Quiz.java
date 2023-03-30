@@ -21,7 +21,7 @@ public class Quiz {
             }
             position++;
         }
-        if(numMatchingQuestions == questions.size()){
+        if(quiz != null && numMatchingQuestions == questions.size()){
             result = true;
         }
         return result;
@@ -58,7 +58,7 @@ public class Quiz {
             score += question.score();
         }
         double grade;
-        grade = score/questions.size();
+        grade = score/((double)questions.size());
         return grade;
     }
 
