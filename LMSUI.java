@@ -13,22 +13,22 @@ public class LMSUI {
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "View Topics", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "View Topics","Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
-    private String[] viewTopicsMenu = {"Print a Topic to File", "Exit to Home"};
+    private String[] viewTopicsMenu = {"Print a Topic to File", "Exit"};
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
     private String[] createdTopicMenu = {"Choose Topic", "Exit to Home"};
     private String[] editTopicMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
     private String[] commentMenu = {"Comment", "View Comment Replies", "Next Topic", "Exit to Home"};
-    private String[] basicMenu = {"Exit to Home"};
+    private String[] basicMenu = {"Exit"};
     private String[] quizMenu = {"Next Topic", "Display Comments", "Print out Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
     private String[] billingMenu = {"Exit to Home"};
-    private String[] subtopicMenu = {"Next", "Previous", "Quit"};
+    private String[] subtopicMenu = {"Next", "Previous", "Back to Topic"};
     private String[] difficultyMenu = {"Beginner", "Intermediate", "Advanced"};
-    private String[] endOfSubTopsMenu = {"Previous", "Quit"};
-    private String[] firstSubTopsMenu = {"Next", "Quit"};
-    private String[] oneSubTopMenu = {"Continue to Quiz and Comments"}; 
+    private String[] endOfSubTopsMenu = {"Previous", "Back to Topic"};
+    private String[] firstSubTopsMenu = {"Next", "Back to Topic"};
+    private String[] oneSubTopMenu = {"Back to Topic"}; 
     private Scanner scanner;
     private LMS lms;
 
@@ -286,13 +286,11 @@ public class LMSUI {
             printTopic(currentTopic);
 
             int userCommand;
-            boolean quit = false;
+            boolean continueCourse = false;
             while (true) {
                 
                 displayMenu(topicMenu, "TOPIC OPTIONS");
                 if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
-                break;
-            }
 
             switch (userCommand) {
                 case(0):
@@ -302,10 +300,18 @@ public class LMSUI {
                     displayComments(currentTopic.getComments());
                     break;
                 case(2):
+                    if (i == numTopics - 1) {
+                        System.out.println("No more topics!");
+                        break;
+                    }
+                    continueCourse = true;
                     break;
                 case(3):
                     return;
+                
             }
+            if (continueCourse == true) break;
+        }
 
         }
         //break;
@@ -348,8 +354,9 @@ public class LMSUI {
 
         }
 
-        System.out.println("Your Grade: " + quiz.getGrade());
-        lms.updateGrades(currentCourse, quiz.getGrade());
+        double grade = quiz.getGrade();
+        System.out.println("Your Grade: " + grade);
+        lms.updateGrades(currentCourse, grade);
 
 
     }
@@ -362,6 +369,8 @@ public class LMSUI {
         
             for (int i = 0; i < topic.getSubTop().size(); i++) {
 
+                clearScreen();
+                
                 System.out.println(topic.getSubTop().get(i).toString());
                 
                 
@@ -482,17 +491,16 @@ public class LMSUI {
     //sup
 
     private void displayCourseDescription(Course course){
-        System.out.println(course.toString());
-        int continueValue;
+        clearScreen();
         if(lms.isEnrolled(course)){
-            continueValue = 0;
             if (lms.isCompleted(course)) {
                 while(true){
+                    clearScreen();
+                    System.out.println(course.toString());
                     displayMenu(completedCourseMenu, "COURSE OPTIONS");
                     int userCommand;
                     if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
                     clearScreen();
-                    boolean quit = false;
                     switch(userCommand){
                         case(0):
                             viewGrades(course);
@@ -500,24 +508,22 @@ public class LMSUI {
                         case(1):
                             printCertificate(course);
                             return;
-                        case(3):
+                        case(2):
                             viewTopics(course);
                             break;
-                        case(2):
-                        quit = true;
-                            break;
+                        case(3):
+                            return;
                     }
-                    if (quit == true) break;
                 }
-                return;
             }
             else {
                 while(true){
+                    clearScreen();
+                    System.out.println(course.toString());
                     displayMenu(continueCourseMenu, "COURSE OPTIONS");
                     int userCommand;
                     if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
                     clearScreen();
-                    boolean quit = false;
                     switch(userCommand){
                         case(0):
                             continueCourse(course, lms.getCourseProgress(course.getTitle()));
@@ -529,34 +535,31 @@ public class LMSUI {
                             viewTopics(course);
                             break;
                         case(3):
-                            quit = true;
-                            break;
+                            return;
                     }
-                    if (quit == true) break;
                 }
-                return;
             }
         }
         else {
             while(true){
+                clearScreen();
+                System.out.println(course.toString());
                 displayMenu(newCourseMenu, "COURSE OPTIONS");
                 int userCommand;
                 if ((userCommand = menuCommandValidation(newCourseMenu)) == -1) continue;
                 clearScreen();
-                boolean quit = false;
                 switch(userCommand){
                     case(0):
                         enrollCourse(course);
                         break;
                     case(1):
                         viewTopics(course);
-                    case(2):
-                        quit = true;
                         break;
+                    case(2):
+                        return;
                 }
-                if (quit == true) break;
+
             }
-            return;
         }
     }
 
@@ -876,8 +879,15 @@ public class LMSUI {
 
     public void viewGrades(Course course) {
 
+        clearScreen();
         System.out.println("\n-----Displaying Course Grades-----");
         System.out.println(lms.displayTopicGrades(course));
+        int userCommand;
+        while (true) {
+            displayMenu(basicMenu, "OPTIONS");
+            if ((userCommand = menuCommandValidation(basicMenu)) == -1) continue;
+            break;
+        }
 
 
     }
