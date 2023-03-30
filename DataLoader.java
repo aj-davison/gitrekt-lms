@@ -7,8 +7,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * A class that loads data from JSON
+ * @author Andrew Davison
+ */
 public class DataLoader extends DataConstants {
 
+    /**
+     * Loads the list of users from users.JSON
+     * @return An arrayList holding stored users
+     */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
 
@@ -42,6 +50,10 @@ public class DataLoader extends DataConstants {
         return users;
     }
 
+    /**
+     * Loads the list of courses from courses.JSON
+     * @return An ArrayList holding stored courses
+     */
     public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<User> users = UserList.getInstanceUserList().getUsers();
@@ -190,28 +202,13 @@ public class DataLoader extends DataConstants {
         }
         return courses;
     }
-    /*
-    *  public static void jsonArrayToSet(JSONArray jAry, Set<String> result, String targetKey, String subArrayKey, boolean includeNode){
-     * for (int i = 0; i < jAry.length(); i++) {
-            JSONObject jObj = jAry.getJSONObject(i);
-            boolean hasSubArray = false;
-            JSONArray subArray = null;
-            if(jObj.has(subArrayKey)){
-                Object possibleSubArray = jObj.get(subArrayKey);
-                if(possibleSubArray instanceof JSONArray){
-                    hasSubArray = true;
-                    subArray = (JSONArray) possibleSubArray;
-                }
-            }
-            if(hasSubArray){
-                if(includeNode){
-                    result.add(jObj.getString(targetKey));
-                }
-                jsonArrayToSet(subArray, result, targetKey, subArrayKey, includeNode);
-            } else {
-                result.add(jObj.getString(targetKey));
-            }
-        }
+    
+    /**
+     * Recursively gets the replies tree from comments
+     * @param repliesArray The JSON array of replies
+     * @param replies The ArrayList of replies
+     * @param includeNode A boolean that either includes the node or not
+     * @param users The ArrayList of users stored in JSON
      */
     public static void repliesJsonToList(JSONArray repliesArray, ArrayList<Comment> replies, boolean includeNode, ArrayList<User> users) {
         ArrayList<Comment> subComments = new ArrayList<>();
@@ -233,7 +230,7 @@ public class DataLoader extends DataConstants {
                 Object possibleSubArray = replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
                 if(possibleSubArray instanceof JSONArray) {
                     subArray = (JSONArray)possibleSubArray;
-                    if(subArray.size() != 0) {
+                    if(!subArray.isEmpty()) {
                         hasSubArray = true;
                         includeNode = false;
                     }
