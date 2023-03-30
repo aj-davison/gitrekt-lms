@@ -107,7 +107,7 @@ public abstract class User {
      */
     public void writeCertificate(Course course){
         CourseProgress progress = getCourseProgress(course);
-        Double grade = progress.getGrade();
+        double grade = progress.getGrade();
         LMSFileWriter.writeCourseCertificate(course.getTitle(), grade, firstName, lastName);
     }
 
@@ -308,7 +308,7 @@ public abstract class User {
      * @param course The course the user wants to get the grade for
      * @return A double representig
      */
-    public Double calcGrade(Course course){
+    public double calcGrade(Course course){
         double result = 0.0;
         for(CourseProgress progress : this.courseProgresses){
             if(progress.getCourse().getTitle().equals(course.getTitle())){
