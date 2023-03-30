@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
@@ -886,7 +887,12 @@ public class LMSUI {
         System.out.println("\n-----Printing Certificate-----");
         lms.printCertificate(course);
         System.out.println("\n-----Success! Redirecting Home-----");
-
+        try{
+            TimeUnit.MILLISECONDS.sleep(2000);
+            clearScreen();
+        } catch(Exception e){
+            System.out.println("Timed Out");
+        }
 
 
     }
