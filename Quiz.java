@@ -96,6 +96,10 @@ public class Quiz {
         return grade;
     }
 
+    /**
+     * Gets the size of the quiz
+     * @return An int representing the size of the quiz
+     */
     public int getQuizSize(){
         return questions.size();
     }
