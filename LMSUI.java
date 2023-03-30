@@ -263,7 +263,7 @@ public class LMSUI {
                     String courseChoice = currentCourses.get(userCommand).getTitle();
                     Course course = lms.getCourseByTitle(courseChoice);
                     displayCourseDescription(course);
-                    break;
+                    return;
                 case(1):
                     quit = true;
                     break;
@@ -494,7 +494,7 @@ public class LMSUI {
                             break;
                         case(1):
                             printCertificate(course);
-                            break;
+                            return;
                         case(2):
                             quit = true;
                             break;
@@ -577,7 +577,7 @@ public class LMSUI {
                     String courseChoice = allCourses.get(userCommand).getTitle();
                     Course course = lms.getCourseByTitle(courseChoice);
                     displayCourseDescription(course);
-                    break;
+                    return;
                 case(1):
                     return;
             }
@@ -796,6 +796,12 @@ public class LMSUI {
     }
 
     public void printCertificate(Course course) {
+
+        System.out.println("\n-----Printing Certificate-----");
+        lms.printCertificate(course);
+        System.out.println("\n-----Success! Redirecting Home-----");
+
+
 
     }
         
