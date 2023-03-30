@@ -22,8 +22,9 @@ public class LMS {
         return currentUser;
     }
     public void enrollCourse(String title){
-        courseList.enrollCourse(title, currentUser);
-        currentUser.enrollCourse(currentCourse);
+        //courseList.enrollCourse(title, currentUser);
+        //courseList.getCourseByTitle(title)//totdoaddStudent(currentUser);
+        currentUser.enrollCourse(courseList.getCourseByTitle(title));
     }
     public CourseProgress getCourseProgress(String title){
         CourseProgress courseProgress = currentUser.getCourseProgress(title);

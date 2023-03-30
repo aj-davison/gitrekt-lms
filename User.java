@@ -75,6 +75,9 @@ public abstract class User {
         return null;
     }
     public CourseProgress getCourseProgress(Course course){
+        if(!isEnrolled(course)){
+            this.courseProgresses.add(new CourseProgress(course));
+        }
         for(CourseProgress progress : this.courseProgresses){
             if(progress.getCourse().equals(course)){
                 return progress;
@@ -193,15 +196,18 @@ public abstract class User {
     public Double calcGrade(Course course){
         double result = 0.0;
         for(CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
+            if(progress.getCourse().getTitle().equals(course.getTitle())){
                 result = progress.getGrade();
             }
         }
         return result;
     }
     public void updateGrades(Course course, double grade){
+        if(!isEnrolled(course)){
+            this.courseProgresses.add(new CourseProgress(course));
+        }
         for(CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
+            if(progress.getCourse().getTitle().equals(course.getTitle())){
                 progress.addGrade(grade);
             }
         }

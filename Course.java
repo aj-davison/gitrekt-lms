@@ -227,6 +227,9 @@ public class Course {
                 return null;
             }
         }
+        public void addStudent(Student student){
+            this.students.add(student);
+        }
 
 
     

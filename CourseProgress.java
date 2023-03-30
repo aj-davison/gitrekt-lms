@@ -47,13 +47,13 @@ public class CourseProgress {
     *Returns the average grade for this course progress.
     *@return the average grade for this course progress.
     */
-    public Double getGrade(){
+    public double getGrade(){
         int questions = this.grades.size();
-        double grade = 0;
+        double grade = 0.0;
         for(double score : grades) {
         grade += score;
         }
-        grade /= questions;
+        grade /= (double)questions;
         return grade;
     }
 
@@ -68,8 +68,8 @@ public class CourseProgress {
     public String displayTopicGrades(){
         String result = "";
         int position = 1;
-        for(Double grade : this.grades){
-            Double percent = grade*100;
+        for(double grade : this.grades){
+            double percent = grade*100;
             result += Integer.toString(position)+". "+Double.toString(percent)+"%\n";
             position++;
         }
