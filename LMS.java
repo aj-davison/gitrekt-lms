@@ -96,7 +96,8 @@ public class LMS {
         topic.getQuiz().addQuestion(question);
         courseList.saveCourses();
     }
-    /// TODO
+    /// TODO //NOT USED
+    /*
     public void continueCourse(Course course){
         int index = 0;
         for(CourseProgress progress : currentUser.courseProgresses){
@@ -109,7 +110,7 @@ public class LMS {
         for(int i=0; i<course.getTopics().size()-topicIndex; i++){
             course.getTopics().get(index).toString();
         }
-    }
+    } //NOT USED
     public boolean continueTopic(int input){
         boolean result;
         if(input == 1){
@@ -118,35 +119,42 @@ public class LMS {
             result = false;
         }
         return result;
-    }
+    } */
+
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         currentUser.makeCourse(topics, title, description, difficulty);
     }
     public boolean courseComplete(Course course){
         return currentUser.courseComplete(course);
     }
+    //NOT USED 
+    /* 
     public void printCertificate(Course course){
         LMSFileWriter.writeCourseCertificate(course.getTitle(), currentUser.calcGrade(course), currentUser.getFirstName(), currentUser.getLastName());
     }
+    //NOT USED
     public void takeQuiz(){
 
     }
+    //NOT USED
     public void createComment(Comment comment){
 
     }
+    //NOT USED
     public Topic nextTopic(){
         Topic topic = new Topic(null, null, null, null);
         return topic;
     }
+    //NOT USED
     public Subtopic nextSubtopic(){
         Subtopic subtopic = new Subtopic(null, null);
         return subtopic;
-    }
+    } */
     public void printToFileTopic(Topic topic) {
         topic.printToFileTopic();;
     }
 
-    public void writeCertificate(Course course){
+    public void printCertificate(Course course){
         currentUser.writeCertificate(course);
     }
 
