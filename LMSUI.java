@@ -14,7 +14,6 @@ public class LMSUI {
     private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
     private String[] viewTopicsMenu = {"Print a Topic to File", "Exit to Home"};
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
-    private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
     private String[] createdTopicMenu = {"Choose Topic", "Exit to Home"};
     private String[] editTopicMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
@@ -500,7 +499,7 @@ public class LMSUI {
                             printCertificate(course);
                             return;
                         case(3):
-                            //printTopicToFile();
+                            viewTopics(course);
                             break;
                         case(2):
                         quit = true;
@@ -524,6 +523,9 @@ public class LMSUI {
                             viewGrades(course);
                             break;
                         case(2):
+                            viewTopics(course);
+                            break;
+                        case(3):
                             quit = true;
                             break;
                     }
@@ -543,6 +545,8 @@ public class LMSUI {
                         enrollCourse(course);
                         break;
                     case(1):
+                        viewTopics(course);
+                    case(2):
                         quit = true;
                         break;
                 }
@@ -867,7 +871,10 @@ public class LMSUI {
     }
 
     public void viewGrades(Course course) {
-        clearScreen();
+
+        System.out.println("\n-----Displaying Course Grades-----");
+        System.out.println(lms.displayTopicGrades(course));
+
 
     }
 
