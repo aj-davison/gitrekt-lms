@@ -490,6 +490,7 @@ public class LMSUI {
                     displayMenu(completedCourseMenu, "COURSE OPTIONS");
                     int userCommand;
                     if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                    clearScreen();
                     boolean quit = false;
                     switch(userCommand){
                         case(0):
@@ -514,6 +515,7 @@ public class LMSUI {
                     displayMenu(continueCourseMenu, "COURSE OPTIONS");
                     int userCommand;
                     if ((userCommand = menuCommandValidation(continueCourseMenu)) == -1) continue;
+                    clearScreen();
                     boolean quit = false;
                     switch(userCommand){
                         case(0):
@@ -539,6 +541,7 @@ public class LMSUI {
                 displayMenu(newCourseMenu, "COURSE OPTIONS");
                 int userCommand;
                 if ((userCommand = menuCommandValidation(newCourseMenu)) == -1) continue;
+                clearScreen();
                 boolean quit = false;
                 switch(userCommand){
                     case(0):
