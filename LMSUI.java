@@ -464,7 +464,7 @@ public class LMSUI {
         displayCourseDescription(results.get(choice-1));
     }
 
-    
+    //sup
 
     private void displayCourseDescription(Course course){
         System.out.println(course.toString());
