@@ -74,14 +74,6 @@ public class CourseList {
         DataWriter.saveCourses();
     }
     
-    /**
-    Returns a list of all courses as strings.
-    @return a list of all courses as strings
-    */
-    public ArrayList<String> getAllCourses(){
-        ArrayList<String> allCourses = new ArrayList<String>();
-        return allCourses;
-    }
     public void enrollCourse(String title, User user){
         Course course = getCourseByTitle(title);
         CourseProgress courseProgress = new CourseProgress(course);

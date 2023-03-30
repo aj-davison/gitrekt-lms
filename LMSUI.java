@@ -12,6 +12,7 @@ public class LMSUI {
     private String[] continueCourseMenu = {"Continue Course", "View Grades", "View Topics", "Exit to Home"};
     private String[] completedCourseMenu = {"View Grades", "Print Certificate", "View Topics","Exit to Home"};
     private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
+    private String[] viewTopicsMenu = {"Print a Topic to File", "Exit to Home"};
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
@@ -672,7 +673,76 @@ public class LMSUI {
 
     public void editCourse() {
         clearScreen();
-        //toDo
+        System.out.println("\n-----Edit Course-----");
+        ArrayList<Course> createdCourses = lms.getCreatedCourses();
+        System.out.println(lms.displayCreatedCourses());
+
+        int courseChoice;
+        while (true) {
+
+            courseChoice = getUserInt("Which course do you want to edit? ") - 1;
+                if (courseChoice < 0 || courseChoice >= createdCourses.size()) {
+                    System.out.println("Invalid");
+                    continue;
+                }
+                break;
+        }
+
+        Course course = createdCourses.get(courseChoice);
+
+        ArrayList<Topic> topics = course.getTopics();
+        System.out.println(lms.displayTopics(course));
+
+        int topicChoice;
+        while (true) {
+
+            topicChoice = getUserInt("Which topic do you want to edit? ") - 1;
+                if (topicChoice < 0 || topicChoice >= topics.size()) {
+                    System.out.println("Invalid");
+                    continue;
+                }
+                break;
+        }
+
+        Topic topic = topics.get(topicChoice);
+        System.out.println(lms.displayTopicInfo(topic));
+
+        int userCommand;
+        while (true) {
+        
+            displayMenu(editTopicMenu, "ALL COURSE OPTIONS");
+
+            if ((userCommand = menuCommandValidation(editTopicMenu)) == -1) continue;
+
+            switch(userCommand) {
+                case(0):
+                    String subtopicName = getUserString("Subtopic Name");
+                    String subtopicInfo = getUserString("Subtopic Info");
+                    Subtopic newSubtopic = new Subtopic(subtopicName, subtopicInfo);
+                    lms.addSubtopic(topic, newSubtopic);
+                    break;
+                case(1):
+                    String questionContent = getUserString("Question Content");
+        
+                    String answers[] = new String[4];
+        
+                    for (int i = 0; i < 4; i++) {
+        
+                        String answerContent = getUserString("Answer #" + (i + 1));
+        
+                        answers[i] = answerContent;
+        
+                    }
+
+                    int correctAnswer = getUserInt("Which Answer Number is Correct: ") - 1;
+
+                    Question question = new Question(questionContent, answers, correctAnswer);
+                    lms.addQuestion(topic, question);
+                    break;
+                case(2):
+                    return;
+            }
+        }
 
     }
 
@@ -785,7 +855,7 @@ public class LMSUI {
                 displayComments(comments.get(commentChoice).getReplies());
                 break;
             case(2):
-                
+                return;
                 
         }
  
@@ -815,6 +885,33 @@ public class LMSUI {
         ArrayList<Topic> topics = lms.getTopics(course);
         System.out.println(course.displayTopics());
 
+        int userCommand;
+        while (true) {
+            displayMenu(viewTopicsMenu, "VIEW TOPIC OPTIONS");
+            if ((userCommand = menuCommandValidation(viewTopicsMenu)) == -1) continue;
+            break;
+        }
+        int topicChoice;
+        switch(userCommand) {
+            case(0):
+                
+                while (true) {
+                    topicChoice = getUserInt("Which topic would you like to print? ") -1;
+                    if (topicChoice < 0 || topicChoice >= topics.size()) {
+                        System.out.println("Invalid");
+                        continue;
+                    }
+                    break;
+                }
+                Topic topic = topics.get(topicChoice);
+                
+                printTopicToFile(topic);
+                break;
+            case(1):
+                return;
+
+                
+        }
 
 
 
