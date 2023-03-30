@@ -58,15 +58,19 @@ public class LMSUI {
             switch(userCommand) {
                 case(0):
                     user = loginU();
+                    clearScreen();
                     break;
                 case(1):
                     user = loginE();
+                    clearScreen();
                     break;
                 case(2):
                     user = createAccount();
+                    clearScreen();
                     break;
                 case(3):
                     quit = true;
+                    clearScreen();
                     break;
             }
             
@@ -87,24 +91,31 @@ public class LMSUI {
                 switch (userCommand) {
                     case(0):
                         displayCurrentCourses();
+                        clearScreen();
                         break;
                     case(1):
                         searchCourses();
+                        clearScreen();
                         break;
                     case(2):
                         displayAllCourses();
+                        clearScreen();
                         break;
                     case(3):
                         createCourse();
+                        clearScreen();
                         break;
                     case(4):
                         editCourse();
+                        clearScreen();
                         break;
                     case(5):
                         viewProfile(user);
+                        clearScreen();
                         break;
                     case(6):
                         viewBilling();
+                        clearScreen();
                         break;
                     case(7):
                         logout = true;
@@ -543,6 +554,7 @@ public class LMSUI {
     }
 
     private void displayAllCourses() {
+        clearScreen();
         System.out.println("\n-----Displaying All Courses-----");
         
         ArrayList<Course> allCourses = lms.getCourseList();
@@ -575,7 +587,7 @@ public class LMSUI {
     }
 
     private void createCourse() {
-        
+        clearScreen();
         System.out.println("\n-----Creating Course-----");
 
         String courseName = getUserString("Course Name");
@@ -653,11 +665,13 @@ public class LMSUI {
     }
 
     public void editCourse() {
+        clearScreen();
+        //toDo
 
     }
 
     private void viewProfile(User user) {
-        
+        clearScreen();
         System.out.println("\n-----Profile-----");
         System.out.println(user.toString());
 
@@ -674,8 +688,7 @@ public class LMSUI {
     }
 
     private void viewBilling() {
-        System.out.print("\033[H\033[2J");  //clear the consle 
-        System.out.flush();  //clear the consle
+        clearScreen();
         System.out.println("\n-----Billing-----");
         System.out.println("Free access to learning resources will be available until the end of 2025");
         
@@ -685,13 +698,12 @@ public class LMSUI {
 
             
             if ((userCommand = menuCommandValidation(billingMenu)) == -1) continue;
-            System.out.print("\033[H\033[2J");  //clear the consle 
-            System.out.flush();  //clear the consle
             break;
         }
     }
 
     private void logOut() {
+        clearScreen();
         System.out.println("See ya!");
         lms.logout();
     }
@@ -699,6 +711,7 @@ public class LMSUI {
     public void commentTopic(Topic topic){
         addComment(topic.getComments());
     }
+
     public void addComment(ArrayList<Comment> comments){
         
             String commentInfo = getUserString("Comment");
@@ -709,8 +722,8 @@ public class LMSUI {
         
     }
 
-
     public void displayComments(ArrayList<Comment> comments){
+        clearScreen();
         String result = "";
         if(comments == null)
             result = "No comments on this thread.";
@@ -736,7 +749,7 @@ public class LMSUI {
 
         
     public void commentInteraction(ArrayList<Comment> comments) {
-        
+        clearScreen();
         int userCommand;
         while (true) {
             displayMenu(commentMenu, "COMMENT OPTIONS");
@@ -772,9 +785,16 @@ public class LMSUI {
  
     }
 
+    public void clearScreen(){
+        System.out.print("\033[H\033[2J");  //clear the consle 
+        System.out.flush();  //clear the consle
+    }
+
     public void viewGrades(Course course) {
+        clearScreen();
 
     }
+
     public void printCertificate(Course course) {
 
     }
@@ -782,6 +802,7 @@ public class LMSUI {
 
 
     public void printToFileTopic(Topic topic){
+        clearScreen();
         lms.printToFileTopic(topic);
     }
 
