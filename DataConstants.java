@@ -1,3 +1,7 @@
+/**
+ * A class that holds all the Data Constants
+ * @author Andrew Davison
+ */
 public abstract class DataConstants {
     protected static final String USER_FILE_NAME = "json/users.JSON";
     protected static final String USER_ID = "id";
