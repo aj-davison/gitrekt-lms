@@ -4,7 +4,20 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "java",
+            "name": "LMSUI",
+            "request": "launch",
+            "mainClass": "LMSUI",
+            "projectName": "gitrekt-lms_b4cac14f"
+        },
+        {
+            "type": "java",
+            "name": "DataLoader",
+            "request": "launch",
+            "mainClass": "DataLoader",
+            "projectName": "gitrekt-lms_b4cac14f"
+        },
         {
             "type": "java",
             "name": "Current File",
