@@ -8,7 +8,7 @@ import java.util.Formatter;
 
 public class LMSFileWriter {
     
-    public static void writeCourseCertificate(String courseTitle, Double Grade, String FirstName, String LastName){
+    public static void writeCourseCertificate(String courseTitle, double Grade, String FirstName, String LastName){
         String title = "CousreCertificate"+courseTitle;
         String FullName = FirstName+" "+LastName;
         try { 
