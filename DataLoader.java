@@ -134,6 +134,7 @@ public class DataLoader extends DataConstants {
                         // Loop thru replies
                         JSONArray repliesArray = (JSONArray)commentJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
                         ArrayList<Comment> replies = new ArrayList<>();
+                        //replies = repliesJsonToList(repliesArray, replies, false, users);
                         for(int y=0;y<repliesArray.size();y++) {
                                 JSONObject repliesJSON = (JSONObject)repliesArray.get(y);
 
@@ -213,6 +214,7 @@ public class DataLoader extends DataConstants {
         }
      */
     public static void repliesJsonToList(JSONArray repliesArray, ArrayList<Comment> replies, boolean includeNode, ArrayList<User> users) {
+        ArrayList<Comment> subComments = new ArrayList<>();
         for(int i=0;i<repliesArray.size();i++) {
             JSONObject replyJSON = (JSONObject)repliesArray.get(i);
             String replyContent = (String)replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
@@ -230,18 +232,27 @@ public class DataLoader extends DataConstants {
             if(replyJSON.containsKey(COURSE_TOPIC_COMMENTS_REPLIES)) {
                 Object possibleSubArray = replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
                 if(possibleSubArray instanceof JSONArray) {
-                    hasSubArray = true;
                     subArray = (JSONArray)possibleSubArray;
+                    if(subArray.size() != 0) {
+                        hasSubArray = true;
+                        includeNode = false;
+                    }
                 }
             }
             if(hasSubArray) {
                 if(includeNode) {
-                    Comment replyreply = new Comment(replyContent, username, replyID);
-                    replies.add(replyreply);
+                    replies.add(new Comment(replyID, replyContent, username, subComments));
                 }
                 repliesJsonToList(subArray, replies, includeNode, users);
             } else {
-                replies.add(new Comment(replyContent, username, replyID));
+                for(int j=0;j<subArray.size();j++) {
+                    JSONObject subJSON = (JSONObject)subArray.get(j);
+                    String subContent = (String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
+                    UUID subID = UUID.fromString((String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
+                    subComments.add(new Comment(subContent, username, subID));
+
+                }
+                replies.add(new Comment(replyID, replyContent, username, subComments));
             }
         }
     }
@@ -255,9 +266,13 @@ public class DataLoader extends DataConstants {
 
         for(Course course : courses) {
             for(Topic topic : course.getTopics()) {
-                Quiz quiz = topic.getQuiz();
-                for(Question question : quiz.getQuestions()) {
-                    System.out.println(question.toString());
+                for(Comment comment : topic.getComments()) {
+                    for(Comment reply : comment.getReplies()) {
+                        System.out.println(reply.getContent());
+                        for(Comment reply2 : reply.getReplies()) {
+                            System.out.println(reply2.getContent());
+                        }
+                    }
                 }
             }
         }
