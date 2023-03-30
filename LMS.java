@@ -90,9 +90,11 @@ public class LMS {
 
     public void addSubtopic(Topic topic, Subtopic subtopic){
         topic.addSubtopic(subtopic);
+        courseList.saveCourses();
     }
     public void addQuestion(Topic topic, Question question){
         topic.getQuiz().addQuestion(question);
+        courseList.saveCourses();
     }
     /// TODO
     public void continueCourse(Course course){
