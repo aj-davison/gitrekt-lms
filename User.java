@@ -85,7 +85,9 @@ public abstract class User {
     public boolean isEnrolled(Course course){
         boolean result = false;
         for (CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
+            if(progress.getCourse() == null){
+                result = false;
+            } else if(progress.getCourse().equals(course)){
                 result = true;
             }
         }
