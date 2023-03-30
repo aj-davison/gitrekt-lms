@@ -75,7 +75,15 @@ public class DataWriter extends DataConstants {
         return jsonComments;
     }
 
-    private static JSONArray commentJSON(Comment comment) {
+    private static JSONObject commentJSON(Comment comment) {
+        JSONObject commentDetail = new JSONObject();
+        commentDetail.put(COURSE_TOPIC_COMMENTS_CONTENT, comment.getContent());
+        commentDetail.put(COURSE_TOPIC_COMMENTS_CREATOR_ID, comment.getID().toString());
+        commentDetail.put(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT, replysJSON(comment.getReplies()));
+
+        return commentDetail;
+
+        /* *
         JSONArray jsonCommentsComments = new JSONArray();
         JSONObject commentDetail = new JSONObject();
         commentDetail.put(COURSE_TOPIC_COMMENTS_CONTENT, comment.getContent());
@@ -94,7 +102,25 @@ public class DataWriter extends DataConstants {
             return jsonCommentsComments;
         }
             return jsonCommentsComments;
+
+            */
     }
+
+    public static JSONArray replysJSON(ArrayList<Comment> comments){
+        JSONArray jsonCommentsComments = new JSONArray();
+        if(comments != null)
+        {
+            for(int i=0; i<comments.size(); i++){
+                //jsonReplies.add(comment.getReplies().get(i));
+                jsonCommentsComments.add(commentJSON(comments.get(i)));
+                //jsonReplies.add(commentJSON(comment.getReplies().get(i)));
+            }
+            //commentDetail.put(COURSE_TOPIC_COMMENTS_REPLIES, jsonReplies);
+    
+            return jsonCommentsComments;
+        }
+            return jsonCommentsComments;
+    } 
 
     private static JSONArray getTopicQuizJSON(Topic topic) {
         JSONArray jsonQuiz = new JSONArray();
