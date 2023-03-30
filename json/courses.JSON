@@ -13,47 +13,9 @@
                             "an else",
                             "not somthing in code"
                         ]
-                    },
-                    {
-                        "question": "What is an int?",
-                        "correct": 2,
-                        "answers": [
-                            "an object",
-                            "a string",
-                            "a data type that holds an integer value",
-                            "an intention"
-                        ]
-                    },
-                    {
-                        "question": "IS ADD QUESTION WORKING?",
-                        "correct": 1,
-                        "answers": [
-                            "blah",
-                            "blah",
-                            "blah",
-                            "blah"
-                        ]
                     }
                 ],
                 "comments": [
-                    [
-                        {
-                            "comment": "Awesome topic!",
-                            "userId": "c202a6ef-b8d1-483f-bcb3-996607f745c2"
-                        }
-                    ],
-                    [
-                        {
-                            "comment": "hi",
-                            "userId": "bfd4590a-b4f0-4562-bb5c-d7200730d8d0"
-                        }
-                    ],
-                    [
-                        {
-                            "comment": "Ratio + L",
-                            "userId": "2f222cd0-1925-4893-8616-302ded111df7"
-                        }
-                    ],
                     {
                         "replies": [
                             {
@@ -75,10 +37,6 @@
                     {
                         "title": "If-Statements",
                         "info": "A subtopic about if statements"
-                    },
-                    {
-                        "title": "int Data Type",
-                        "info": "int is a data type that holds an integer value"
                     }
                 ],
                 "title": "Java Basics"
