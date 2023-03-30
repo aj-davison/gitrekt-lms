@@ -36,9 +36,9 @@ public class LMSFileWriter {
           f.format("%30s%n%n", topic.getName());
           f.format("%s%n", "-----------------------------------------------");
           for(Subtopic sub: topic.getSubTop()){
-            f.format("%27s%n", sub.getName());
-            f.format("%-15s", sub.getInfo());
-            f.format("%27s%n", ".............");
+            f.format("%n%27s%n%n", sub.getName());
+            f.format("%27s", sub.getInfo());
+            f.format("%n%27s%n", ".............");
           }
           f.close();
         } catch (IOException e) {
