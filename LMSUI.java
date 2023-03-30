@@ -755,7 +755,7 @@ public class LMSUI {
 
         
     public void commentInteraction(ArrayList<Comment> comments) {
-        clearScreen();
+        //clearScreen();
         int userCommand;
         while (true) {
             displayMenu(commentMenu, "COMMENT OPTIONS");
