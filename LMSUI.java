@@ -726,7 +726,7 @@ public class LMSUI {
     }
 
     public void displayComments(ArrayList<Comment> comments){
-        clearScreen();
+        //clearScreen();
         String result = "";
         if(comments == null)
             result = "No comments on this thread.";
