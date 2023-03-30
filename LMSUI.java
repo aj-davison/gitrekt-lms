@@ -19,7 +19,7 @@ public class LMSUI {
     private String[] createdTopicMenu = {"Choose Topic", "Exit to Home"};
     private String[] editTopicMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
-    private String[] commentMenu = {"Comment", "View Comment Replies", "Next Topic", "Exit to Home"};
+    private String[] commentMenu = {"Comment", "View Comment Replies", "Exit"};
     private String[] basicMenu = {"Exit"};
     private String[] quizMenu = {"Next Topic", "Display Comments", "Print out Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
@@ -282,13 +282,17 @@ public class LMSUI {
 
         for (int i = numCompleteTopics; i < numTopics; i++) {
 
-            Topic currentTopic = course.getTopics().get(i);
-            printTopic(currentTopic);
-
             int userCommand;
             boolean continueCourse = false;
+            
+            Topic currentTopic = course.getTopics().get(i);
+            printTopic(currentTopic);
+            
             while (true) {
+
+                clearScreen();
                 
+                System.out.print("\n" + currentTopic.getName() + "\n");
                 displayMenu(topicMenu, "TOPIC OPTIONS");
                 if ((userCommand = menuCommandValidation(topicMenu)) == -1) continue;
 
@@ -321,13 +325,13 @@ public class LMSUI {
 
     private void displayQuiz(Course currentCourse, Topic currentTopic) {
 
-        System.out.println("\n-----Quiz-----");
+        System.out.println("\n-----Quiz-----\n");
         Quiz quiz = currentTopic.getQuiz();
 
         for (int i = 0; i < quiz.getQuizSize(); i++) {
 
             Question question = quiz.getQuestionAt(i);
-            System.out.println(question.toString());
+            System.out.println("\n" + question.toString());
 
             int userAnswer;
 
@@ -342,12 +346,12 @@ public class LMSUI {
             }
 
             if (question.isCorrect(userAnswer)) {
-                System.out.println("Correct!");
+                System.out.println("\n" + "Correct!");
                 
             }
             else {
 
-                System.out.println("Wrong!");
+                System.out.println("\n" + "Wrong!");
                 System.out.println("Correct Answer: " + question.getCorrectAns());
 
             }
@@ -355,8 +359,15 @@ public class LMSUI {
         }
 
         double grade = quiz.getGrade();
-        System.out.println("Your Grade: " + grade);
+        System.out.println("\nYour Grade: " + grade);
         lms.updateGrades(currentCourse, grade);
+
+        while (true) {
+            displayMenu(basicMenu, "QUIZ OPTIONS");
+            int userCommand;
+            if ((userCommand = menuCommandValidation(basicMenu)) == -1) continue;
+            break;
+            }
 
 
     }
