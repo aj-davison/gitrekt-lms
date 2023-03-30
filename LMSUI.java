@@ -713,16 +713,36 @@ public class LMSUI {
             displayMenu(editTopicMenu, "ALL COURSE OPTIONS");
 
             if ((userCommand = menuCommandValidation(editTopicMenu)) == -1) continue;
-            break;
+
+            switch(userCommand) {
+                case(0):
+                    String subtopicName = getUserString("Subtopic Name");
+                    String subtopicInfo = getUserString("Subtopic Info");
+                    Subtopic newSubtopic = new Subtopic(subtopicName, subtopicInfo);
+                    lms.addSubtopic(topic, newSubtopic);
+                    break;
+                case(1):
+                    String questionContent = getUserString("Question Content");
+        
+                    String answers[] = new String[4];
+        
+                    for (int i = 0; i < 4; i++) {
+        
+                        String answerContent = getUserString("Answer #" + (i + 1));
+        
+                        answers[i] = answerContent;
+        
+                    }
+
+                    int correctAnswer = getUserInt("Which Answer Number is Correct: ") - 1;
+
+                    Question question = new Question(questionContent, answers, correctAnswer);
+                    lms.addQuestion(topic, question);
+                    break;
+                case(2):
+                    return;
+            }
         }
-
-
-
-
-
-        
-
-        
 
     }
 
