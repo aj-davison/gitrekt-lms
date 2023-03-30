@@ -2,11 +2,8 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 public class Author extends Student{
-    /* An ArrayList of Course objects created by the author */
-    private ArrayList<Course> createdCourses;
-
-    /* A String representing the type of user, set to "Author" */
-    private String type = "Author";
+    private ArrayList<Course> createdCourses;/* An ArrayList of Course objects created by the author */
+    private String type = "Author";/* A String representing the type of user, set to "Author" */
 
     /**
      * Constructor for Author class that takes in user information and initializes the createdCourses ArrayList.

@@ -45,9 +45,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<User> users = UserList.getInstanceUserList().getUsers();
-        
         HashMap<User, ArrayList<Double>> userProgress = new HashMap<>();
-        //ArrayList<Course> createdCourses = new ArrayList<>();
         
         try {
             FileReader reader = new FileReader(COURSE_FILE_NAME);
@@ -56,13 +54,6 @@ public class DataLoader extends DataConstants {
             // Loop through courses
             JSONArray coursesArray = (JSONArray)parser.parse(reader);
             for(int i=0;i<coursesArray.size();i++) {
-                // authorIDs.clear();
-                // subtopics.clear();
-                // topics.clear();
-                // comments.clear();
-                // questions.clear();
-                // students.clear();
-                // studentIDs.clear();
                 ArrayList<Student> students = new ArrayList<>();
                 ArrayList<Topic> topics = new ArrayList<>();
                 ArrayList<UUID> studentIDs = new ArrayList<>();
@@ -144,19 +135,17 @@ public class DataLoader extends DataConstants {
                         JSONArray repliesArray = (JSONArray)commentJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
                         ArrayList<Comment> replies = new ArrayList<>();
                         for(int y=0;y<repliesArray.size();y++) {
-                            JSONObject repliesJSON = (JSONObject)repliesArray.get(y);
-                            String replyContent = (String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
-                            UUID replyID = UUID.fromString((String)repliesJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
+                                JSONObject repliesJSON = (JSONObject)repliesArray.get(y);
 
-                            // Get User by UUID
-                            String username = "";
-                            for(User user : users) {
-                                if(user.getID().equals(replyID.toString())) {
-                                    username = user.getUsername();
-                                }
+                                // Get User by UUID
+                                // String username = "";
+                                // for(User user : users) {
+                                //     if(user.getID().equals(replyID.toString())) {
+                                //         username = user.getUsername();
+                                //     }
+                                // }
+                                repliesJsonToList(repliesArray, replies, false, users);
                             }
-                            replies.add(new Comment(replyContent, username, replyID));
-                        }
 
                         // Get User by UUID
                         String username = "";
@@ -200,7 +189,63 @@ public class DataLoader extends DataConstants {
         }
         return courses;
     }
+    /*
+    *  public static void jsonArrayToSet(JSONArray jAry, Set<String> result, String targetKey, String subArrayKey, boolean includeNode){
+     * for (int i = 0; i < jAry.length(); i++) {
+            JSONObject jObj = jAry.getJSONObject(i);
+            boolean hasSubArray = false;
+            JSONArray subArray = null;
+            if(jObj.has(subArrayKey)){
+                Object possibleSubArray = jObj.get(subArrayKey);
+                if(possibleSubArray instanceof JSONArray){
+                    hasSubArray = true;
+                    subArray = (JSONArray) possibleSubArray;
+                }
+            }
+            if(hasSubArray){
+                if(includeNode){
+                    result.add(jObj.getString(targetKey));
+                }
+                jsonArrayToSet(subArray, result, targetKey, subArrayKey, includeNode);
+            } else {
+                result.add(jObj.getString(targetKey));
+            }
+        }
+     */
+    public static void repliesJsonToList(JSONArray repliesArray, ArrayList<Comment> replies, boolean includeNode, ArrayList<User> users) {
+        for(int i=0;i<repliesArray.size();i++) {
+            JSONObject replyJSON = (JSONObject)repliesArray.get(i);
+            String replyContent = (String)replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
+            UUID replyID = UUID.fromString((String)replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
+            // Get User by UUID
+            String username = "";
+            for(User user : users) {
+                if(user.getID().equals(replyID.toString())) {
+                    username = user.getUsername();
+                }
+            }
 
+            boolean hasSubArray = false;
+            JSONArray subArray = null;
+            if(replyJSON.containsKey(COURSE_TOPIC_COMMENTS_REPLIES)) {
+                Object possibleSubArray = replyJSON.get(COURSE_TOPIC_COMMENTS_REPLIES);
+                if(possibleSubArray instanceof JSONArray) {
+                    hasSubArray = true;
+                    subArray = (JSONArray)possibleSubArray;
+                }
+            }
+            if(hasSubArray) {
+                if(includeNode) {
+                    Comment replyreply = new Comment(replyContent, username, replyID);
+                    replies.add(replyreply);
+                }
+                repliesJsonToList(subArray, replies, includeNode, users);
+            } else {
+                replies.add(new Comment(replyContent, username, replyID));
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         
         UserList list = UserList.getInstanceUserList();
