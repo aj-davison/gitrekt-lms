@@ -5,7 +5,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 public class LMSUI {
 
-    private static final String WELCOME_MESSAGE = "Welcome to our Coding LMS :)";
+    private static final String WELCOME_MESSAGE = "\n\nWelcome to our Coding LMS :)";
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "Edit Course", "View Profile", "Billing Page", "Log Out"};
@@ -187,7 +187,7 @@ public class LMSUI {
     }
 
     private User loginU() {
-
+        clearScreen();
         System.out.println("\n-----Loging in-----");        
 
         String username = getUserString("Username");
@@ -198,7 +198,7 @@ public class LMSUI {
     }
 
     private User loginE() {
-
+        clearScreen();
         System.out.println("\n-----Loging in-----");        
 
         String email = getUserString("Email");
@@ -209,6 +209,7 @@ public class LMSUI {
     }
 
     private User createAccount() {
+        clearScreen();
         System.out.println("\n-----Signing Up-----");        
 
         String firstName = getUserString("First Name");
@@ -238,6 +239,7 @@ public class LMSUI {
 
     }
     private void displayCurrentCourses() {
+        clearScreen();
         
         boolean quit = false;
         
@@ -451,6 +453,7 @@ public class LMSUI {
 
 
     private void searchCourses() {
+        clearScreen();
         System.out.println("\n-----Search Courses-----");
         
         ArrayList<Course> results;
@@ -496,7 +499,7 @@ public class LMSUI {
                             printCertificate(course);
                             return;
                         case(3):
-                            printTopicToFile();
+                            //printTopicToFile();
                             break;
                         case(2):
                         quit = true;
