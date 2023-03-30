@@ -77,8 +77,8 @@ public class CourseProgress {
     }
 
     /**
-    *Returns the UUID associated with this course progress.
-    *@return the UUID associated with this course progress.
+    *Returns the course associated with this course progress.
+    *@return Course associated with this course progress.
     */
     public Course getCourse() {
         return this.course;

@@ -198,6 +198,7 @@ public class Course {
         else    
             return null;
     }
+    
     public String displayTopics(){
         String result = "";
         int position = 1;

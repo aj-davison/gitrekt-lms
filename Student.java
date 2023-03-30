@@ -17,20 +17,11 @@ public class Student extends User{
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         
     }
-
+/* 
     public void unregisterCourse(Course course){
         courseProgresses.remove(course);
     }
-    /* 
-    public ArrayList<Double> getGrades(Course course) {
-        ArrayList<Double> grades  = new ArrayList<Double>();
-        for(int i=0; i<courseProgresses.size(); i++){
-            if()
-            grades.add(courseProgresses.get(i).getGrades());
-        }
-        return grades;
-    }
-    */
+*/  
     public ArrayList<Course> getCreatedCourses(){
         return null;
     }
