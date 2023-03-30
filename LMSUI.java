@@ -9,9 +9,9 @@ public class LMSUI {
     private String[] loginMenu = {"Login with Username", "Login with Email", "Create Account", "Quit"};
     private String[] userTypeMenu = {"Student", "Author"};
     private String[] homeMenu = {"Display Current Courses","Search Courses", "Display All Courses", "Create Course", "Edit Course", "View Profile", "Billing Page", "Log Out"};
-    private String[] continueCourseMenu = {"Continue Course", "View Grades", "Exit to Home"};
-    private String[] completedCourseMenu = {"View Grades", "Print Certificate", "Exit to Home"};
-    private String[] newCourseMenu = {"Enroll in Course", "Exit to Home"}; 
+    private String[] continueCourseMenu = {"Continue Course", "View Grades", "View Topics", "Exit to Home"};
+    private String[] completedCourseMenu = {"View Grades", "Print Certificate", "View Topics","Exit to Home"};
+    private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
     private String[] editCourseMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
@@ -495,8 +495,11 @@ public class LMSUI {
                         case(1):
                             printCertificate(course);
                             return;
+                        case(3):
+                            printTopicToFile();
+                            break;
                         case(2):
-                            quit = true;
+                        quit = true;
                             break;
                     }
                     if (quit == true) break;
@@ -779,7 +782,7 @@ public class LMSUI {
                 displayComments(comments.get(commentChoice).getReplies());
                 break;
             case(2):
-
+                
                 
         }
  
@@ -805,9 +808,17 @@ public class LMSUI {
 
     }
         
+    public void viewTopics(Course course) {
+        ArrayList<Topic> topics = lms.getTopics(course);
+        System.out.println(course.displayTopics());
 
 
-    public void printToFileTopic(Topic topic){
+
+
+    }
+
+
+    public void printTopicToFile(Topic topic){
         clearScreen();
         lms.printToFileTopic(topic);
     }
