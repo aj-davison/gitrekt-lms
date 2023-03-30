@@ -14,11 +14,22 @@ public class CourseProgress {
         this.course = course;
         this.grades = grades;
     }
+
+    /**
+    Constructs a new CourseProgress object with the specified course and an empty list of grades.
+    @param course the course that the progress is being tracked for
+    */
     public CourseProgress(Course course){
         this.course = course;
         this.grades = new ArrayList<>();
     }
 
+    /**
+    Returns a boolean value indicating whether the course associated with this progress object has been completed by the student.
+    The method checks whether the number of topics in the course matches the number of grades in the progress object.
+    @param course the course to check completion status for
+    @return true if the course is completed, false otherwise
+    */
     public boolean isCompleted(Course course){
         boolean result = false;
         if(course.getTopics().size() == this.grades.size()){
@@ -65,6 +76,12 @@ public class CourseProgress {
         return this.grades;
     }
 
+    /** 
+    Returns a string representation of the topic grades for this student, where each grade is displayed as a percentage.
+    The method iterates over the grades of the student and creates a string that displays the position of the grade
+    and the grade value as a percentage, separated by a dot and a newline character.
+    @return a string representation of the topic grades for this student
+    */
     public String displayTopicGrades(){
         String result = "";
         int position = 1;
