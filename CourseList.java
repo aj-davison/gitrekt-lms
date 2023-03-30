@@ -73,12 +73,23 @@ public class CourseList {
     public void saveCourses(){
         DataWriter.saveCourses();
     }
-    
+
+    /**
+    Enrolls a User in a Course with the specified title by creating a new CourseProgress object for the Course and adding it to the User's courseProgresses list.
+    @param title the title of the Course to enroll in
+    @param user the User to enroll in the Course
+    */
     public void enrollCourse(String title, User user){
         Course course = getCourseByTitle(title);
         CourseProgress courseProgress = new CourseProgress(course);
         user.courseProgresses.add(courseProgress);
     }
+
+    /**
+    Searches for Courses with titles that contain the specified search string and returns an ArrayList of matching Course objects.
+    @param title the search string to match Course titles against
+    @return an ArrayList of Course objects that match the search string, or null if no matches were found
+    */
     public ArrayList<Course> searchCourses(String title){
         ArrayList<Course> results = new ArrayList<Course>();
         ArrayList<Course> courses = getCourses();
@@ -90,17 +101,22 @@ public class CourseList {
             }
         }
         if(results.size() == 0){
-            return null;
+        return null;
         }
         return results;
     }
+
+    /**
+    Generates a string containing the titles of all the Courses in the system, numbered in order.
+    @return a string containing the titles of all the Courses in the system, numbered in order
+    */
     public String displayCourseList(){
-        String result = "";
-        int index = 1;
-        for(Course course : courses){
-            result += Integer.toString(index)+". "+course.getTitle()+"\n";
-            index ++;
-        }
-        return result;
+    String result = "";
+    int index = 1;
+    for(Course course : courses){
+        result += Integer.toString(index)+". "+course.getTitle()+"\n";
+        index ++;
+    }
+    return result;
     }
 }
