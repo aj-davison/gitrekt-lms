@@ -19,21 +19,9 @@ public class Course {
      * @param title the title of the course
      * @param description the description of the course
      * @param difficulty the difficulty of the course
+     * @param topics to be in course
      * @param authorID the UUID of the author who created the course
      */
-    /* *
-    public Course(String title, String description,  Difficulty difficulty, UUID authorID) {
-        this.topics = new ArrayList<Topic>();
-        this.students = new ArrayList<Student>();
-        this.title = title;
-        this. description =  description;
-        this.id = UUID.randomUUID();
-        this.authorID = authorID;
-        this.difficulty = difficulty;
-    }
-    */
-
-    
     public Course(String title, String description,  Difficulty difficulty, ArrayList<Topic> topics, UUID authorID) {
         this.topics = topics;
         this.students = new ArrayList<Student>();
@@ -66,6 +54,10 @@ public class Course {
         this.authorID = authorID;
     }
 
+    /**
+    Returns a string representation of the Course object, including its title, description, and difficulty level.
+    @return a string containing the title, description, and difficulty level of the course
+    */
     public String toString(){
         String result = "";
         result += this.title+"\n";
@@ -73,6 +65,8 @@ public class Course {
         result += "Difficulty: "+this.difficulty.toString();
         return result;
     }
+
+
     /**
      * Adds the specified topic to the list of topics associated with this course.
      * @param topic the topic to add to the list of topics
@@ -113,9 +107,9 @@ public class Course {
     public UUID getUuid(){
         return this.id;
     }
+
     /**
      * Returns the title of the course.
-     *
      * @return the title of the course or null if it is not set.
      */
     public String getTitle() {
@@ -127,7 +121,6 @@ public class Course {
 
     /**
      * Returns the description of the course.
-     *
      * @return the description of the course or null if it is not set.
      */
     public String getDescription() {
@@ -139,7 +132,6 @@ public class Course {
 
     /**
      * Returns the ID of the course author in string format
-     *
      * @return the ID of the course author in string format or null if it is not set
      */
     public String getAuthorIDstring() {
@@ -151,7 +143,6 @@ public class Course {
 
     /**
      * Returns the ID of the course author in UUID format.
-     *
      * @return the ID of the course author in UUID format or null if it is not set
      */
     public UUID getAuthorIDuui(){
@@ -160,22 +151,29 @@ public class Course {
         else
             return this.authorID;
     }
+
+
+    /** 
+    Compares this Course object to another Course object to determine if they are equal.
+    @param course the Course object to compare
+    @return true if the Course objects are equal, false otherwise
+    */
     public boolean equals(Course course){
         boolean result = false;
         boolean topicCheck = false;
         int position = 0;
         int numMatchingTopics = 0;
         for(Topic topic : topics){
-            if(topic.equals(course.getTopics().get(position))){
-                numMatchingTopics++;
-            }
+        if(topic.equals(course.getTopics().get(position))){
+            numMatchingTopics++;
+        }
             position++;
         }
         if(numMatchingTopics == topics.size()){
             topicCheck = true;
         }
-        if(course != null && 
-        topicCheck && 
+        if(course != null &&
+            topicCheck &&
         this.title.equals(course.getTitle()) &&
         this.description.equals(course.getDescription()) &&
         this.difficulty.equals(course.getEnumDifficulty()) &&
@@ -188,7 +186,6 @@ public class Course {
 
     /**
      * Returns the list of topics covered in the course.
-     *
      * @return the list of topics covered in the course or null if it is not set.
      */
     public ArrayList<Topic> getTopics(){
@@ -199,10 +196,14 @@ public class Course {
             return null;
     }
     
-    public String displayTopics(){
-        String result = "";
-        int position = 1;
-        for(Topic topic : this.topics){
+    /**
+    Generates a string containing the names of all the topics included in the Course, numbered in order.
+    @return a string containing the names of all the topics included in the Course, numbered in order
+    */
+public String displayTopics(){
+    String result = "";
+    int position = 1;
+    for(Topic topic : this.topics){
             result += Integer.toString(position)+". "+topic.getName()+"\n";
             position++;
         }
@@ -211,25 +212,34 @@ public class Course {
 
     /**
      * Returns the difficulty level of the course.
-     *
      * @return the difficulty level of the course or null if it is not set.
      */
-        public String getDifficulty() {
-            if(difficulty != null)
-                return this.difficulty.toString();
-            else
-                return null;
+    public String getDifficulty() {
+        if(difficulty != null)
+            return this.difficulty.toString();
+        else
+            return null;
+    }
+    
+    /**
+     * Returns the difficulty level of the course in enum type.
+     * @return the difficulty level of the course in enum type or null if it is not set.
+     */
+    public Difficulty getEnumDifficulty(){
+        if (this.difficulty != null){
+            return this.difficulty;
+        } else {
+            return null;
         }
-        public Difficulty getEnumDifficulty(){
-            if (this.difficulty != null){
-                return this.difficulty;
-            } else {
-                return null;
-            }
-        }
-        public void addStudent(Student student){
-            this.students.add(student);
-        }
+    }
+    
+    /**
+    Adds a Student object to the list of students enrolled in the Course.
+    @param student the Student object to add to the Course
+    */
+    public void addStudent(Student student){
+        this.students.add(student);
+    }
 
 
     
