@@ -7,7 +7,13 @@ import java.util.Formatter;
 // to print out the course certificate
 
 public class LMSFileWriter {
-    
+    /**
+     * method to print a completion certificate for a course to a txt file
+     * @param courseTitle
+     * @param Grade
+     * @param FirstName
+     * @param LastName
+     */
     public static void writeCourseCertificate(String courseTitle, double Grade, String FirstName, String LastName){
         String title = "CousreCertificate"+courseTitle;
         String FullName = FirstName+" "+LastName;
@@ -28,7 +34,10 @@ public class LMSFileWriter {
             e.printStackTrace();
           }
     }
-
+    /**
+     * method to print out all the information in a topic to a file
+     * @param topic
+     */
     public static void topicToFile(Topic topic){
       String title = topic.getName();
       try { 
@@ -46,18 +55,4 @@ public class LMSFileWriter {
           e.printStackTrace();
         }
   }
-
-
-  public static void main(String[] args){
-    //UserList userList = UserList.getInstanceUserList();
-    //CourseList courseList = CourseList.getInstanceCourseList();
-    //ArrayList<User> users =userList.getUsers();
-    //users.add(new Student(UUID.randomUUID(),null, "Portia","Plante", "pplante","sdfew","sdfsw@sdfe.com"));
-    //saveUsers();
-    //saveCourses();
-    writeCourseCertificate("HowToCookBurgers", 50.5, "Kuba", "Jerzmanowski");
-}
-
-
-
 }
