@@ -3,7 +3,6 @@ import java.util.UUID;
 
 /**
  * A UserList class that gets the current instance of the list
- * @author Andrew Davison
  */
 public class UserList {
     private static UserList userList;
