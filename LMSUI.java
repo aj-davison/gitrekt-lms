@@ -184,11 +184,6 @@ public class LMSUI {
 
 	}
 
-    /**
-     * gets user input for integer answers
-     * @param prompt prompt for user input
-     * @return int user int or invalid
-     */
     private int getUserInt(String prompt) {
 
         while (true) {
@@ -209,11 +204,6 @@ public class LMSUI {
 
     }
 
-    /**
-     * validates user command with menu
-     * @param menu being checked with
-     * @return user command if valid
-     */
     private int menuCommandValidation (String[] menu) {
         
         int userCommand = getUserCommand(menu.length);
@@ -276,11 +266,6 @@ public class LMSUI {
 
     }
 
-    /**
-     * gets user input if string
-     * @param category prompt for string
-     * @return string input
-     */
     private String getUserString(String category) {
         
         while(true) {
@@ -930,6 +915,9 @@ public class LMSUI {
  
     }
 
+    /**
+     * Clears the console screen
+     */
     public void clearScreen(){
         System.out.print("\033[H\033[2J");  //clear the consle 
         System.out.flush();  //clear the consle
