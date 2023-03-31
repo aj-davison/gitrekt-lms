@@ -1,6 +1,5 @@
 /**
  * A subtopic class
- * @author Andrew Davison
  */
 public class Subtopic {
     private String name;
@@ -15,11 +14,6 @@ public class Subtopic {
         this.name = name;
         this.info = info;
     }
-
-    
-    //We will have to do some serious formatting to get this to print out a paragraph instead of a line.
-    //will fix later when we think about what format the info is in.
-
     /**
      * Prints the topic to a string
      * @return A string that represents the subtopic
@@ -30,9 +24,15 @@ public class Subtopic {
         result += this.info+"\n";
         return result;
     }
+    /**
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
+    /**
+     * @return info
+     */
     public String getInfo() {
         return this.info;
     }
