@@ -184,6 +184,11 @@ public class LMSUI {
 
 	}
 
+    /**
+     * gets user integer
+     * @param prompt input prompt
+     * @return user integer
+     */
     private int getUserInt(String prompt) {
 
         while (true) {
@@ -203,7 +208,11 @@ public class LMSUI {
         }
 
     }
-
+    /**
+     * validates the users menu command
+     * @param menu menu to be validated with
+     * @return validated command
+     */
     private int menuCommandValidation (String[] menu) {
         
         int userCommand = getUserCommand(menu.length);
@@ -266,6 +275,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * gets user string input
+     * @param category prompt
+     * @return user string
+     */
     private String getUserString(String category) {
         
         while(true) {
@@ -320,7 +334,9 @@ public class LMSUI {
     }
 
     /**
-     * continueCourse
+     * continue the course
+     * @param course to continue
+     * @param courseProgress the users current course progress
      */
     public void continueCourse(Course course, CourseProgress courseProgress) {
         int numCompleteTopics = courseProgress.numCompletedTopics();
@@ -364,11 +380,13 @@ public class LMSUI {
         }
 
         }
-
-
     }
 
-
+    /**
+     * displays and navigates the quiz for the topic
+     * @param currentCourse the current course
+     * @param currentTopic the current topic
+     */
     private void displayQuiz(Course currentCourse, Topic currentTopic) {
 
         System.out.println("\n-----Quiz-----\n");
@@ -416,6 +434,10 @@ public class LMSUI {
             }
     }
 
+    /**
+     * prints all of the subtopics in topic and navigates
+     * @param topic topic to be printed
+     */
     private void printTopic(Topic topic) {
 
         boolean quit = false;
@@ -513,7 +535,9 @@ public class LMSUI {
         } 
     }
 
-
+    /**
+     * searched the courses
+     */
     private void searchCourses() {
         clearScreen();
         System.out.println("\n-----Search Courses-----");
@@ -540,6 +564,10 @@ public class LMSUI {
         displayCourseDescription(results.get(choice-1));
     }
 
+    /**
+     * displays the courses and different navigation menus based on course status
+     * @param course course to display
+     */
     private void displayCourseDescription(Course course){
         clearScreen();
         if(lms.isEnrolled(course)){
@@ -613,6 +641,10 @@ public class LMSUI {
         }
     }
 
+    /**
+     * enrolls user in a course
+     * @param course the course to be enrolled
+     */
     public void enrollCourse(Course course) {
         System.out.println("\n-----Enrolling Course-----");
         lms.enrollCourse(course.getTitle());
@@ -621,6 +653,9 @@ public class LMSUI {
 
     }
 
+    /**
+     * displays all of the courses
+     */
     private void displayAllCourses() {
         clearScreen();
         System.out.println("\n-----Displaying All Courses-----");
@@ -654,6 +689,9 @@ public class LMSUI {
 
     }
 
+    /**
+     * creates a course with user input
+     */
     private void createCourse() {
         clearScreen();
         System.out.println("\n-----Creating Course-----");
@@ -729,6 +767,10 @@ public class LMSUI {
 
     }
 
+
+    /**
+     * edit course, subtopic or question
+     */
     public void editCourse() {
         clearScreen();
         System.out.println("\n-----Edit Course-----");
@@ -804,6 +846,10 @@ public class LMSUI {
 
     }
 
+    /**
+     * view user profile
+     * @param user user who wants to view their profile
+     */
     private void viewProfile(User user) {
         clearScreen();
         System.out.println("\n-----Profile-----");
@@ -821,6 +867,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * displays billing information
+     */
     private void viewBilling() {
         clearScreen();
         System.out.println("\n-----Billing-----");
@@ -835,16 +884,27 @@ public class LMSUI {
         }
     }
 
+    /**
+     * logs the user out
+     */
     private void logOut() {
         clearScreen();
         System.out.println("See ya!");
         lms.logout();
     }
 
+    /**
+     * Comments on a topic
+     * @param topic topic to be commented on
+     */
     public void commentTopic(Topic topic){
         addComment(topic.getComments());
     }
 
+    /**
+     * adds a comment
+     * @param comments array list of comments to be added to
+     */
     public void addComment(ArrayList<Comment> comments){
         
             String commentInfo = getUserString("Comment");
@@ -853,6 +913,10 @@ public class LMSUI {
             comments.add(comment);
     }
 
+    /**
+     * displays the comments
+     * @param comments comments to be displayed
+     */
     public void displayComments(ArrayList<Comment> comments){
         //clearScreen();
         String result = "";
@@ -872,12 +936,10 @@ public class LMSUI {
         commentInteraction(comments);
     }
 
-        
-
-        
-            
-
-        
+    /**
+     * interaction of comments
+     * @param comments comment section to interact with
+     */
     public void commentInteraction(ArrayList<Comment> comments) {
         //clearScreen();
         int userCommand;
@@ -923,6 +985,10 @@ public class LMSUI {
         System.out.flush();  //clear the consle
     }
 
+    /**
+     * prints grades for a certain course
+     * @param course course to have its grades printed
+     */
     public void viewGrades(Course course) {
 
         clearScreen();
@@ -936,6 +1002,10 @@ public class LMSUI {
         }
     }
 
+    /**
+     * prints certificate for a course
+     * @param course course to have certficate of
+     */
     public void printCertificate(Course course) {
 
         System.out.println("\n-----Printing Certificate-----");
@@ -948,7 +1018,12 @@ public class LMSUI {
             System.out.println("Timed Out");
         }
     }
-        
+
+
+    /**
+     * prints topics of course + options
+     * @param course course to have its comments printed
+     */
     public void viewTopics(Course course) {
         ArrayList<Topic> topics = lms.getTopics(course);
         System.out.println(course.displayTopics());
@@ -980,6 +1055,10 @@ public class LMSUI {
         }
     }
 
+    /**
+     * prints a topic to a file
+     * @param topic topic to be printed to file
+     */
     public void printTopicToFile(Topic topic){
         clearScreen();
         lms.printToFileTopic(topic);
