@@ -141,6 +141,10 @@ public class LMSUI {
 
     }
 
+    /**
+     * Displays the main menu and returns the user's command
+     * @return The user's command as an integer
+     */
     private void displayMenu(String[] menu, String pageName) {
         System.out.println("\n****** " + pageName + " ******");
         for (int i=0; i < menu.length; i++) {
@@ -169,6 +173,11 @@ public class LMSUI {
 
 	}
 
+    /**
+     * Prompts the user for an integer input with the specified prompt
+     * @param prompt The prompt to display to the user
+     * @return The integer input by the user
+     */
     private int getUserInt(String prompt) {
 
         while (true) {
@@ -189,6 +198,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * Validates user input for menu commands
+     * @param menuOptions An array of menu options to validate against
+     * @return The user's command as an integer, or -1 if the command is invalid
+     */
     private int menuCommandValidation (String[] menu) {
         
         int userCommand = getUserCommand(menu.length);
@@ -239,6 +253,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * Prompts the user for a string input with the specified prompt
+     * @param prompt The prompt to display to the user
+     * @return The string input by the user
+     */
     private String getUserString(String category) {
         
         while(true) {
@@ -881,6 +900,9 @@ public class LMSUI {
  
     }
 
+    /**
+     * Clears the console screen
+     */
     public void clearScreen(){
         System.out.print("\033[H\033[2J");  //clear the consle 
         System.out.flush();  //clear the consle
