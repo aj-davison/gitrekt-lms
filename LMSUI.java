@@ -32,11 +32,19 @@ public class LMSUI {
     private Scanner scanner;
     private LMS lms;
 
+    /**
+     * LMSUI constructor
+     * initialized the scanner for user input
+     */
     LMSUI() {
         scanner = new Scanner(System.in);
         lms = new LMS();
     }
 
+    /**
+     * Starts the UI
+     * 
+     */
     public void run() {
         System.out.println(WELCOME_MESSAGE);
 
@@ -76,57 +84,64 @@ public class LMSUI {
             }
             
             if (quit == true) break;
-            
             if (user == null) {
                 System.out.println("Invalid Information");
                 continue;
             }
 
-            boolean logout = false;
-
-            while (true) {
-                displayMenu(homeMenu, "HOME PAGE OPTIONS");
-
-                if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
-
-                switch (userCommand) {
-                    case(0):
-                        displayCurrentCourses();
-                        clearScreen();
-                        break;
-                    case(1):
-                        searchCourses();
-                        clearScreen();
-                        break;
-                    case(2):
-                        displayAllCourses();
-                        clearScreen();
-                        break;
-                    case(3):
-                        createCourse();
-                        clearScreen();
-                        break;
-                    case(4):
-                        editCourse();
-                        clearScreen();
-                        break;
-                    case(5):
-                        viewProfile(user);
-                        clearScreen();
-                        break;
-                    case(6):
-                        viewBilling();
-                        clearScreen();
-                        break;
-                    case(7):
-                        logout = true;
-                        logOut();
-                        break;
-                }
-                if (logout == true) break;
-            }
+            homeMenuInteraction(user);
+            
         }
         System.out.println("Goodbye, have a good day.");
+    }
+
+    public void homeMenuInteraction(User user) {
+        
+        boolean logout = false;
+        int userCommand;
+
+        while (true) {
+            displayMenu(homeMenu, "HOME PAGE OPTIONS");
+
+            if ((userCommand = menuCommandValidation(homeMenu)) == -1) continue;
+
+            switch (userCommand) {
+                case(0):
+                    displayCurrentCourses();
+                    clearScreen();
+                    break;
+                case(1):
+                    searchCourses();
+                    clearScreen();
+                    break;
+                case(2):
+                    displayAllCourses();
+                    clearScreen();
+                    break;
+                case(3):
+                    createCourse();
+                    clearScreen();
+                    break;
+                case(4):
+                    editCourse();
+                    clearScreen();
+                    break;
+                case(5):
+                    viewProfile(user);
+                    clearScreen();
+                    break;
+                case(6):
+                    viewBilling();
+                    clearScreen();
+                    break;
+                case(7):
+                    logout = true;
+                    logOut();
+                    break;
+            }
+            if (logout == true) break;
+        }
+
     }
 
     private void displayMenu(String[] menu, String pageName) {
@@ -318,7 +333,7 @@ public class LMSUI {
         }
 
         }
-        //break;
+
 
     }
 
@@ -368,8 +383,6 @@ public class LMSUI {
             if ((userCommand = menuCommandValidation(basicMenu)) == -1) continue;
             break;
             }
-
-
     }
 
     private void printTopic(Topic topic) {
@@ -377,13 +390,10 @@ public class LMSUI {
         boolean quit = false;
 
         while (true) {
-        
             for (int i = 0; i < topic.getSubTop().size(); i++) {
-
                 clearScreen();
                 
                 System.out.println(topic.getSubTop().get(i).toString());
-                
                 
                 if (topic.getSubTop().size() == 1) {
                     while (true) {
@@ -498,8 +508,6 @@ public class LMSUI {
         int choice = getUserInt("Enter Course Number: \n");
         displayCourseDescription(results.get(choice-1));
     }
-
-    //sup
 
     private void displayCourseDescription(Course course){
         clearScreen();
@@ -632,11 +640,9 @@ public class LMSUI {
             break;
         }
     
-
         int topicNum = getUserInt("How many topics will this course have? ");
 
         ArrayList<Topic> topics = new ArrayList<Topic>();
-        
 
         for (int i = 0; i < topicNum; i++) {
 
@@ -670,7 +676,6 @@ public class LMSUI {
                 for (int l = 0; l < 4; l++) {
     
                     String answerContent = getUserString("Answer #" + (l + 1));
-    
                     answers[l] = answerContent;
     
                 }
@@ -794,7 +799,6 @@ public class LMSUI {
         while (true) {
             displayMenu(billingMenu, "BILLING OPTIONS");
 
-            
             if ((userCommand = menuCommandValidation(billingMenu)) == -1) continue;
             break;
         }
@@ -816,8 +820,6 @@ public class LMSUI {
             Comment comment = new Comment(commentInfo, lms.getCurrentUser().getUsername(), lms.getCurrentUser().id);
 
             comments.add(comment);
-
-        
     }
 
     public void displayComments(ArrayList<Comment> comments){
@@ -833,7 +835,6 @@ public class LMSUI {
                     result += "     "+comment.getReplies().size() + " replies" + "\n\n";
                 position++;
             }
-
         }
         System.out.println(result);
 
@@ -899,8 +900,6 @@ public class LMSUI {
             if ((userCommand = menuCommandValidation(basicMenu)) == -1) continue;
             break;
         }
-
-
     }
 
     public void printCertificate(Course course) {
@@ -914,8 +913,6 @@ public class LMSUI {
         } catch(Exception e){
             System.out.println("Timed Out");
         }
-
-
     }
         
     public void viewTopics(Course course) {
@@ -945,21 +942,14 @@ public class LMSUI {
                 printTopicToFile(topic);
                 break;
             case(1):
-                return;
-
-                
+                return;   
         }
-
-
-
     }
-
 
     public void printTopicToFile(Topic topic){
         clearScreen();
         lms.printToFileTopic(topic);
     }
-
 
     public static void main(String[] args) {
         LMSUI lmsInterface = new LMSUI();
