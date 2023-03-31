@@ -134,7 +134,7 @@ public abstract class User {
             this.courseProgresses.add(new CourseProgress(course));
         }
         for(CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
+            if(progress.getCourse().getTitle().equals(course.getTitle())){
                 return progress;
             }
         }
