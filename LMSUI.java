@@ -15,13 +15,10 @@ public class LMSUI {
     private String[] newCourseMenu = {"Enroll in Course", "View Topics", "Exit to Home"}; 
     private String[] viewTopicsMenu = {"Print a Topic to File", "Exit"};
     private String[] courseListMenu = {"Select Course", "Exit to Home"};
-    private String[] createdCoursesMenu = {"Choose Course", "Exit to Home"};
-    private String[] createdTopicMenu = {"Choose Topic", "Exit to Home"};
     private String[] editTopicMenu = {"Add Subtopic", "Add Question", "Exit to Home"};
     private String[] topicMenu = {"Quiz", "Display Comments", "Next Topic", "Exit to Home"};
     private String[] commentMenu = {"Comment", "View Comment Replies", "Exit"};
     private String[] basicMenu = {"Exit"};
-    private String[] quizMenu = {"Next Topic", "Display Comments", "Print out Topic", "Exit to Home"};
     private String[] profileMenu = {"Exit to Home"};
     private String[] billingMenu = {"Exit to Home"};
     private String[] subtopicMenu = {"Next", "Previous", "Back to Topic"};
