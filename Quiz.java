@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 /**
  * A quiz class
- * @author Andrew Davison
  */
 public class Quiz {
     private ArrayList<Question> questions; 
