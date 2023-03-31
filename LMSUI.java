@@ -40,7 +40,8 @@ public class LMSUI {
 
     /**
      * Starts the UI
-     * 
+     * login menu
+     * validates user
      */
     public void run() {
         System.out.println(WELCOME_MESSAGE);
@@ -92,6 +93,10 @@ public class LMSUI {
         System.out.println("Goodbye, have a good day.");
     }
 
+    /**
+     * Navigation through home menu
+     * @param user current user
+     */
     public void homeMenuInteraction(User user) {
         
         boolean logout = false;
@@ -141,6 +146,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * loops though and displays menus
+     * @param menu menu to be displayed
+     * @param pageName menu header
+     */
     private void displayMenu(String[] menu, String pageName) {
         System.out.println("\n****** " + pageName + " ******");
         for (int i=0; i < menu.length; i++) {
@@ -149,6 +159,11 @@ public class LMSUI {
         System.out.println("\n");
     }
 
+    /**
+     * gets user input for menus
+     * @param numCommands number of possible commands for the menu
+     * @return int command or -1 if invalid
+     */
     private int getUserCommand(int numCommands) {
 		
         while (true) {
@@ -169,6 +184,11 @@ public class LMSUI {
 
 	}
 
+    /**
+     * gets user input for integer answers
+     * @param prompt prompt for user input
+     * @return int user int or invalid
+     */
     private int getUserInt(String prompt) {
 
         while (true) {
@@ -189,6 +209,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * validates user command with menu
+     * @param menu being checked with
+     * @return user command if valid
+     */
     private int menuCommandValidation (String[] menu) {
         
         int userCommand = getUserCommand(menu.length);
@@ -199,6 +224,10 @@ public class LMSUI {
         return userCommand;
     }
 
+    /**
+     * logs the user in with username
+     * @return user being logged in
+     */
     private User loginU() {
         clearScreen();
         System.out.println("\n-----Loging in-----");        
@@ -210,6 +239,10 @@ public class LMSUI {
 
     }
 
+    /**
+     * logs the user in with email
+     * @return user being logged in
+     */
     private User loginE() {
         clearScreen();
         System.out.println("\n-----Loging in-----");        
@@ -221,6 +254,10 @@ public class LMSUI {
 
     }
 
+    /**
+     * creates an account with user input
+     * @return user that just created an account
+     */
     private User createAccount() {
         clearScreen();
         System.out.println("\n-----Signing Up-----");        
@@ -239,6 +276,11 @@ public class LMSUI {
 
     }
 
+    /**
+     * gets user input if string
+     * @param category prompt for string
+     * @return string input
+     */
     private String getUserString(String category) {
         
         while(true) {
@@ -251,6 +293,10 @@ public class LMSUI {
 		}
 
     }
+
+    /**
+     * Displays the current course and a menu of options for navigation
+     */
     private void displayCurrentCourses() {
         clearScreen();
         
@@ -288,6 +334,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * continueCourse
+     */
     public void continueCourse(Course course, CourseProgress courseProgress) {
         int numCompleteTopics = courseProgress.numCompletedTopics();
         int numTopics = course.getTopics().size();
