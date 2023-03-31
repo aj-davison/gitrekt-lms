@@ -353,7 +353,7 @@
                     },
                     {
                         "question": "What are for loops commonly used for?",
-                        "correct": 1,
+                        "correct": 0,
                         "answers": [
                             "Populating arrays",
                             "Cooking food",
@@ -363,16 +363,38 @@
                     },
                     {
                         "question": "What are for loops good for?",
-                        "correct": 2,
+                        "correct": 1,
                         "answers": [
                             "When you want to loop infinitely",
                             "When you want to loop conditionally",
                             "When you want to loop a certain amount of times",
                             "Never, you should use a hashmap instead"
                         ]
+                    },
+                    {
+                        "question": "Are loops commonly used?",
+                        "correct": 1,
+                        "answers": [
+                            "All the time!",
+                            "It depends",
+                            "Never",
+                            "Never, you should use a hashmap instead"
+                        ]
                     }
                 ],
-                "comments": [],
+                "comments": [
+                    {
+                        "replies": [
+                            {
+                                "replies": [],
+                                "comment": "Loops are for loopsers",
+                                "userId": "7f17c20a-babc-44ed-b934-f7d7e8b287ca"
+                            }
+                        ],
+                        "comment": "These are throwing me for a loop. hehehe",
+                        "userId": "8c21d048-b21c-415f-a817-8a7514193b04"
+                    }
+                ],
                 "subtopics": [
                     {
                         "title": "For Loops",
