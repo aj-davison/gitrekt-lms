@@ -11,5 +11,15 @@ public class CourseListTest {
 
         assertTrue(true);
     }
+
+    /*CourseList
+- enrollCourseTitleNull
+- enrollCourseUserNull
+- enrollCourseCourseProgressNull
+- searchCourseTitleNull
+- searchCourseTitleEmpty
+- displayCourseListNull
+- displayCourseListEmpty
+*/
     
 }
