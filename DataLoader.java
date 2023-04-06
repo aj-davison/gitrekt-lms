@@ -242,14 +242,14 @@ public class DataLoader extends DataConstants {
                 }
                 repliesJsonToList(subArray, replies, includeNode, users);
             } else {
-                for(int j=0;j<subArray.size();j++) {
-                    JSONObject subJSON = (JSONObject)subArray.get(j);
-                    String subContent = (String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
-                    UUID subID = UUID.fromString((String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
-                    subComments.add(new Comment(subContent, username, subID));
+                // for(int j=0;j<subArray.size();j++) {
+                //     JSONObject subJSON = (JSONObject)subArray.get(j);
+                //     String subContent = (String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_CONTENT);
+                //     UUID subID = UUID.fromString((String)subJSON.get(COURSE_TOPIC_COMMENTS_REPLIES_ID));
+                //     subComments.add(new Comment(subContent, username, subID));
 
-                }
-                replies.add(new Comment(replyID, replyContent, username, subComments));
+                // }
+                replies.add(new Comment(replyContent, username, replyID));
             }
         }
     }
