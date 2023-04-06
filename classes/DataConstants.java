@@ -1,3 +1,4 @@
+package classes;
 /**
  * A class that holds all the Data Constants
  * @author Andrew Davison
