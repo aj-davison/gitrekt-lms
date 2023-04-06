@@ -1,3 +1,4 @@
+package classes;
 import java.util.ArrayList;
 public class LMS {
     private static UserList userList = UserList.getInstanceUserList(); //instance of userList
