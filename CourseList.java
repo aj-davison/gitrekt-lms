@@ -50,6 +50,11 @@ public class CourseList {
         }
         return null;
     }
+    /**
+     * returns the course based on what title you enter
+     * @param title
+     * @return returns the course based on what title you enter
+     */
     public Course getCourseByTitle(String title){
         for(int i=0; i<courses.size(); i++){
             if(courses.get(i).getTitle().equalsIgnoreCase(title)){

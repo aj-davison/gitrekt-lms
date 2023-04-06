@@ -36,25 +36,24 @@ public class Student extends User{
     public Student(UUID id, ArrayList<CourseProgress> courseProgresses, String firstName, String lastName, String email, String username, String password){
         super(id, courseProgresses, firstName, lastName, email, username, password);
     }
-
-
+    /**
+     * blank make course necessary to be able to call make course from user(author is the only one that actually does anything)
+     */
     public void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty){
         
     }
-/* 
-    public void unregisterCourse(Course course){
-        courseProgresses.remove(course);
-    }
-*/  
-
+    /**
+     * return arrayList of created courses(NONE for student), necessary to call later
+     */
     public ArrayList<Course> getCreatedCourses(){
         return null;
     }
-
+    /**
+     * displays messsage if this method is tried to be called from student
+     */
     public String displayCreatedCourses(){
         return "Sorry, you are a student";
     }
-
     /**
      * Makes the student a string
      * @return returns a string representation of the student

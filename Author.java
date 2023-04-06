@@ -41,7 +41,10 @@ public class Author extends Student{
     public void setCreatedCourses(ArrayList<Course> createdCourses){
         this.createdCourses = createdCourses;
     }
-
+    /**
+     * Adds course course to createdCourses arraylist
+     * @param course
+     */
     public void addCreatedCourses(Course course) {
         this.createdCourses.add(course);
     }

@@ -124,5 +124,14 @@
         "type": "student",
         "email": "scoutS@hotmail.com",
         "username": "scout"
+    },
+    {
+        "firstName": "Allie Anderson",
+        "lastName": "Allie",
+        "password": "s",
+        "id": "e063ef80-048b-47c4-92d8-1aece5a3d6a3",
+        "type": "student",
+        "email": "a",
+        "username": "AllieAnderson"
     }
 ]

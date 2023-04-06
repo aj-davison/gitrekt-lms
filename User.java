@@ -2,8 +2,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 /**
- * Class that represents a user
- * @author Andrew Davison
+ * Abstract class that represents a user
  */
 public abstract class User {
     
@@ -135,7 +134,7 @@ public abstract class User {
             this.courseProgresses.add(new CourseProgress(course));
         }
         for(CourseProgress progress : this.courseProgresses){
-            if(progress.getCourse().equals(course)){
+            if(progress.getCourse().getTitle().equals(course.getTitle())){
                 return progress;
             }
         }
@@ -157,8 +156,23 @@ public abstract class User {
         return result;
     }
     
+    /**
+     * abstract method for make course
+     * @param topics
+     * @param title
+     * @param description
+     * @param difficulty
+     */
     public abstract void makeCourse(ArrayList<Topic> topics, String title, String description, int difficulty);
+    /**
+     * abstract method for displayCreatedCourses
+     * @return returns created courses if user is author
+     */
     public abstract String displayCreatedCourses();
+    /**
+     * abstract method for get Created courses
+     * @return returns arraylist of created courses if user is author
+     */
     public abstract ArrayList<Course> getCreatedCourses();
     
     /**
@@ -317,6 +331,11 @@ public abstract class User {
         }
         return result;
     }
+    /**
+     * method to update the arraylist of grades for a course
+     * @param course
+     * @param grade
+     */
     public void updateGrades(Course course, double grade){
         if(!isEnrolled(course)){
             this.courseProgresses.add(new CourseProgress(course));
@@ -327,7 +346,10 @@ public abstract class User {
             }
         }
     }
-    
+    /**
+     * method to get a string of all the currently enrolled courses
+     * @return string of all the currently enrolled courses
+     */
     public String currentCoursesToString(){
         String result = "";
         int position = 1;
