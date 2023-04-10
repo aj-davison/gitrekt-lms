@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "uuidmaker",
+            "request": "launch",
+            "mainClass": "uuidmaker",
+            "projectName": "gitrekt-lms_b4cac14f"
+        },
+        {
+            "type": "java",
             "name": "LMSUI",
             "request": "launch",
             "mainClass": "LMSUI",
