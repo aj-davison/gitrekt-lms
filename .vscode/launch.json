@@ -8,6 +8,13 @@
             "type": "java",
             "name": "LMSUI",
             "request": "launch",
+            "mainClass": "classes.LMSUI",
+            "projectName": "gitrekt-lms_71f7a330"
+        },
+        {
+            "type": "java",
+            "name": "LMSUI",
+            "request": "launch",
             "mainClass": "LMSUI",
             "projectName": "gitrekt-lms_b4cac14f"
         },
